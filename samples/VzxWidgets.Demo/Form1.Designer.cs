@@ -79,6 +79,8 @@ partial class Form1 : VzxWidgets.Controls.VzxForm
         btnMin = new VzxWidgets.Controls.VzxControlBox();
         btnClose = new VzxWidgets.Controls.VzxControlBox();
         cardFuncoes = new VzxWidgets.Controls.VzxCard();
+        vzxButton1 = new VzxWidgets.Controls.VzxButton();
+        vzxCheckBox1 = new VzxWidgets.Controls.VzxCheckBox();
         btnTestToasts = new VzxWidgets.Controls.VzxButton();
         hdrFuncoes = new VzxWidgets.Controls.VzxDotHeader();
         chkAimbot = new VzxWidgets.Controls.VzxCheckBox();
@@ -101,9 +103,9 @@ partial class Form1 : VzxWidgets.Controls.VzxForm
         lblMaxDistVal = new Label();
         trackMaxDist = new VzxWidgets.Controls.VzxTrackBar();
         cardEspPreview = new VzxWidgets.Controls.VzxCard();
+        espPreview = new VzxWidgets.Controls.VzxEspPreview();
         hdrEspPreview = new VzxWidgets.Controls.VzxDotHeader();
         progHealth = new VzxWidgets.Controls.VzxProgressBar();
-        espPreview = new VzxWidgets.Controls.VzxEspPreview();
         cardOutros = new VzxWidgets.Controls.VzxCard();
         hdrOutros = new VzxWidgets.Controls.VzxDotHeader();
         chkConectado = new VzxWidgets.Controls.VzxCheckBox();
@@ -116,6 +118,9 @@ partial class Form1 : VzxWidgets.Controls.VzxForm
         lblStatus = new Label();
         lblStatusVal = new Label();
         vzxFormDrag1 = new VzxWidgets.Controls.VzxFormDrag(components);
+        vzxComboBox1 = new VzxWidgets.Controls.VzxComboBox();
+        vzxCard1 = new VzxWidgets.Controls.VzxCard();
+        vzxKeybind1 = new VzxWidgets.Controls.VzxKeybind();
         topBar.SuspendLayout();
         cardFuncoes.SuspendLayout();
         cardVisual.SuspendLayout();
@@ -178,6 +183,10 @@ partial class Form1 : VzxWidgets.Controls.VzxForm
         cardFuncoes.BackColor = Color.FromArgb(14, 14, 18);
         cardFuncoes.BorderColor = Color.FromArgb(28, 28, 36);
         cardFuncoes.BorderRadius = 12;
+        cardFuncoes.Controls.Add(vzxCard1);
+        cardFuncoes.Controls.Add(vzxComboBox1);
+        cardFuncoes.Controls.Add(vzxButton1);
+        cardFuncoes.Controls.Add(vzxCheckBox1);
         cardFuncoes.Controls.Add(btnTestToasts);
         cardFuncoes.Controls.Add(hdrFuncoes);
         cardFuncoes.Controls.Add(chkAimbot);
@@ -188,27 +197,64 @@ partial class Form1 : VzxWidgets.Controls.VzxForm
         cardFuncoes.Size = new Size(250, 310);
         cardFuncoes.TabIndex = 1;
         // 
+        // vzxButton1
+        // 
+        vzxButton1.ActiveIndicatorColor = Color.FromArgb(187, 200, 254);
+        vzxButton1.BackColor = Color.FromArgb(187, 200, 254);
+        vzxButton1.BorderColor = Color.FromArgb(70, 70, 90);
+        vzxButton1.FlatAppearance.BorderSize = 0;
+        vzxButton1.FlatStyle = FlatStyle.Flat;
+        vzxButton1.Font = new Font("Segoe UI Semibold", 9.5F, FontStyle.Bold);
+        vzxButton1.ForeColor = Color.White;
+        vzxButton1.GradientEndColor = Color.FromArgb(145, 165, 245);
+        vzxButton1.HoverColor = Color.FromArgb(205, 215, 255);
+        vzxButton1.Location = new Point(32, 251);
+        vzxButton1.Name = "vzxButton1";
+        vzxButton1.PressedColor = Color.FromArgb(145, 165, 245);
+        vzxButton1.Size = new Size(160, 42);
+        vzxButton1.TabIndex = 5;
+        vzxButton1.Text = "vzxButton1";
+        vzxButton1.UseVisualStyleBackColor = false;
+        // 
+        // vzxCheckBox1
+        // 
+        vzxCheckBox1.AutoSize = true;
+        vzxCheckBox1.BoxBorderColor = Color.FromArgb(70, 70, 88);
+        vzxCheckBox1.CheckedColor = Color.FromArgb(187, 200, 254);
+        vzxCheckBox1.Font = new Font("Segoe UI", 9.5F);
+        vzxCheckBox1.ForeColor = Color.FromArgb(220, 220, 230);
+        vzxCheckBox1.Location = new Point(32, 219);
+        vzxCheckBox1.Name = "vzxCheckBox1";
+        vzxCheckBox1.Size = new Size(118, 21);
+        vzxCheckBox1.TabIndex = 4;
+        vzxCheckBox1.Text = "vzxCheckBox1";
+        vzxCheckBox1.UncheckedColor = Color.FromArgb(45, 45, 58);
+        vzxCheckBox1.UseVisualStyleBackColor = true;
+        // 
         // btnTestToasts
         // 
-        btnTestToasts.BackColor = Color.FromArgb(140, 70, 240);
-        btnTestToasts.BorderColor = Color.FromArgb(170, 100, 255);
+        btnTestToasts.ActiveIndicatorColor = Color.FromArgb(187, 200, 254);
+        btnTestToasts.BackColor = Color.FromArgb(187, 200, 254);
+        btnTestToasts.BorderColor = Color.FromArgb(205, 215, 255);
         btnTestToasts.BorderRadius = 8;
         btnTestToasts.BorderSize = 1;
+        btnTestToasts.FlatStyle = FlatStyle.Flat;
         btnTestToasts.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
-        btnTestToasts.ForeColor = Color.White;
-        btnTestToasts.GradientEndColor = Color.FromArgb(90, 40, 180);
-        btnTestToasts.HoverColor = Color.FromArgb(160, 90, 255);
+        btnTestToasts.ForeColor = Color.FromArgb(16, 16, 24);
+        btnTestToasts.GradientEndColor = Color.FromArgb(145, 165, 245);
+        btnTestToasts.HoverColor = Color.FromArgb(205, 215, 255);
         btnTestToasts.Location = new Point(16, 140);
         btnTestToasts.Name = "btnTestToasts";
-        btnTestToasts.PressedColor = Color.FromArgb(120, 50, 220);
+        btnTestToasts.PressedColor = Color.FromArgb(145, 165, 245);
         btnTestToasts.Size = new Size(218, 36);
         btnTestToasts.TabIndex = 3;
         btnTestToasts.Text = "🔔 Disparar Toasts (Stack)";
         btnTestToasts.UseGradient = true;
+        btnTestToasts.UseVisualStyleBackColor = false;
         // 
         // hdrFuncoes
         // 
-        hdrFuncoes.DotColor = Color.FromArgb(155, 80, 255);
+        hdrFuncoes.DotColor = Color.FromArgb(187, 200, 254);
         hdrFuncoes.Font = new Font("Segoe UI Semibold", 9.5F, FontStyle.Bold);
         hdrFuncoes.Location = new Point(14, 14);
         hdrFuncoes.Name = "hdrFuncoes";
@@ -218,30 +264,31 @@ partial class Form1 : VzxWidgets.Controls.VzxForm
         // 
         // chkAimbot
         // 
-        chkAimbot.AutoSize = false;
+        chkAimbot.AutoSize = true;
         chkAimbot.BoxBorderColor = Color.FromArgb(70, 70, 88);
         chkAimbot.Checked = true;
-        chkAimbot.CheckedColor = Color.FromArgb(155, 80, 255);
+        chkAimbot.CheckedColor = Color.FromArgb(187, 200, 254);
         chkAimbot.CheckState = CheckState.Checked;
         chkAimbot.Font = new Font("Segoe UI", 9.5F);
         chkAimbot.ForeColor = Color.FromArgb(220, 220, 230);
         chkAimbot.Location = new Point(16, 52);
         chkAimbot.Name = "chkAimbot";
-        chkAimbot.Size = new Size(200, 22);
+        chkAimbot.Size = new Size(80, 21);
         chkAimbot.TabIndex = 1;
         chkAimbot.Text = "Aimbot";
         chkAimbot.UncheckedColor = Color.FromArgb(45, 45, 58);
+        chkAimbot.CheckedChanged += chkAimbot_CheckedChanged;
         // 
         // chkSilent
         // 
-        chkSilent.AutoSize = false;
+        chkSilent.AutoSize = true;
         chkSilent.BoxBorderColor = Color.FromArgb(70, 70, 88);
-        chkSilent.CheckedColor = Color.FromArgb(155, 80, 255);
+        chkSilent.CheckedColor = Color.FromArgb(187, 200, 254);
         chkSilent.Font = new Font("Segoe UI", 9.5F);
         chkSilent.ForeColor = Color.FromArgb(220, 220, 230);
         chkSilent.Location = new Point(16, 88);
         chkSilent.Name = "chkSilent";
-        chkSilent.Size = new Size(200, 22);
+        chkSilent.Size = new Size(95, 21);
         chkSilent.TabIndex = 2;
         chkSilent.Text = "Silent Aim";
         chkSilent.UncheckedColor = Color.FromArgb(45, 45, 58);
@@ -275,7 +322,7 @@ partial class Form1 : VzxWidgets.Controls.VzxForm
         // 
         // hdrVisual
         // 
-        hdrVisual.DotColor = Color.FromArgb(155, 80, 255);
+        hdrVisual.DotColor = Color.FromArgb(187, 200, 254);
         hdrVisual.Font = new Font("Segoe UI Semibold", 9.5F, FontStyle.Bold);
         hdrVisual.Location = new Point(14, 14);
         hdrVisual.Name = "hdrVisual";
@@ -285,16 +332,16 @@ partial class Form1 : VzxWidgets.Controls.VzxForm
         // 
         // chkEspBox
         // 
-        chkEspBox.AutoSize = false;
+        chkEspBox.AutoSize = true;
         chkEspBox.BoxBorderColor = Color.FromArgb(70, 70, 88);
         chkEspBox.Checked = true;
-        chkEspBox.CheckedColor = Color.FromArgb(155, 80, 255);
+        chkEspBox.CheckedColor = Color.FromArgb(187, 200, 254);
         chkEspBox.CheckState = CheckState.Checked;
         chkEspBox.Font = new Font("Segoe UI", 9.5F);
         chkEspBox.ForeColor = Color.FromArgb(220, 220, 230);
         chkEspBox.Location = new Point(16, 48);
         chkEspBox.Name = "chkEspBox";
-        chkEspBox.Size = new Size(190, 22);
+        chkEspBox.Size = new Size(84, 21);
         chkEspBox.TabIndex = 1;
         chkEspBox.Text = "ESP Box";
         chkEspBox.UncheckedColor = Color.FromArgb(45, 45, 58);
@@ -310,16 +357,16 @@ partial class Form1 : VzxWidgets.Controls.VzxForm
         // 
         // chkEspFill
         // 
-        chkEspFill.AutoSize = false;
+        chkEspFill.AutoSize = true;
         chkEspFill.BoxBorderColor = Color.FromArgb(70, 70, 88);
         chkEspFill.Checked = true;
-        chkEspFill.CheckedColor = Color.FromArgb(155, 80, 255);
+        chkEspFill.CheckedColor = Color.FromArgb(187, 200, 254);
         chkEspFill.CheckState = CheckState.Checked;
         chkEspFill.Font = new Font("Segoe UI", 9.5F);
         chkEspFill.ForeColor = Color.FromArgb(220, 220, 230);
         chkEspFill.Location = new Point(16, 78);
         chkEspFill.Name = "chkEspFill";
-        chkEspFill.Size = new Size(190, 22);
+        chkEspFill.Size = new Size(100, 21);
         chkEspFill.TabIndex = 3;
         chkEspFill.Text = "ESP Fillbox";
         chkEspFill.UncheckedColor = Color.FromArgb(45, 45, 58);
@@ -334,16 +381,16 @@ partial class Form1 : VzxWidgets.Controls.VzxForm
         // 
         // chkEspLine
         // 
-        chkEspLine.AutoSize = false;
+        chkEspLine.AutoSize = true;
         chkEspLine.BoxBorderColor = Color.FromArgb(70, 70, 88);
         chkEspLine.Checked = true;
-        chkEspLine.CheckedColor = Color.FromArgb(155, 80, 255);
+        chkEspLine.CheckedColor = Color.FromArgb(187, 200, 254);
         chkEspLine.CheckState = CheckState.Checked;
         chkEspLine.Font = new Font("Segoe UI", 9.5F);
         chkEspLine.ForeColor = Color.FromArgb(220, 220, 230);
         chkEspLine.Location = new Point(16, 108);
         chkEspLine.Name = "chkEspLine";
-        chkEspLine.Size = new Size(190, 22);
+        chkEspLine.Size = new Size(86, 21);
         chkEspLine.TabIndex = 5;
         chkEspLine.Text = "ESP Line";
         chkEspLine.UncheckedColor = Color.FromArgb(45, 45, 58);
@@ -358,9 +405,9 @@ partial class Form1 : VzxWidgets.Controls.VzxForm
         // 
         // cmbEspPos
         // 
-        cmbEspPos.ArrowColor = Color.FromArgb(155, 80, 255);
+        cmbEspPos.ArrowColor = Color.FromArgb(187, 200, 254);
         cmbEspPos.BorderColor = Color.FromArgb(36, 36, 48);
-        cmbEspPos.BorderFocusColor = Color.FromArgb(155, 80, 255);
+        cmbEspPos.BorderFocusColor = Color.FromArgb(187, 200, 254);
         cmbEspPos.Font = new Font("Segoe UI", 9.5F);
         cmbEspPos.ForeColor = Color.FromArgb(230, 230, 240);
         cmbEspPos.Location = new Point(16, 138);
@@ -370,16 +417,16 @@ partial class Form1 : VzxWidgets.Controls.VzxForm
         // 
         // chkEspName
         // 
-        chkEspName.AutoSize = false;
+        chkEspName.AutoSize = true;
         chkEspName.BoxBorderColor = Color.FromArgb(70, 70, 88);
         chkEspName.Checked = true;
-        chkEspName.CheckedColor = Color.FromArgb(155, 80, 255);
+        chkEspName.CheckedColor = Color.FromArgb(187, 200, 254);
         chkEspName.CheckState = CheckState.Checked;
         chkEspName.Font = new Font("Segoe UI", 9.5F);
         chkEspName.ForeColor = Color.FromArgb(220, 220, 230);
         chkEspName.Location = new Point(16, 180);
         chkEspName.Name = "chkEspName";
-        chkEspName.Size = new Size(190, 22);
+        chkEspName.Size = new Size(98, 21);
         chkEspName.TabIndex = 8;
         chkEspName.Text = "ESP Name";
         chkEspName.UncheckedColor = Color.FromArgb(45, 45, 58);
@@ -394,32 +441,32 @@ partial class Form1 : VzxWidgets.Controls.VzxForm
         // 
         // chkEspHealth
         // 
-        chkEspHealth.AutoSize = false;
+        chkEspHealth.AutoSize = true;
         chkEspHealth.BoxBorderColor = Color.FromArgb(70, 70, 88);
         chkEspHealth.Checked = true;
-        chkEspHealth.CheckedColor = Color.FromArgb(155, 80, 255);
+        chkEspHealth.CheckedColor = Color.FromArgb(187, 200, 254);
         chkEspHealth.CheckState = CheckState.Checked;
         chkEspHealth.Font = new Font("Segoe UI", 9.5F);
         chkEspHealth.ForeColor = Color.FromArgb(220, 220, 230);
         chkEspHealth.Location = new Point(16, 210);
         chkEspHealth.Name = "chkEspHealth";
-        chkEspHealth.Size = new Size(190, 22);
+        chkEspHealth.Size = new Size(100, 21);
         chkEspHealth.TabIndex = 10;
         chkEspHealth.Text = "ESP Health";
         chkEspHealth.UncheckedColor = Color.FromArgb(45, 45, 58);
         // 
         // chkEspSkeleton
         // 
-        chkEspSkeleton.AutoSize = false;
+        chkEspSkeleton.AutoSize = true;
         chkEspSkeleton.BoxBorderColor = Color.FromArgb(70, 70, 88);
         chkEspSkeleton.Checked = true;
-        chkEspSkeleton.CheckedColor = Color.FromArgb(155, 80, 255);
+        chkEspSkeleton.CheckedColor = Color.FromArgb(187, 200, 254);
         chkEspSkeleton.CheckState = CheckState.Checked;
         chkEspSkeleton.Font = new Font("Segoe UI", 9.5F);
         chkEspSkeleton.ForeColor = Color.FromArgb(220, 220, 230);
         chkEspSkeleton.Location = new Point(16, 240);
         chkEspSkeleton.Name = "chkEspSkeleton";
-        chkEspSkeleton.Size = new Size(190, 22);
+        chkEspSkeleton.Size = new Size(112, 21);
         chkEspSkeleton.TabIndex = 11;
         chkEspSkeleton.Text = "ESP Skeleton";
         chkEspSkeleton.UncheckedColor = Color.FromArgb(45, 45, 58);
@@ -459,7 +506,7 @@ partial class Form1 : VzxWidgets.Controls.VzxForm
         trackMaxDist.Location = new Point(16, 302);
         trackMaxDist.Maximum = 200;
         trackMaxDist.Name = "trackMaxDist";
-        trackMaxDist.ProgressColor = Color.FromArgb(155, 80, 255);
+        trackMaxDist.ProgressColor = Color.FromArgb(187, 200, 254);
         trackMaxDist.ShowDiamondThumb = false;
         trackMaxDist.Size = new Size(234, 20);
         trackMaxDist.TabIndex = 15;
@@ -472,8 +519,6 @@ partial class Form1 : VzxWidgets.Controls.VzxForm
         cardEspPreview.BackColor = Color.FromArgb(14, 14, 18);
         cardEspPreview.BorderColor = Color.FromArgb(28, 28, 36);
         cardEspPreview.BorderRadius = 12;
-        
-        
         cardEspPreview.Controls.Add(espPreview);
         cardEspPreview.Location = new Point(568, 56);
         cardEspPreview.Name = "cardEspPreview";
@@ -481,9 +526,56 @@ partial class Form1 : VzxWidgets.Controls.VzxForm
         cardEspPreview.Size = new Size(274, 479);
         cardEspPreview.TabIndex = 5;
         // 
+        // espPreview
+        // 
+        espPreview.AnimatedPreview = true;
+        espPreview.BackColor = Color.Transparent;
+        espPreview.BorderRadius = 8;
+        espPreview.BoxColor = Color.White;
+        espPreview.BoxOutlineThickness = 2;
+        espPreview.BoxRounding = 4;
+        espPreview.BoxThickness = 1;
+        espPreview.DistanceColor = Color.White;
+        espPreview.DistanceText = "10m";
+        espPreview.Dock = DockStyle.Fill;
+        espPreview.FillBoxColor = Color.FromArgb(115, 80, 210);
+        espPreview.Font = new Font("Segoe UI", 8.5F);
+        espPreview.GridColor = Color.FromArgb(22, 255, 255, 255);
+        espPreview.HeadCircleColor = Color.Red;
+        espPreview.HealthBarHeight = 6;
+        espPreview.HealthHighColor = Color.FromArgb(0, 235, 35);
+        espPreview.HealthLowColor = Color.FromArgb(235, 25, 25);
+        espPreview.HealthMediumColor = Color.FromArgb(255, 215, 0);
+        espPreview.HealthValue = 85;
+        espPreview.InfoPanelHorizontalPadding = 12;
+        espPreview.InfoPanelRounding = 5;
+        espPreview.InfoPanelVerticalPadding = 6;
+        espPreview.LineOrigin = VzxWidgets.Controls.VzxEspPreview.SnaplineOrigin.Top;
+        espPreview.Location = new Point(14, 14);
+        espPreview.MinimumSize = new Size(180, 250);
+        espPreview.Name = "espPreview";
+        espPreview.NameColor = Color.White;
+        espPreview.PlayerName = "BOT";
+        espPreview.PreviewBackgroundColor = Color.FromArgb(13, 13, 17);
+        espPreview.PreviewBorderColor = Color.FromArgb(45, 45, 52);
+        espPreview.ShowBox = true;
+        espPreview.ShowDistance = true;
+        espPreview.ShowFillBox = true;
+        espPreview.ShowGrid = true;
+        espPreview.ShowHeadCircle = true;
+        espPreview.ShowHealthBar = true;
+        espPreview.ShowName = true;
+        espPreview.ShowPreviewBackground = true;
+        espPreview.ShowSkeleton = true;
+        espPreview.ShowSnapline = true;
+        espPreview.Size = new Size(246, 451);
+        espPreview.SkeletonColor = Color.White;
+        espPreview.SnaplineColor = Color.FromArgb(170, 120, 255);
+        espPreview.TabIndex = 0;
+        // 
         // hdrEspPreview
         // 
-        hdrEspPreview.DotColor = Color.FromArgb(155, 80, 255);
+        hdrEspPreview.DotColor = Color.FromArgb(187, 200, 254);
         hdrEspPreview.Font = new Font("Segoe UI Semibold", 9.5F, FontStyle.Bold);
         hdrEspPreview.Location = new Point(14, 14);
         hdrEspPreview.Name = "hdrEspPreview";
@@ -506,22 +598,12 @@ partial class Form1 : VzxWidgets.Controls.VzxForm
         progHealth.TrackColor = Color.FromArgb(35, 35, 48);
         progHealth.Value = 85;
         // 
-        // espPreview
-        // 
-        espPreview.Dock = System.Windows.Forms.DockStyle.Fill;
-        espPreview.Location = new Point(14, 14);
-        espPreview.Name = "espPreview";
-        espPreview.Size = new Size(246, 451);
-        espPreview.TabIndex = 0;
-        espPreview.ShowFillBox = true;
-        espPreview.ShowSkeleton = true;
-        espPreview.AnimatedPreview = true;
-        // 
         // cardOutros
         // 
         cardOutros.BackColor = Color.FromArgb(14, 14, 18);
         cardOutros.BorderColor = Color.FromArgb(28, 28, 36);
         cardOutros.BorderRadius = 12;
+        cardOutros.Controls.Add(vzxKeybind1);
         cardOutros.Controls.Add(hdrOutros);
         cardOutros.Controls.Add(chkConectado);
         cardOutros.Controls.Add(lblOpenMenu);
@@ -534,7 +616,7 @@ partial class Form1 : VzxWidgets.Controls.VzxForm
         // 
         // hdrOutros
         // 
-        hdrOutros.DotColor = Color.FromArgb(155, 80, 255);
+        hdrOutros.DotColor = Color.FromArgb(187, 200, 254);
         hdrOutros.Font = new Font("Segoe UI Semibold", 9.5F, FontStyle.Bold);
         hdrOutros.Location = new Point(14, 12);
         hdrOutros.Name = "hdrOutros";
@@ -544,16 +626,16 @@ partial class Form1 : VzxWidgets.Controls.VzxForm
         // 
         // chkConectado
         // 
-        chkConectado.AutoSize = false;
+        chkConectado.AutoSize = true;
         chkConectado.BoxBorderColor = Color.FromArgb(70, 70, 88);
         chkConectado.Checked = true;
-        chkConectado.CheckedColor = Color.FromArgb(155, 80, 255);
+        chkConectado.CheckedColor = Color.FromArgb(187, 200, 254);
         chkConectado.CheckState = CheckState.Checked;
         chkConectado.Font = new Font("Segoe UI", 9.5F);
         chkConectado.ForeColor = Color.FromArgb(220, 220, 230);
         chkConectado.Location = new Point(16, 44);
         chkConectado.Name = "chkConectado";
-        chkConectado.Size = new Size(200, 22);
+        chkConectado.Size = new Size(101, 21);
         chkConectado.TabIndex = 1;
         chkConectado.Text = "Conectado";
         chkConectado.UncheckedColor = Color.FromArgb(45, 45, 58);
@@ -570,6 +652,8 @@ partial class Form1 : VzxWidgets.Controls.VzxForm
         // 
         // keyOpenMenu
         // 
+        keyOpenMenu.ActiveBorderColor = Color.FromArgb(187, 200, 254);
+        keyOpenMenu.BoxBackColor = Color.FromArgb(24, 24, 32);
         keyOpenMenu.CurrentKey = Keys.Insert;
         keyOpenMenu.Font = new Font("Segoe UI Semibold", 8.5F, FontStyle.Bold);
         keyOpenMenu.ForeColor = Color.FromArgb(220, 220, 235);
@@ -596,7 +680,7 @@ partial class Form1 : VzxWidgets.Controls.VzxForm
         // 
         // hdrInfo
         // 
-        hdrInfo.DotColor = Color.FromArgb(155, 80, 255);
+        hdrInfo.DotColor = Color.FromArgb(187, 200, 254);
         hdrInfo.Font = new Font("Segoe UI Semibold", 9.5F, FontStyle.Bold);
         hdrInfo.Location = new Point(14, 10);
         hdrInfo.Name = "hdrInfo";
@@ -646,11 +730,46 @@ partial class Form1 : VzxWidgets.Controls.VzxForm
         lblStatusVal.TabIndex = 4;
         lblStatusVal.Text = "None";
         // 
-        // 
         // vzxFormDrag1
         // 
         vzxFormDrag1.TargetControl = null;
         vzxFormDrag1.TargetForm = null;
+        // 
+        // vzxComboBox1
+        // 
+        vzxComboBox1.ArrowColor = Color.FromArgb(187, 200, 254);
+        vzxComboBox1.BorderColor = Color.FromArgb(38, 38, 50);
+        vzxComboBox1.BorderFocusColor = Color.FromArgb(187, 200, 254);
+        vzxComboBox1.Font = new Font("Segoe UI", 9.5F);
+        vzxComboBox1.ForeColor = Color.FromArgb(230, 230, 240);
+        vzxComboBox1.Location = new Point(133, 32);
+        vzxComboBox1.Name = "vzxComboBox1";
+        vzxComboBox1.Size = new Size(200, 32);
+        vzxComboBox1.TabIndex = 6;
+        vzxComboBox1.Text = "vzxComboBox1";
+        // 
+        // vzxCard1
+        // 
+        vzxCard1.BackColor = Color.FromArgb(18, 18, 24);
+        vzxCard1.BorderColor = Color.FromArgb(38, 38, 50);
+        vzxCard1.Location = new Point(86, 179);
+        vzxCard1.Name = "vzxCard1";
+        vzxCard1.Padding = new Padding(15);
+        vzxCard1.Size = new Size(200, 100);
+        vzxCard1.TabIndex = 7;
+        // 
+        // vzxKeybind1
+        // 
+        vzxKeybind1.ActiveBorderColor = Color.FromArgb(187, 200, 254);
+        vzxKeybind1.BoxBackColor = Color.FromArgb(24, 24, 32);
+        vzxKeybind1.CurrentKey = Keys.Insert;
+        vzxKeybind1.Font = new Font("Segoe UI Semibold", 8.5F, FontStyle.Bold);
+        vzxKeybind1.ForeColor = Color.FromArgb(220, 220, 235);
+        vzxKeybind1.Location = new Point(146, 13);
+        vzxKeybind1.Name = "vzxKeybind1";
+        vzxKeybind1.Size = new Size(88, 28);
+        vzxKeybind1.TabIndex = 4;
+        vzxKeybind1.Text = "vzxKeybind1";
         // 
         // Form1
         // 
@@ -684,4 +803,9 @@ partial class Form1 : VzxWidgets.Controls.VzxForm
 
     private Controls.VzxButton btnTestToasts;
     private Controls.VzxFormDrag vzxFormDrag1;
+    private Controls.VzxCheckBox vzxCheckBox1;
+    private Controls.VzxButton vzxButton1;
+    private Controls.VzxCard vzxCard1;
+    private Controls.VzxComboBox vzxComboBox1;
+    private Controls.VzxKeybind vzxKeybind1;
 }

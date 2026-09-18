@@ -12,9 +12,9 @@ namespace VzxWidgets.Controls;
 public class VzxComboBox : Control
 {
     private Color _backColor = Color.FromArgb(20, 20, 26);
-    private Color _borderColor = Color.FromArgb(38, 38, 50);
-    private Color _borderFocusColor = Color.FromArgb(155, 80, 255);
-    private Color _arrowColor = Color.FromArgb(155, 80, 255);
+    private Color _borderColor = Color.FromArgb(45, 45, 60);
+    private Color _borderFocusColor = Color.FromArgb(187, 200, 254);
+    private Color _arrowColor = Color.FromArgb(187, 200, 254);
     private Color _dropdownBackColor = Color.FromArgb(22, 22, 30);
     private Color _dropdownHoverColor = Color.FromArgb(35, 35, 48);
     private int _borderRadius = 8;

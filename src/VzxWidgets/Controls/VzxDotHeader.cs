@@ -8,7 +8,7 @@ namespace VzxWidgets.Controls;
 [ToolboxItem(true)]
 public class VzxDotHeader : Control
 {
-    private Color _dotColor = Color.FromArgb(155, 80, 255); // Roxo neon
+    private Color _dotColor = Color.FromArgb(187, 200, 254); // Pastel lavender / ice-blue
     private Color _textColor = Color.FromArgb(220, 220, 235);
     private int _dotSize = 7;
 

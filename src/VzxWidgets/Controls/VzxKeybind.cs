@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
@@ -14,8 +14,8 @@ public class VzxKeybind : Control
     private bool _isListening = false;
     private Color _boxBackColor = Color.FromArgb(24, 24, 32);
     private Color _borderColor = Color.FromArgb(48, 48, 64);
-    private Color _activeBorderColor = Color.FromArgb(155, 80, 255);
-    private Color _hoverBorderColor = Color.FromArgb(90, 90, 120);
+    private Color _activeBorderColor = Color.FromArgb(187, 200, 254);
+    private Color _hoverBorderColor = Color.FromArgb(187, 200, 254);
     private int _borderRadius = 6;
     private bool _isHovered = false;
 

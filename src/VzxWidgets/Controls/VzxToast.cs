@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
@@ -69,10 +69,10 @@ public class VzxToast : Control
             _barColor = _type switch
             {
                 ToastType.Success => Color.FromArgb(48, 209, 88),
-                ToastType.Info => Color.FromArgb(155, 80, 255),
+                ToastType.Info => Color.FromArgb(187, 200, 254),
                 ToastType.Warning => Color.FromArgb(255, 149, 0),
                 ToastType.Error => Color.FromArgb(255, 69, 58),
-                _ => Color.FromArgb(155, 80, 255)
+                _ => Color.FromArgb(187, 200, 254)
             };
             Invalidate();
         }

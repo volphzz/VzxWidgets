@@ -12,8 +12,8 @@ public class VzxProgressBar : Control
     private int _minimum = 0;
     private int _maximum = 100;
     private int _value = 65;
-    private Color _startColor = Color.FromArgb(255, 90, 20);
-    private Color _endColor = Color.FromArgb(255, 145, 0);
+    private Color _startColor = Color.FromArgb(187, 200, 254);
+    private Color _endColor = Color.FromArgb(145, 165, 245);
     private Color _backColorTrack = Color.FromArgb(35, 35, 48);
     private int _borderRadius = 8;
     private bool _showPercentage = true;

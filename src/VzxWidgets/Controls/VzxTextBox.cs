@@ -11,7 +11,7 @@ namespace VzxWidgets.Controls;
 public class VzxTextBox : UserControl
 {
     private Color _borderColor = Color.FromArgb(70, 70, 90);
-    private Color _borderFocusColor = Color.FromArgb(94, 92, 230);
+    private Color _borderFocusColor = Color.FromArgb(187, 200, 254);
     private int _borderSize = 2;
     private int _borderRadius = 8;
     private bool _isFocused = false;

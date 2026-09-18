@@ -14,7 +14,7 @@ public class VzxTrackBar : Control
     private int _maximum = 100;
     private int _value = 50;
     private Color _trackColor = Color.FromArgb(40, 40, 52);
-    private Color _progressColor = Color.FromArgb(255, 90, 20); // Laranja Neon
+    private Color _progressColor = Color.FromArgb(187, 200, 254); // Pastel lavender
     private Color _thumbColor = Color.White;
     private int _trackHeight = 6;
     private int _thumbSize = 12;

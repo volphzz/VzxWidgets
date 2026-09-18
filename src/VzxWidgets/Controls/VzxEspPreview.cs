@@ -23,15 +23,15 @@ public class VzxEspPreview : Control
     private Color gridColor = Color.FromArgb(22, 255, 255, 255);
 
     private Color boxColor = Color.White;
-    private Color fillBoxColor = Color.FromArgb(115, 80, 210);
+    private Color fillBoxColor = Color.FromArgb(100, 187, 200, 254);
     private Color nameColor = Color.White;
     private Color distanceColor = Color.White;
     private Color healthHighColor = Color.FromArgb(0, 235, 35);
     private Color healthMediumColor = Color.FromArgb(255, 215, 0);
     private Color healthLowColor = Color.FromArgb(235, 25, 25);
     private Color skeletonColor = Color.White;
-    private Color headCircleColor = Color.Red;
-    private Color snaplineColor = Color.FromArgb(170, 120, 255);
+    private Color headCircleColor = Color.FromArgb(187, 200, 254);
+    private Color snaplineColor = Color.FromArgb(187, 200, 254);
 
     private string playerName = "BOT";
     private string distanceText = "10m";

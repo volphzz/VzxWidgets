@@ -10,7 +10,7 @@ namespace VzxWidgets.Controls;
 [DefaultEvent("CheckedChanged")]
 public class VzxCheckBox : CheckBox
 {
-    private Color _checkedColor = Color.FromArgb(255, 90, 20); // Laranja neon/gaming
+    private Color _checkedColor = Color.FromArgb(187, 200, 254); // Pastel lavender / ice-blue
     private Color _uncheckedColor = Color.FromArgb(45, 45, 58);
     private Color _boxBorderColor = Color.FromArgb(70, 70, 88);
     private int _boxSize = 18;

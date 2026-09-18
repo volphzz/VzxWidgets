@@ -11,8 +11,8 @@ namespace VzxWidgets.Controls;
 public class VzxToggleSwitch : Control
 {
     private bool _checked = false;
-    private Color _onBackColor = Color.FromArgb(94, 92, 230);
-    private Color _onToggleColor = Color.White;
+    private Color _onBackColor = Color.FromArgb(187, 200, 254);
+    private Color _onToggleColor = Color.FromArgb(18, 18, 26);
     private Color _offBackColor = Color.FromArgb(50, 50, 65);
     private Color _offToggleColor = Color.FromArgb(160, 160, 175);
 

@@ -163,4 +163,9 @@ public partial class Form1 : VzxForm
             VzxToastManager.ShowInfo(this, "ESP Box", "ESP Box desativado.");
         }
     }
+
+    private void chkAimbot_CheckedChanged(object sender, EventArgs e)
+    {
+
+    }
 }

@@ -13,17 +13,17 @@ public class VzxButton : Button
     private int _borderRadius = 12;
     private int _borderSize = 0;
     private Color _borderColor = Color.FromArgb(70, 70, 90);
-    private Color _hoverColor = Color.FromArgb(255, 115, 30);
-    private Color _pressedColor = Color.FromArgb(210, 70, 10);
+    private Color _hoverColor = Color.FromArgb(205, 215, 255);
+    private Color _pressedColor = Color.FromArgb(145, 160, 235);
 
     // Gradiente opcional
     private bool _useGradient = false;
-    private Color _gradientEndColor = Color.FromArgb(255, 140, 20);
+    private Color _gradientEndColor = Color.FromArgb(145, 165, 245);
     private float _gradientAngle = 45f;
 
     // Indicador lateral (estilo Sidebar Cheat/Tabs como Aimbot / Players)
     private bool _showActiveIndicator = false;
-    private Color _activeIndicatorColor = Color.FromArgb(255, 90, 20);
+    private Color _activeIndicatorColor = Color.FromArgb(187, 200, 254);
 
     private bool _isHovered = false;
     private bool _isPressed = false;
@@ -33,8 +33,8 @@ public class VzxButton : Button
         FlatStyle = FlatStyle.Flat;
         FlatAppearance.BorderSize = 0;
         Size = new Size(160, 42);
-        BackColor = Color.FromArgb(255, 90, 20);
-        ForeColor = Color.White;
+        BackColor = Color.FromArgb(187, 200, 254);
+        ForeColor = Color.FromArgb(16, 16, 24);
         Font = new Font("Segoe UI Semibold", 9.5f, FontStyle.Bold);
         Cursor = Cursors.Hand;
         DoubleBuffered = true;
