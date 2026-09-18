@@ -13,6 +13,9 @@ public class VzxColorButton : Control
     private Color _borderColor = Color.FromArgb(60, 60, 80);
     private int _borderRadius = 4;
 
+    private readonly ToolStripDropDown _dropdown = new ToolStripDropDown();
+    private readonly VzxColorPickerPopup _picker = new VzxColorPickerPopup();
+
     public event EventHandler? ColorChanged;
 
     public VzxColorButton()
@@ -20,11 +23,33 @@ public class VzxColorButton : Control
         DoubleBuffered = true;
         Size = new Size(18, 14);
         Cursor = Cursors.Hand;
+
         SetStyle(ControlStyles.AllPaintingInWmPaint |
                  ControlStyles.OptimizedDoubleBuffer |
                  ControlStyles.ResizeRedraw |
                  ControlStyles.SupportsTransparentBackColor |
                  ControlStyles.UserPaint, true);
+
+        // Configurar Popup moderno
+        var host = new ToolStripControlHost(_picker)
+        {
+            Margin = Padding.Empty,
+            Padding = Padding.Empty,
+            AutoSize = false
+        };
+
+        _dropdown.Items.Add(host);
+        _dropdown.DropShadowEnabled = true;
+        _dropdown.Padding = Padding.Empty;
+        _dropdown.Margin = Padding.Empty;
+        _dropdown.BackColor = Color.FromArgb(14, 14, 18);
+
+        _picker.ColorChanged += (s, e) =>
+        {
+            _selectedColor = _picker.SelectedColor;
+            Invalidate();
+            ColorChanged?.Invoke(this, EventArgs.Empty);
+        };
     }
 
     [Category("VzxWidgets")]
@@ -36,6 +61,7 @@ public class VzxColorButton : Control
             if (_selectedColor != value)
             {
                 _selectedColor = value;
+                _picker.SelectedColor = value;
                 Invalidate();
                 ColorChanged?.Invoke(this, EventArgs.Empty);
             }
@@ -53,15 +79,8 @@ public class VzxColorButton : Control
     protected override void OnClick(EventArgs e)
     {
         base.OnClick(e);
-        using var cd = new ColorDialog
-        {
-            Color = _selectedColor,
-            FullOpen = true
-        };
-        if (cd.ShowDialog() == DialogResult.OK)
-        {
-            SelectedColor = cd.Color;
-        }
+        _picker.SelectedColor = _selectedColor;
+        _dropdown.Show(this, new Point(Width - _picker.Width, Height + 4));
     }
 
     protected override void OnPaint(PaintEventArgs pevent)
