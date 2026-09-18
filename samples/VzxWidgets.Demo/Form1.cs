@@ -33,13 +33,11 @@ public partial class Form1 : VzxForm
 
         if (chkEspBox.Checked)
         {
-            toastSuccess.Visible = true;
-            toastSuccess.BringToFront();
+            VzxToastManager.ShowSuccess(this, "ESP Box", "ESP Box ativado com sucesso.");
         }
         else
         {
-            toastInfo.Visible = true;
-            toastInfo.BringToFront();
+            VzxToastManager.ShowInfo(this, "ESP Box", "ESP Box desativado.");
         }
     }
 }

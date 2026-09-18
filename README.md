@@ -45,8 +45,11 @@ Uma biblioteca moderna de componentes WinForms (.NET 8.0 Windows) inspirada em s
   - Capturador elegante de atalhos de teclado com visual escuro minimalista.
 - 🟣 **`VzxDotHeader`**:
   - Título de seção com ponto indicador neon e tipografia elegante.
-- 🔔 **`VzxToast`**:
-  - Notificação toast flutuante estilizada (Success, Error, Warning, Info) com barra lateral colorida e animação de fade.
+- 🔔 **`VzxToastManager` & `VzxToast`**:
+  - Sistema global de notificações flutuantes tipo Windows 11 / Cheat UI:
+    - Chamada simples: `VzxToastManager.ShowSuccess(this, "ESP", "Ativado!");`
+    - Empilhamento automático (BottomRight, TopRight, etc.), animação suave de slide-in e fade-out.
+    - Temporizador com barra de tempo inferior, pausa ao passar o mouse (`Hover Pause`) e fechamento manual com clique.
 - 📝 **`VzxTextBox`**:
   - Campo de texto estilizado com suporte a placeholder automático (`PlaceholderText`) e borda iluminada.
 
