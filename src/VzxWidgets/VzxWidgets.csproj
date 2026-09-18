@@ -9,7 +9,7 @@
     
     <!-- Metadados do Pacote NuGet -->
     <PackageId>VzxWidgets</PackageId>
-    <Version>1.4.2</Version>
+    <Version>1.4.3</Version>
     <Authors>VOLPHX</Authors>
     <Company>VOLPHX</Company>
     <Description>Suite moderna completa de componentes WinForms (.NET 8) estilo Guna UI e Dark Cheat/Gaming UI. Inclui VzxForm (Borderless Form com cantos curvos, bordas e sombra), VzxColorButton com ColorPicker moderno, VzxKeybind, VzxDotHeader, VzxToast, VzxTrackBar, VzxCheckBox, VzxProgressBar, VzxSeparator, VzxComboBox, VzxControlBox, VzxFormDrag, VzxButton e VzxCard.</Description>

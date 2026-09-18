@@ -1,6 +1,6 @@
 namespace VzxWidgets.Demo;
 
-partial class Form1
+partial class Form1 : VzxWidgets.Controls.VzxForm
 {
     private System.ComponentModel.IContainer components = null;
 
@@ -76,12 +76,16 @@ partial class Form1
 
     private void InitializeComponent()
     {
-        formDrag = new VzxWidgets.Controls.VzxFormDrag();
+        components = new System.ComponentModel.Container();
+        formDrag = new VzxWidgets.Controls.VzxFormDrag(components);
         topBar = new Panel();
         lblTitle = new Label();
         btnMin = new VzxWidgets.Controls.VzxControlBox();
         btnClose = new VzxWidgets.Controls.VzxControlBox();
         cardFuncoes = new VzxWidgets.Controls.VzxCard();
+        vzxColorButton1 = new VzxWidgets.Controls.VzxColorButton();
+        vzxComboBox1 = new VzxWidgets.Controls.VzxComboBox();
+        vzxControlBox1 = new VzxWidgets.Controls.VzxControlBox();
         hdrFuncoes = new VzxWidgets.Controls.VzxDotHeader();
         chkAimbot = new VzxWidgets.Controls.VzxCheckBox();
         chkSilent = new VzxWidgets.Controls.VzxCheckBox();
@@ -119,9 +123,7 @@ partial class Form1
         lblStatusVal = new Label();
         toastSuccess = new VzxWidgets.Controls.VzxToast();
         toastInfo = new VzxWidgets.Controls.VzxToast();
-        vzxControlBox1 = new VzxWidgets.Controls.VzxControlBox();
-        vzxComboBox1 = new VzxWidgets.Controls.VzxComboBox();
-        vzxColorButton1 = new VzxWidgets.Controls.VzxColorButton();
+        vzxFormDrag1 = new VzxWidgets.Controls.VzxFormDrag(components);
         topBar.SuspendLayout();
         cardFuncoes.SuspendLayout();
         cardVisual.SuspendLayout();
@@ -133,6 +135,7 @@ partial class Form1
         // formDrag
         // 
         formDrag.TargetControl = topBar;
+        formDrag.TargetForm = null;
         // 
         // topBar
         // 
@@ -194,6 +197,38 @@ partial class Form1
         cardFuncoes.Padding = new Padding(14);
         cardFuncoes.Size = new Size(250, 310);
         cardFuncoes.TabIndex = 1;
+        // 
+        // vzxColorButton1
+        // 
+        vzxColorButton1.Location = new Point(197, 78);
+        vzxColorButton1.Name = "vzxColorButton1";
+        vzxColorButton1.SelectedColor = Color.White;
+        vzxColorButton1.Size = new Size(18, 14);
+        vzxColorButton1.TabIndex = 5;
+        vzxColorButton1.Text = "vzxColorButton1";
+        // 
+        // vzxComboBox1
+        // 
+        vzxComboBox1.ArrowColor = Color.FromArgb(155, 80, 255);
+        vzxComboBox1.BorderColor = Color.FromArgb(38, 38, 50);
+        vzxComboBox1.BorderFocusColor = Color.FromArgb(155, 80, 255);
+        vzxComboBox1.Font = new Font("Segoe UI", 9.5F);
+        vzxComboBox1.ForeColor = Color.FromArgb(230, 230, 240);
+        vzxComboBox1.Location = new Point(33, 199);
+        vzxComboBox1.Name = "vzxComboBox1";
+        vzxComboBox1.Size = new Size(200, 32);
+        vzxComboBox1.TabIndex = 4;
+        vzxComboBox1.Text = "vzxComboBox1";
+        // 
+        // vzxControlBox1
+        // 
+        vzxControlBox1.HoverColor = Color.FromArgb(255, 60, 50);
+        vzxControlBox1.IconColor = Color.FromArgb(170, 170, 185);
+        vzxControlBox1.Location = new Point(102, 138);
+        vzxControlBox1.Name = "vzxControlBox1";
+        vzxControlBox1.Size = new Size(32, 26);
+        vzxControlBox1.TabIndex = 3;
+        vzxControlBox1.Text = "vzxControlBox1";
         // 
         // hdrFuncoes
         // 
@@ -354,7 +389,6 @@ partial class Form1
         cmbEspPos.ForeColor = Color.FromArgb(230, 230, 240);
         cmbEspPos.Location = new Point(16, 138);
         cmbEspPos.Name = "cmbEspPos";
-        cmbEspPos.SelectedIndex = 0;
         cmbEspPos.Size = new Size(234, 30);
         cmbEspPos.TabIndex = 7;
         // 
@@ -658,37 +692,10 @@ partial class Form1
         toastInfo.TabIndex = 7;
         toastInfo.Type = VzxWidgets.Controls.ToastType.Info;
         // 
-        // vzxControlBox1
+        // vzxFormDrag1
         // 
-        vzxControlBox1.HoverColor = Color.FromArgb(255, 60, 50);
-        vzxControlBox1.IconColor = Color.FromArgb(170, 170, 185);
-        vzxControlBox1.Location = new Point(102, 138);
-        vzxControlBox1.Name = "vzxControlBox1";
-        vzxControlBox1.Size = new Size(32, 26);
-        vzxControlBox1.TabIndex = 3;
-        vzxControlBox1.Text = "vzxControlBox1";
-        // 
-        // vzxComboBox1
-        // 
-        vzxComboBox1.ArrowColor = Color.FromArgb(155, 80, 255);
-        vzxComboBox1.BorderColor = Color.FromArgb(38, 38, 50);
-        vzxComboBox1.BorderFocusColor = Color.FromArgb(155, 80, 255);
-        vzxComboBox1.Font = new Font("Segoe UI", 9.5F);
-        vzxComboBox1.ForeColor = Color.FromArgb(230, 230, 240);
-        vzxComboBox1.Location = new Point(33, 199);
-        vzxComboBox1.Name = "vzxComboBox1";
-        vzxComboBox1.Size = new Size(200, 32);
-        vzxComboBox1.TabIndex = 4;
-        vzxComboBox1.Text = "vzxComboBox1";
-        // 
-        // vzxColorButton1
-        // 
-        vzxColorButton1.Location = new Point(197, 78);
-        vzxColorButton1.Name = "vzxColorButton1";
-        vzxColorButton1.SelectedColor = Color.White;
-        vzxColorButton1.Size = new Size(18, 14);
-        vzxColorButton1.TabIndex = 5;
-        vzxColorButton1.Text = "vzxColorButton1";
+        vzxFormDrag1.TargetControl = null;
+        vzxFormDrag1.TargetForm = null;
         // 
         // Form1
         // 
@@ -704,11 +711,7 @@ partial class Form1
         Controls.Add(cardVisual);
         Controls.Add(cardFuncoes);
         Controls.Add(topBar);
-        Font = new Font("Segoe UI", 9F);
-        ForeColor = Color.White;
-        FormBorderStyle = FormBorderStyle.None;
         Name = "Form1";
-        StartPosition = FormStartPosition.CenterScreen;
         Text = "Volphx - VzxWidgets";
         topBar.ResumeLayout(false);
         topBar.PerformLayout();
@@ -729,4 +732,5 @@ partial class Form1
     private Controls.VzxColorButton vzxColorButton1;
     private Controls.VzxComboBox vzxComboBox1;
     private Controls.VzxControlBox vzxControlBox1;
+    private Controls.VzxFormDrag vzxFormDrag1;
 }

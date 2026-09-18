@@ -56,8 +56,10 @@ public class VzxForm : Form
                  ControlStyles.UserPaint, true);
     }
 
+    [Browsable(true)]
     [Category("VzxWidgets")]
     [DefaultValue(16)]
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
     [Description("Raio de curvatura dos cantos arredondados.")]
     public int BorderRadius
     {
@@ -70,8 +72,10 @@ public class VzxForm : Form
         }
     }
 
+    [Browsable(true)]
     [Category("VzxWidgets")]
     [DefaultValue(true)]
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
     [Description("Arredondar o canto superior esquerdo.")]
     public bool RoundTopLeft
     {
@@ -79,8 +83,10 @@ public class VzxForm : Form
         set { _roundTopLeft = value; UpdateRegion(); Invalidate(); }
     }
 
+    [Browsable(true)]
     [Category("VzxWidgets")]
     [DefaultValue(true)]
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
     [Description("Arredondar o canto superior direito.")]
     public bool RoundTopRight
     {
@@ -88,8 +94,10 @@ public class VzxForm : Form
         set { _roundTopRight = value; UpdateRegion(); Invalidate(); }
     }
 
+    [Browsable(true)]
     [Category("VzxWidgets")]
     [DefaultValue(true)]
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
     [Description("Arredondar o canto inferior direito.")]
     public bool RoundBottomRight
     {
@@ -97,8 +105,10 @@ public class VzxForm : Form
         set { _roundBottomRight = value; UpdateRegion(); Invalidate(); }
     }
 
+    [Browsable(true)]
     [Category("VzxWidgets")]
     [DefaultValue(true)]
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
     [Description("Arredondar o canto inferior esquerdo.")]
     public bool RoundBottomLeft
     {
@@ -106,8 +116,10 @@ public class VzxForm : Form
         set { _roundBottomLeft = value; UpdateRegion(); Invalidate(); }
     }
 
+    [Browsable(true)]
     [Category("VzxWidgets")]
     [DefaultValue(1)]
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
     [Description("Espessura do contorno da janela.")]
     public int BorderSize
     {
@@ -119,7 +131,9 @@ public class VzxForm : Form
         }
     }
 
+    [Browsable(true)]
     [Category("VzxWidgets")]
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
     [Description("Cor do contorno da janela.")]
     public Color BorderColor
     {
@@ -131,8 +145,10 @@ public class VzxForm : Form
         }
     }
 
+    [Browsable(true)]
     [Category("VzxWidgets")]
     [DefaultValue(true)]
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
     [Description("Ativa a sombra profunda realista do Windows (DWM DropShadow).")]
     public bool HasDropShadow
     {
