@@ -291,4 +291,15 @@ public class VzxComboBox : Control
         TextRenderer.DrawText(g, displayText, Font, textRect, ForeColor,
             TextFormatFlags.Left | TextFormatFlags.VerticalCenter | TextFormatFlags.EndEllipsis);
     }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            _dropdown.Dispose();
+            _host.Dispose();
+            _listBox.Dispose();
+        }
+        base.Dispose(disposing);
+    }
 }

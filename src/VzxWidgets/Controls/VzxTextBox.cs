@@ -72,7 +72,7 @@ public class VzxTextBox : UserControl
     public int BorderRadius
     {
         get => _borderRadius;
-        set { _borderRadius = Math.Max(0, value); Invalidate(); }
+        set { _borderRadius = Math.Max(0, value); UpdateRegion(); Invalidate(); }
     }
 
     [Category("VzxWidgets")]
@@ -117,6 +117,27 @@ public class VzxTextBox : UserControl
         }
     }
 
+    protected override void OnResize(EventArgs e)
+    {
+        base.OnResize(e);
+        UpdateRegion();
+    }
+
+    private void UpdateRegion()
+    {
+        if (Width <= 0 || Height <= 0) return;
+        if (_borderRadius > 2)
+        {
+            var rectSurface = new RectangleF(0, 0, Width, Height);
+            using var pathSurface = GraphicsHelper.GetRoundedRectangle(rectSurface, _borderRadius);
+            Region = new Region(pathSurface);
+        }
+        else
+        {
+            Region = null;
+        }
+    }
+
     protected override void OnPaint(PaintEventArgs e)
     {
         base.OnPaint(e);
@@ -124,16 +145,12 @@ public class VzxTextBox : UserControl
         GraphicsHelper.ApplyHighQuality(g);
 
         Color border = _isFocused ? _borderFocusColor : _borderColor;
-        var rectSurface = new RectangleF(0, 0, Width, Height);
         var rectBorder = new RectangleF(1, 1, Width - 2, Height - 2);
 
         if (_borderRadius > 2)
         {
-            using var pathSurface = GraphicsHelper.GetRoundedRectangle(rectSurface, _borderRadius);
             using var pathBorder = GraphicsHelper.GetRoundedRectangle(rectBorder, _borderRadius - 1);
             using var penBorder = new Pen(border, _borderSize);
-
-            Region = new Region(pathSurface);
             g.DrawPath(penBorder, pathBorder);
         }
         else

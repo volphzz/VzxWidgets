@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
@@ -133,5 +133,15 @@ public class VzxDotHeader : Control
         var textRect = new Rectangle(_dotSize + 8, 0, Width - _dotSize - 8, Height);
         TextRenderer.DrawText(g, Text, Font, textRect, _textColor,
             TextFormatFlags.Left | TextFormatFlags.VerticalCenter);
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing && _pulseTimer != null)
+        {
+            _pulseTimer.Stop();
+            _pulseTimer.Dispose();
+        }
+        base.Dispose(disposing);
     }
 }

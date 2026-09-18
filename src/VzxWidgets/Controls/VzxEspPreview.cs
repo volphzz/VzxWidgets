@@ -88,8 +88,11 @@ public class VzxEspPreview : Control
             Interval = 25
         };
 
-        animationTimer.Tick += AnimationTimer_Tick;
-        animationTimer.Enabled = true;
+        if (LicenseManager.UsageMode != LicenseUsageMode.Designtime)
+        {
+            animationTimer.Tick += AnimationTimer_Tick;
+            animationTimer.Enabled = true;
+        }
     }
 
     #region Preview
@@ -372,6 +375,7 @@ public class VzxEspPreview : Control
     protected override void OnPaint(PaintEventArgs e)
     {
         base.OnPaint(e);
+        if (Width <= 1 || Height <= 1) return;
 
         Graphics g = e.Graphics;
         g.SmoothingMode = SmoothingMode.AntiAlias;

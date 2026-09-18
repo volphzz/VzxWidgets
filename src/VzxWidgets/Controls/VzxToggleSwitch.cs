@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
@@ -152,5 +152,15 @@ public class VzxToggleSwitch : Control
         {
             g.FillEllipse(brushToggle, rectToggle);
         }
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            _animTimer.Stop();
+            _animTimer.Dispose();
+        }
+        base.Dispose(disposing);
     }
 }

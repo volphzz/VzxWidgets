@@ -261,4 +261,14 @@ public class VzxButton : Button
         TextRenderer.DrawText(g, Text, Font, ClientRectangle, ForeColor,
             TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter);
     }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            _animTimer.Stop();
+            _animTimer.Dispose();
+        }
+        base.Dispose(disposing);
+    }
 }

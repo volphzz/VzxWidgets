@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
@@ -291,5 +291,15 @@ public class VzxKeybind : Control
             TextRenderer.DrawText(g, display, Font, ClientRectangle, ForeColor,
                 TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter);
         }
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing && _pulseTimer != null)
+        {
+            _pulseTimer.Stop();
+            _pulseTimer.Dispose();
+        }
+        base.Dispose(disposing);
     }
 }

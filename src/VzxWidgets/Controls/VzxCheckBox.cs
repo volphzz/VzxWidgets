@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
@@ -173,9 +173,19 @@ public class VzxCheckBox : CheckBox
             }
         }
 
-        // Texto ao lado
+        string text = string.IsNullOrEmpty(Text) ? "" : Text;
         var textRect = new Rectangle(_boxSize + 8, 0, Width - _boxSize - 8, Height);
-        TextRenderer.DrawText(g, Text, Font, textRect, ForeColor,
+        TextRenderer.DrawText(g, text, Font, textRect, ForeColor,
             TextFormatFlags.Left | TextFormatFlags.VerticalCenter);
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing && _animTimer != null)
+        {
+            _animTimer.Stop();
+            _animTimer.Dispose();
+        }
+        base.Dispose(disposing);
     }
 }

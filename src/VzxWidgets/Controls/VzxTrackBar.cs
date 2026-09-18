@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
@@ -262,5 +262,15 @@ public class VzxTrackBar : Control
             g.FillEllipse(brushThumb, rectThumb);
             g.DrawEllipse(penThumb, rectThumb);
         }
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            _animTimer.Stop();
+            _animTimer.Dispose();
+        }
+        base.Dispose(disposing);
     }
 }

@@ -320,4 +320,19 @@ public class VzxToast : Control
         g.DrawLine(penX, cx - 3.5f, cy - 3.5f, cx + 3.5f, cy + 3.5f);
         g.DrawLine(penX, cx + 3.5f, cy - 3.5f, cx - 3.5f, cy + 3.5f);
     }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            _animTimer.Stop();
+            _animTimer.Tick -= AnimTimer_Tick;
+            _animTimer.Dispose();
+
+            _progressTimer.Stop();
+            _progressTimer.Tick -= ProgressTimer_Tick;
+            _progressTimer.Dispose();
+        }
+        base.Dispose(disposing);
+    }
 }

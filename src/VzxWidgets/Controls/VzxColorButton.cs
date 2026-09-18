@@ -96,4 +96,14 @@ public class VzxColorButton : Control
         g.FillPath(brush, path);
         g.DrawPath(pen, path);
     }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            _dropdown.Dispose();
+            _picker.Dispose();
+        }
+        base.Dispose(disposing);
+    }
 }
