@@ -83,9 +83,7 @@ partial class Form1 : VzxWidgets.Controls.VzxForm
         btnMin = new VzxWidgets.Controls.VzxControlBox();
         btnClose = new VzxWidgets.Controls.VzxControlBox();
         cardFuncoes = new VzxWidgets.Controls.VzxCard();
-        vzxColorButton1 = new VzxWidgets.Controls.VzxColorButton();
-        vzxComboBox1 = new VzxWidgets.Controls.VzxComboBox();
-        vzxControlBox1 = new VzxWidgets.Controls.VzxControlBox();
+        btnTestToasts = new VzxWidgets.Controls.VzxButton();
         hdrFuncoes = new VzxWidgets.Controls.VzxDotHeader();
         chkAimbot = new VzxWidgets.Controls.VzxCheckBox();
         chkSilent = new VzxWidgets.Controls.VzxCheckBox();
@@ -186,9 +184,7 @@ partial class Form1 : VzxWidgets.Controls.VzxForm
         cardFuncoes.BackColor = Color.FromArgb(14, 14, 18);
         cardFuncoes.BorderColor = Color.FromArgb(28, 28, 36);
         cardFuncoes.BorderRadius = 12;
-        cardFuncoes.Controls.Add(vzxColorButton1);
-        cardFuncoes.Controls.Add(vzxComboBox1);
-        cardFuncoes.Controls.Add(vzxControlBox1);
+        cardFuncoes.Controls.Add(btnTestToasts);
         cardFuncoes.Controls.Add(hdrFuncoes);
         cardFuncoes.Controls.Add(chkAimbot);
         cardFuncoes.Controls.Add(chkSilent);
@@ -198,37 +194,23 @@ partial class Form1 : VzxWidgets.Controls.VzxForm
         cardFuncoes.Size = new Size(250, 310);
         cardFuncoes.TabIndex = 1;
         // 
-        // vzxColorButton1
+        // btnTestToasts
         // 
-        vzxColorButton1.Location = new Point(197, 78);
-        vzxColorButton1.Name = "vzxColorButton1";
-        vzxColorButton1.SelectedColor = Color.White;
-        vzxColorButton1.Size = new Size(18, 14);
-        vzxColorButton1.TabIndex = 5;
-        vzxColorButton1.Text = "vzxColorButton1";
-        // 
-        // vzxComboBox1
-        // 
-        vzxComboBox1.ArrowColor = Color.FromArgb(155, 80, 255);
-        vzxComboBox1.BorderColor = Color.FromArgb(38, 38, 50);
-        vzxComboBox1.BorderFocusColor = Color.FromArgb(155, 80, 255);
-        vzxComboBox1.Font = new Font("Segoe UI", 9.5F);
-        vzxComboBox1.ForeColor = Color.FromArgb(230, 230, 240);
-        vzxComboBox1.Location = new Point(33, 199);
-        vzxComboBox1.Name = "vzxComboBox1";
-        vzxComboBox1.Size = new Size(200, 32);
-        vzxComboBox1.TabIndex = 4;
-        vzxComboBox1.Text = "vzxComboBox1";
-        // 
-        // vzxControlBox1
-        // 
-        vzxControlBox1.HoverColor = Color.FromArgb(255, 60, 50);
-        vzxControlBox1.IconColor = Color.FromArgb(170, 170, 185);
-        vzxControlBox1.Location = new Point(102, 138);
-        vzxControlBox1.Name = "vzxControlBox1";
-        vzxControlBox1.Size = new Size(32, 26);
-        vzxControlBox1.TabIndex = 3;
-        vzxControlBox1.Text = "vzxControlBox1";
+        btnTestToasts.BackColor = Color.FromArgb(140, 70, 240);
+        btnTestToasts.BorderColor = Color.FromArgb(170, 100, 255);
+        btnTestToasts.BorderRadius = 8;
+        btnTestToasts.BorderSize = 1;
+        btnTestToasts.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+        btnTestToasts.ForeColor = Color.White;
+        btnTestToasts.GradientEndColor = Color.FromArgb(90, 40, 180);
+        btnTestToasts.HoverColor = Color.FromArgb(160, 90, 255);
+        btnTestToasts.Location = new Point(16, 140);
+        btnTestToasts.Name = "btnTestToasts";
+        btnTestToasts.PressedColor = Color.FromArgb(120, 50, 220);
+        btnTestToasts.Size = new Size(218, 36);
+        btnTestToasts.TabIndex = 3;
+        btnTestToasts.Text = "🔔 Disparar Toasts (Stack)";
+        btnTestToasts.UseGradient = true;
         // 
         // hdrFuncoes
         // 
@@ -731,8 +713,6 @@ partial class Form1 : VzxWidgets.Controls.VzxForm
 
     #endregion
 
-    private Controls.VzxColorButton vzxColorButton1;
-    private Controls.VzxComboBox vzxComboBox1;
-    private Controls.VzxControlBox vzxControlBox1;
+    private Controls.VzxButton btnTestToasts;
     private Controls.VzxFormDrag vzxFormDrag1;
 }
