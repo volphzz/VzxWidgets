@@ -9,7 +9,8 @@ namespace VzxWidgets.Controls;
 
 /// <summary>
 /// Formulário moderno sem bordas (Borderless Form) totalmente customizável,
-/// com suporte a cantos arredondados, bordas coloridas, sombra DWM e redimensionamento nativo pelo mouse.
+/// com suporte a cantos arredondados gerais ou individuais, bordas coloridas, 
+/// sombra nativa DWM e redimensionamento suave pelo mouse.
 /// </summary>
 public class VzxForm : Form
 {
@@ -17,6 +18,12 @@ public class VzxForm : Form
     private int _borderSize = 1;
     private Color _borderColor = Color.FromArgb(45, 45, 60);
     private bool _hasDropShadow = true;
+
+    // Controle individual dos cantos
+    private bool _roundTopLeft = true;
+    private bool _roundTopRight = true;
+    private bool _roundBottomRight = true;
+    private bool _roundBottomLeft = true;
 
     // Constantes do Windows para redimensionamento e sombra nativa
     private const int WM_NCHITTEST = 0x84;
@@ -51,6 +58,7 @@ public class VzxForm : Form
 
     [Category("VzxWidgets")]
     [DefaultValue(16)]
+    [Description("Raio de curvatura dos cantos arredondados.")]
     public int BorderRadius
     {
         get => _borderRadius;
@@ -63,7 +71,44 @@ public class VzxForm : Form
     }
 
     [Category("VzxWidgets")]
+    [DefaultValue(true)]
+    [Description("Arredondar o canto superior esquerdo.")]
+    public bool RoundTopLeft
+    {
+        get => _roundTopLeft;
+        set { _roundTopLeft = value; UpdateRegion(); Invalidate(); }
+    }
+
+    [Category("VzxWidgets")]
+    [DefaultValue(true)]
+    [Description("Arredondar o canto superior direito.")]
+    public bool RoundTopRight
+    {
+        get => _roundTopRight;
+        set { _roundTopRight = value; UpdateRegion(); Invalidate(); }
+    }
+
+    [Category("VzxWidgets")]
+    [DefaultValue(true)]
+    [Description("Arredondar o canto inferior direito.")]
+    public bool RoundBottomRight
+    {
+        get => _roundBottomRight;
+        set { _roundBottomRight = value; UpdateRegion(); Invalidate(); }
+    }
+
+    [Category("VzxWidgets")]
+    [DefaultValue(true)]
+    [Description("Arredondar o canto inferior esquerdo.")]
+    public bool RoundBottomLeft
+    {
+        get => _roundBottomLeft;
+        set { _roundBottomLeft = value; UpdateRegion(); Invalidate(); }
+    }
+
+    [Category("VzxWidgets")]
     [DefaultValue(1)]
+    [Description("Espessura do contorno da janela.")]
     public int BorderSize
     {
         get => _borderSize;
@@ -75,6 +120,7 @@ public class VzxForm : Form
     }
 
     [Category("VzxWidgets")]
+    [Description("Cor do contorno da janela.")]
     public Color BorderColor
     {
         get => _borderColor;
@@ -87,6 +133,7 @@ public class VzxForm : Form
 
     [Category("VzxWidgets")]
     [DefaultValue(true)]
+    [Description("Ativa a sombra profunda realista do Windows (DWM DropShadow).")]
     public bool HasDropShadow
     {
         get => _hasDropShadow;
@@ -128,7 +175,6 @@ public class VzxForm : Form
         if (DesignMode || !IsHandleCreated) return;
         try
         {
-            // Ativa DWM Dark Mode title se compatível no Windows 10/11
             int useImmersiveDarkMode = 1;
             DwmSetWindowAttribute(Handle, 20, ref useImmersiveDarkMode, sizeof(int));
         }
@@ -137,10 +183,15 @@ public class VzxForm : Form
 
     private void UpdateRegion()
     {
-        if (_borderRadius > 2)
+        float tl = _roundTopLeft ? _borderRadius : 0;
+        float tr = _roundTopRight ? _borderRadius : 0;
+        float br = _roundBottomRight ? _borderRadius : 0;
+        float bl = _roundBottomLeft ? _borderRadius : 0;
+
+        if (tl > 0 || tr > 0 || br > 0 || bl > 0)
         {
             var rect = new RectangleF(0, 0, Width, Height);
-            using var path = GraphicsHelper.GetRoundedRectangle(rect, _borderRadius);
+            using var path = GraphicsHelper.GetCustomRoundedRectangle(rect, tl, tr, br, bl);
             Region = new Region(path);
         }
         else
@@ -159,9 +210,14 @@ public class VzxForm : Form
         {
             var rectBorder = new RectangleF(0.5f, 0.5f, Width - 1f, Height - 1f);
 
-            if (_borderRadius > 2)
+            float tl = _roundTopLeft ? _borderRadius : 0;
+            float tr = _roundTopRight ? _borderRadius : 0;
+            float br = _roundBottomRight ? _borderRadius : 0;
+            float bl = _roundBottomLeft ? _borderRadius : 0;
+
+            if (tl > 0 || tr > 0 || br > 0 || bl > 0)
             {
-                using var path = GraphicsHelper.GetRoundedRectangle(rectBorder, _borderRadius);
+                using var path = GraphicsHelper.GetCustomRoundedRectangle(rectBorder, tl, tr, br, bl);
                 using var pen = new Pen(_borderColor, _borderSize);
                 g.DrawPath(pen, path);
             }
@@ -173,7 +229,6 @@ public class VzxForm : Form
         }
     }
 
-    // Permite redimensionar a janela arrastando pelas bordas e quinas com o mouse
     protected override void WndProc(ref Message m)
     {
         base.WndProc(ref m);
