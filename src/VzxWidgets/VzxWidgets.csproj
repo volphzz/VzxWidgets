@@ -9,7 +9,7 @@
     
     <!-- Metadados do Pacote NuGet -->
     <PackageId>VzxWidgets</PackageId>
-    <Version>1.7.1</Version>
+    <Version>1.1.0</Version>
     <Authors>VOLPHX</Authors>
     <Company>VOLPHX</Company>
     <Description>Suite moderna completa de componentes WinForms (.NET 8) estilo Guna UI e Dark Gaming UI (#BBC8FE). Correções de estabilidade no Visual Studio Designer (eliminação de loop de Region em VzxCard, supressão de timers em designtime e background anti-ghosting em VzxDotHeader, VzxCheckBox e VzxKeybind) e animações 60fps fluidas.</Description>
