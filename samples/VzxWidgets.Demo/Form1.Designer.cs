@@ -76,627 +76,657 @@ partial class Form1
 
     private void InitializeComponent()
     {
-        this.components = new System.ComponentModel.Container();
-        this.formDrag = new VzxWidgets.Controls.VzxFormDrag();
-
-        // TopBar
-        this.topBar = new System.Windows.Forms.Panel();
-        this.lblTitle = new System.Windows.Forms.Label();
-        this.btnClose = new VzxWidgets.Controls.VzxControlBox();
-        this.btnMin = new VzxWidgets.Controls.VzxControlBox();
-
-        // Cards
-        this.cardFuncoes = new VzxWidgets.Controls.VzxCard();
-        this.cardVisual = new VzxWidgets.Controls.VzxCard();
-        this.cardEspPreview = new VzxWidgets.Controls.VzxCard();
-        this.cardOutros = new VzxWidgets.Controls.VzxCard();
-        this.cardInfo = new VzxWidgets.Controls.VzxCard();
-
-        // Funções Controls
-        this.hdrFuncoes = new VzxWidgets.Controls.VzxDotHeader();
-        this.chkAimbot = new VzxWidgets.Controls.VzxCheckBox();
-        this.chkSilent = new VzxWidgets.Controls.VzxCheckBox();
-
-        // Visual Controls
-        this.hdrVisual = new VzxWidgets.Controls.VzxDotHeader();
-        this.chkEspBox = new VzxWidgets.Controls.VzxCheckBox();
-        this.colEspBox = new VzxWidgets.Controls.VzxColorButton();
-        this.chkEspFill = new VzxWidgets.Controls.VzxCheckBox();
-        this.colEspFill = new VzxWidgets.Controls.VzxColorButton();
-        this.chkEspLine = new VzxWidgets.Controls.VzxCheckBox();
-        this.colEspLine = new VzxWidgets.Controls.VzxColorButton();
-        this.cmbEspPos = new VzxWidgets.Controls.VzxComboBox();
-        this.chkEspName = new VzxWidgets.Controls.VzxCheckBox();
-        this.colEspName = new VzxWidgets.Controls.VzxColorButton();
-        this.chkEspHealth = new VzxWidgets.Controls.VzxCheckBox();
-        this.chkEspSkeleton = new VzxWidgets.Controls.VzxCheckBox();
-        this.colEspSkeleton = new VzxWidgets.Controls.VzxColorButton();
-        this.lblMaxDist = new System.Windows.Forms.Label();
-        this.lblMaxDistVal = new System.Windows.Forms.Label();
-        this.trackMaxDist = new VzxWidgets.Controls.VzxTrackBar();
-
-        // Outros Controls
-        this.hdrOutros = new VzxWidgets.Controls.VzxDotHeader();
-        this.chkConectado = new VzxWidgets.Controls.VzxCheckBox();
-        this.lblOpenMenu = new System.Windows.Forms.Label();
-        this.keyOpenMenu = new VzxWidgets.Controls.VzxKeybind();
-
-        // Info Controls
-        this.hdrInfo = new VzxWidgets.Controls.VzxDotHeader();
-        this.lblAdb = new System.Windows.Forms.Label();
-        this.lblAdbVal = new System.Windows.Forms.Label();
-        this.lblStatus = new System.Windows.Forms.Label();
-        this.lblStatusVal = new System.Windows.Forms.Label();
-
-        // ESP Preview Controls
-        this.hdrEspPreview = new VzxWidgets.Controls.VzxDotHeader();
-        this.progHealth = new VzxWidgets.Controls.VzxProgressBar();
-        this.pnlSkeletonView = new System.Windows.Forms.Panel();
-
-        // Toasts
-        this.toastSuccess = new VzxWidgets.Controls.VzxToast();
-        this.toastInfo = new VzxWidgets.Controls.VzxToast();
-
-        this.topBar.SuspendLayout();
-        this.cardFuncoes.SuspendLayout();
-        this.cardVisual.SuspendLayout();
-        this.cardEspPreview.SuspendLayout();
-        this.cardOutros.SuspendLayout();
-        this.cardInfo.SuspendLayout();
-        this.SuspendLayout();
-
+        formDrag = new VzxWidgets.Controls.VzxFormDrag();
+        topBar = new Panel();
+        lblTitle = new Label();
+        btnMin = new VzxWidgets.Controls.VzxControlBox();
+        btnClose = new VzxWidgets.Controls.VzxControlBox();
+        cardFuncoes = new VzxWidgets.Controls.VzxCard();
+        hdrFuncoes = new VzxWidgets.Controls.VzxDotHeader();
+        chkAimbot = new VzxWidgets.Controls.VzxCheckBox();
+        chkSilent = new VzxWidgets.Controls.VzxCheckBox();
+        cardVisual = new VzxWidgets.Controls.VzxCard();
+        hdrVisual = new VzxWidgets.Controls.VzxDotHeader();
+        chkEspBox = new VzxWidgets.Controls.VzxCheckBox();
+        colEspBox = new VzxWidgets.Controls.VzxColorButton();
+        chkEspFill = new VzxWidgets.Controls.VzxCheckBox();
+        colEspFill = new VzxWidgets.Controls.VzxColorButton();
+        chkEspLine = new VzxWidgets.Controls.VzxCheckBox();
+        colEspLine = new VzxWidgets.Controls.VzxColorButton();
+        cmbEspPos = new VzxWidgets.Controls.VzxComboBox();
+        chkEspName = new VzxWidgets.Controls.VzxCheckBox();
+        colEspName = new VzxWidgets.Controls.VzxColorButton();
+        chkEspHealth = new VzxWidgets.Controls.VzxCheckBox();
+        chkEspSkeleton = new VzxWidgets.Controls.VzxCheckBox();
+        colEspSkeleton = new VzxWidgets.Controls.VzxColorButton();
+        lblMaxDist = new Label();
+        lblMaxDistVal = new Label();
+        trackMaxDist = new VzxWidgets.Controls.VzxTrackBar();
+        cardEspPreview = new VzxWidgets.Controls.VzxCard();
+        hdrEspPreview = new VzxWidgets.Controls.VzxDotHeader();
+        progHealth = new VzxWidgets.Controls.VzxProgressBar();
+        pnlSkeletonView = new Panel();
+        cardOutros = new VzxWidgets.Controls.VzxCard();
+        hdrOutros = new VzxWidgets.Controls.VzxDotHeader();
+        chkConectado = new VzxWidgets.Controls.VzxCheckBox();
+        lblOpenMenu = new Label();
+        keyOpenMenu = new VzxWidgets.Controls.VzxKeybind();
+        cardInfo = new VzxWidgets.Controls.VzxCard();
+        hdrInfo = new VzxWidgets.Controls.VzxDotHeader();
+        lblAdb = new Label();
+        lblAdbVal = new Label();
+        lblStatus = new Label();
+        lblStatusVal = new Label();
+        toastSuccess = new VzxWidgets.Controls.VzxToast();
+        toastInfo = new VzxWidgets.Controls.VzxToast();
+        vzxControlBox1 = new VzxWidgets.Controls.VzxControlBox();
+        vzxComboBox1 = new VzxWidgets.Controls.VzxComboBox();
+        vzxColorButton1 = new VzxWidgets.Controls.VzxColorButton();
+        topBar.SuspendLayout();
+        cardFuncoes.SuspendLayout();
+        cardVisual.SuspendLayout();
+        cardEspPreview.SuspendLayout();
+        cardOutros.SuspendLayout();
+        cardInfo.SuspendLayout();
+        SuspendLayout();
         // 
         // formDrag
         // 
-        this.formDrag.TargetControl = this.topBar;
-
+        formDrag.TargetControl = topBar;
         // 
         // topBar
         // 
-        this.topBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(10)))), ((int)(((byte)(14)))));
-        this.topBar.Controls.Add(this.lblTitle);
-        this.topBar.Controls.Add(this.btnMin);
-        this.topBar.Controls.Add(this.btnClose);
-        this.topBar.Dock = System.Windows.Forms.DockStyle.Top;
-        this.topBar.Location = new System.Drawing.Point(0, 0);
-        this.topBar.Name = "topBar";
-        this.topBar.Size = new System.Drawing.Size(860, 44);
-        this.topBar.TabIndex = 0;
-
+        topBar.BackColor = Color.FromArgb(10, 10, 14);
+        topBar.Controls.Add(lblTitle);
+        topBar.Controls.Add(btnMin);
+        topBar.Controls.Add(btnClose);
+        topBar.Dock = DockStyle.Top;
+        topBar.Location = new Point(0, 0);
+        topBar.Name = "topBar";
+        topBar.Size = new Size(860, 44);
+        topBar.TabIndex = 0;
         // 
         // lblTitle
         // 
-        this.lblTitle.AutoSize = true;
-        this.lblTitle.Font = new System.Drawing.Font("Segoe UI", 11.5F, System.Drawing.FontStyle.Bold);
-        this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(245)))));
-        this.lblTitle.Location = new System.Drawing.Point(18, 11);
-        this.lblTitle.Name = "lblTitle";
-        this.lblTitle.Size = new System.Drawing.Size(63, 21);
-        this.lblTitle.TabIndex = 0;
-        this.lblTitle.Text = "Volphx";
-
+        lblTitle.AutoSize = true;
+        lblTitle.Font = new Font("Segoe UI", 11.5F, FontStyle.Bold);
+        lblTitle.ForeColor = Color.FromArgb(235, 235, 245);
+        lblTitle.Location = new Point(18, 11);
+        lblTitle.Name = "lblTitle";
+        lblTitle.Size = new Size(64, 21);
+        lblTitle.TabIndex = 0;
+        lblTitle.Text = "Volphx";
         // 
         // btnMin
         // 
-        this.btnMin.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-        this.btnMin.BoxType = VzxWidgets.Controls.ControlBoxType.Minimize;
-        this.btnMin.Location = new System.Drawing.Point(778, 9);
-        this.btnMin.Name = "btnMin";
-        this.btnMin.Size = new System.Drawing.Size(32, 26);
-        this.btnMin.TabIndex = 1;
-
+        btnMin.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+        btnMin.BoxType = VzxWidgets.Controls.ControlBoxType.Minimize;
+        btnMin.HoverColor = Color.FromArgb(50, 50, 65);
+        btnMin.IconColor = Color.FromArgb(170, 170, 185);
+        btnMin.Location = new Point(778, 9);
+        btnMin.Name = "btnMin";
+        btnMin.Size = new Size(32, 26);
+        btnMin.TabIndex = 1;
         // 
         // btnClose
         // 
-        this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-        this.btnClose.BoxType = VzxWidgets.Controls.ControlBoxType.Close;
-        this.btnClose.Location = new System.Drawing.Point(816, 9);
-        this.btnClose.Name = "btnClose";
-        this.btnClose.Size = new System.Drawing.Size(32, 26);
-        this.btnClose.TabIndex = 2;
-
+        btnClose.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+        btnClose.HoverColor = Color.FromArgb(255, 60, 50);
+        btnClose.IconColor = Color.FromArgb(170, 170, 185);
+        btnClose.Location = new Point(816, 9);
+        btnClose.Name = "btnClose";
+        btnClose.Size = new Size(32, 26);
+        btnClose.TabIndex = 2;
         // 
         // cardFuncoes
         // 
-        this.cardFuncoes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(14)))), ((int)(((byte)(18)))));
-        this.cardFuncoes.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(36)))));
-        this.cardFuncoes.BorderRadius = 12;
-        this.cardFuncoes.Controls.Add(this.hdrFuncoes);
-        this.cardFuncoes.Controls.Add(this.chkAimbot);
-        this.cardFuncoes.Controls.Add(this.chkSilent);
-        this.cardFuncoes.Location = new System.Drawing.Point(18, 56);
-        this.cardFuncoes.Name = "cardFuncoes";
-        this.cardFuncoes.Padding = new System.Windows.Forms.Padding(14);
-        this.cardFuncoes.Size = new System.Drawing.Size(250, 310);
-        this.cardFuncoes.TabIndex = 1;
-
+        cardFuncoes.BackColor = Color.FromArgb(14, 14, 18);
+        cardFuncoes.BorderColor = Color.FromArgb(28, 28, 36);
+        cardFuncoes.BorderRadius = 12;
+        cardFuncoes.Controls.Add(vzxColorButton1);
+        cardFuncoes.Controls.Add(vzxComboBox1);
+        cardFuncoes.Controls.Add(vzxControlBox1);
+        cardFuncoes.Controls.Add(hdrFuncoes);
+        cardFuncoes.Controls.Add(chkAimbot);
+        cardFuncoes.Controls.Add(chkSilent);
+        cardFuncoes.Location = new Point(18, 56);
+        cardFuncoes.Name = "cardFuncoes";
+        cardFuncoes.Padding = new Padding(14);
+        cardFuncoes.Size = new Size(250, 310);
+        cardFuncoes.TabIndex = 1;
         // 
         // hdrFuncoes
         // 
-        this.hdrFuncoes.DotColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(80)))), ((int)(((byte)(255)))));
-        this.hdrFuncoes.Location = new System.Drawing.Point(14, 14);
-        this.hdrFuncoes.Name = "hdrFuncoes";
-        this.hdrFuncoes.Size = new System.Drawing.Size(120, 24);
-        this.hdrFuncoes.TabIndex = 0;
-        this.hdrFuncoes.Text = "Funções";
-
+        hdrFuncoes.DotColor = Color.FromArgb(155, 80, 255);
+        hdrFuncoes.Font = new Font("Segoe UI Semibold", 9.5F, FontStyle.Bold);
+        hdrFuncoes.Location = new Point(14, 14);
+        hdrFuncoes.Name = "hdrFuncoes";
+        hdrFuncoes.Size = new Size(120, 24);
+        hdrFuncoes.TabIndex = 0;
+        hdrFuncoes.Text = "Funções";
         // 
         // chkAimbot
         // 
-        this.chkAimbot.AutoSize = true;
-        this.chkAimbot.Checked = true;
-        this.chkAimbot.CheckedColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(80)))), ((int)(((byte)(255)))));
-        this.chkAimbot.CheckState = System.Windows.Forms.CheckState.Checked;
-        this.chkAimbot.Location = new System.Drawing.Point(16, 52);
-        this.chkAimbot.Name = "chkAimbot";
-        this.chkAimbot.Size = new System.Drawing.Size(71, 21);
-        this.chkAimbot.TabIndex = 1;
-        this.chkAimbot.Text = "Aimbot";
-
+        chkAimbot.AutoSize = true;
+        chkAimbot.BoxBorderColor = Color.FromArgb(70, 70, 88);
+        chkAimbot.Checked = true;
+        chkAimbot.CheckedColor = Color.FromArgb(155, 80, 255);
+        chkAimbot.CheckState = CheckState.Checked;
+        chkAimbot.Font = new Font("Segoe UI", 9.5F);
+        chkAimbot.ForeColor = Color.FromArgb(220, 220, 230);
+        chkAimbot.Location = new Point(16, 52);
+        chkAimbot.Name = "chkAimbot";
+        chkAimbot.Size = new Size(69, 21);
+        chkAimbot.TabIndex = 1;
+        chkAimbot.Text = "Aimbot";
+        chkAimbot.UncheckedColor = Color.FromArgb(45, 45, 58);
         // 
         // chkSilent
         // 
-        this.chkSilent.AutoSize = true;
-        this.chkSilent.Checked = false;
-        this.chkSilent.CheckedColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(80)))), ((int)(((byte)(255)))));
-        this.chkSilent.Location = new System.Drawing.Point(16, 88);
-        this.chkSilent.Name = "chkSilent";
-        this.chkSilent.Size = new System.Drawing.Size(59, 21);
-        this.chkSilent.TabIndex = 2;
-        this.chkSilent.Text = "Silent";
-
+        chkSilent.AutoSize = true;
+        chkSilent.BoxBorderColor = Color.FromArgb(70, 70, 88);
+        chkSilent.CheckedColor = Color.FromArgb(155, 80, 255);
+        chkSilent.Font = new Font("Segoe UI", 9.5F);
+        chkSilent.ForeColor = Color.FromArgb(220, 220, 230);
+        chkSilent.Location = new Point(16, 88);
+        chkSilent.Name = "chkSilent";
+        chkSilent.Size = new Size(58, 21);
+        chkSilent.TabIndex = 2;
+        chkSilent.Text = "Silent";
+        chkSilent.UncheckedColor = Color.FromArgb(45, 45, 58);
         // 
         // cardVisual
         // 
-        this.cardVisual.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(14)))), ((int)(((byte)(18)))));
-        this.cardVisual.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(36)))));
-        this.cardVisual.BorderRadius = 12;
-        this.cardVisual.Controls.Add(this.hdrVisual);
-        this.cardVisual.Controls.Add(this.chkEspBox);
-        this.cardVisual.Controls.Add(this.colEspBox);
-        this.cardVisual.Controls.Add(this.chkEspFill);
-        this.cardVisual.Controls.Add(this.colEspFill);
-        this.cardVisual.Controls.Add(this.chkEspLine);
-        this.cardVisual.Controls.Add(this.colEspLine);
-        this.cardVisual.Controls.Add(this.cmbEspPos);
-        this.cardVisual.Controls.Add(this.chkEspName);
-        this.cardVisual.Controls.Add(this.colEspName);
-        this.cardVisual.Controls.Add(this.chkEspHealth);
-        this.cardVisual.Controls.Add(this.chkEspSkeleton);
-        this.cardVisual.Controls.Add(this.colEspSkeleton);
-        this.cardVisual.Controls.Add(this.lblMaxDist);
-        this.cardVisual.Controls.Add(this.lblMaxDistVal);
-        this.cardVisual.Controls.Add(this.trackMaxDist);
-        this.cardVisual.Location = new System.Drawing.Point(282, 56);
-        this.cardVisual.Name = "cardVisual";
-        this.cardVisual.Padding = new System.Windows.Forms.Padding(14);
-        this.cardVisual.Size = new System.Drawing.Size(270, 370);
-        this.cardVisual.TabIndex = 2;
-
+        cardVisual.BackColor = Color.FromArgb(14, 14, 18);
+        cardVisual.BorderColor = Color.FromArgb(28, 28, 36);
+        cardVisual.BorderRadius = 12;
+        cardVisual.Controls.Add(hdrVisual);
+        cardVisual.Controls.Add(chkEspBox);
+        cardVisual.Controls.Add(colEspBox);
+        cardVisual.Controls.Add(chkEspFill);
+        cardVisual.Controls.Add(colEspFill);
+        cardVisual.Controls.Add(chkEspLine);
+        cardVisual.Controls.Add(colEspLine);
+        cardVisual.Controls.Add(cmbEspPos);
+        cardVisual.Controls.Add(chkEspName);
+        cardVisual.Controls.Add(colEspName);
+        cardVisual.Controls.Add(chkEspHealth);
+        cardVisual.Controls.Add(chkEspSkeleton);
+        cardVisual.Controls.Add(colEspSkeleton);
+        cardVisual.Controls.Add(lblMaxDist);
+        cardVisual.Controls.Add(lblMaxDistVal);
+        cardVisual.Controls.Add(trackMaxDist);
+        cardVisual.Location = new Point(282, 56);
+        cardVisual.Name = "cardVisual";
+        cardVisual.Padding = new Padding(14);
+        cardVisual.Size = new Size(270, 370);
+        cardVisual.TabIndex = 2;
         // 
         // hdrVisual
         // 
-        this.hdrVisual.DotColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(80)))), ((int)(((byte)(255)))));
-        this.hdrVisual.Location = new System.Drawing.Point(14, 14);
-        this.hdrVisual.Name = "hdrVisual";
-        this.hdrVisual.Size = new System.Drawing.Size(120, 24);
-        this.hdrVisual.TabIndex = 0;
-        this.hdrVisual.Text = "Visual";
-
+        hdrVisual.DotColor = Color.FromArgb(155, 80, 255);
+        hdrVisual.Font = new Font("Segoe UI Semibold", 9.5F, FontStyle.Bold);
+        hdrVisual.Location = new Point(14, 14);
+        hdrVisual.Name = "hdrVisual";
+        hdrVisual.Size = new Size(120, 24);
+        hdrVisual.TabIndex = 0;
+        hdrVisual.Text = "Visual";
         // 
         // chkEspBox
         // 
-        this.chkEspBox.AutoSize = true;
-        this.chkEspBox.Checked = true;
-        this.chkEspBox.CheckedColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(80)))), ((int)(((byte)(255)))));
-        this.chkEspBox.CheckState = System.Windows.Forms.CheckState.Checked;
-        this.chkEspBox.Location = new System.Drawing.Point(16, 48);
-        this.chkEspBox.Name = "chkEspBox";
-        this.chkEspBox.Size = new System.Drawing.Size(76, 21);
-        this.chkEspBox.TabIndex = 1;
-        this.chkEspBox.Text = "ESP Box";
-        this.chkEspBox.CheckedChanged += new System.EventHandler(this.chkEspBox_CheckedChanged);
-
+        chkEspBox.AutoSize = true;
+        chkEspBox.BoxBorderColor = Color.FromArgb(70, 70, 88);
+        chkEspBox.Checked = true;
+        chkEspBox.CheckedColor = Color.FromArgb(155, 80, 255);
+        chkEspBox.CheckState = CheckState.Checked;
+        chkEspBox.Font = new Font("Segoe UI", 9.5F);
+        chkEspBox.ForeColor = Color.FromArgb(220, 220, 230);
+        chkEspBox.Location = new Point(16, 48);
+        chkEspBox.Name = "chkEspBox";
+        chkEspBox.Size = new Size(73, 21);
+        chkEspBox.TabIndex = 1;
+        chkEspBox.Text = "ESP Box";
+        chkEspBox.UncheckedColor = Color.FromArgb(45, 45, 58);
+        chkEspBox.CheckedChanged += chkEspBox_CheckedChanged;
         // 
         // colEspBox
         // 
-        this.colEspBox.Location = new System.Drawing.Point(232, 50);
-        this.colEspBox.Name = "colEspBox";
-        this.colEspBox.SelectedColor = System.Drawing.Color.White;
-        this.colEspBox.Size = new System.Drawing.Size(18, 14);
-        this.colEspBox.TabIndex = 2;
-
+        colEspBox.Location = new Point(232, 50);
+        colEspBox.Name = "colEspBox";
+        colEspBox.SelectedColor = Color.White;
+        colEspBox.Size = new Size(18, 14);
+        colEspBox.TabIndex = 2;
         // 
         // chkEspFill
         // 
-        this.chkEspFill.AutoSize = true;
-        this.chkEspFill.Checked = true;
-        this.chkEspFill.CheckedColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(80)))), ((int)(((byte)(255)))));
-        this.chkEspFill.CheckState = System.Windows.Forms.CheckState.Checked;
-        this.chkEspFill.Location = new System.Drawing.Point(16, 78);
-        this.chkEspFill.Name = "chkEspFill";
-        this.chkEspFill.Size = new System.Drawing.Size(91, 21);
-        this.chkEspFill.TabIndex = 3;
-        this.chkEspFill.Text = "ESP Fillbox";
-
+        chkEspFill.AutoSize = true;
+        chkEspFill.BoxBorderColor = Color.FromArgb(70, 70, 88);
+        chkEspFill.Checked = true;
+        chkEspFill.CheckedColor = Color.FromArgb(155, 80, 255);
+        chkEspFill.CheckState = CheckState.Checked;
+        chkEspFill.Font = new Font("Segoe UI", 9.5F);
+        chkEspFill.ForeColor = Color.FromArgb(220, 220, 230);
+        chkEspFill.Location = new Point(16, 78);
+        chkEspFill.Name = "chkEspFill";
+        chkEspFill.Size = new Size(89, 21);
+        chkEspFill.TabIndex = 3;
+        chkEspFill.Text = "ESP Fillbox";
+        chkEspFill.UncheckedColor = Color.FromArgb(45, 45, 58);
         // 
         // colEspFill
         // 
-        this.colEspFill.Location = new System.Drawing.Point(232, 80);
-        this.colEspFill.Name = "colEspFill";
-        this.colEspFill.SelectedColor = System.Drawing.Color.White;
-        this.colEspFill.Size = new System.Drawing.Size(18, 14);
-        this.colEspFill.TabIndex = 4;
-
+        colEspFill.Location = new Point(232, 80);
+        colEspFill.Name = "colEspFill";
+        colEspFill.SelectedColor = Color.White;
+        colEspFill.Size = new Size(18, 14);
+        colEspFill.TabIndex = 4;
         // 
         // chkEspLine
         // 
-        this.chkEspLine.AutoSize = true;
-        this.chkEspLine.Checked = true;
-        this.chkEspLine.CheckedColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(80)))), ((int)(((byte)(255)))));
-        this.chkEspLine.CheckState = System.Windows.Forms.CheckState.Checked;
-        this.chkEspLine.Location = new System.Drawing.Point(16, 108);
-        this.chkEspLine.Name = "chkEspLine";
-        this.chkEspLine.Size = new System.Drawing.Size(78, 21);
-        this.chkEspLine.TabIndex = 5;
-        this.chkEspLine.Text = "ESP Line";
-
+        chkEspLine.AutoSize = true;
+        chkEspLine.BoxBorderColor = Color.FromArgb(70, 70, 88);
+        chkEspLine.Checked = true;
+        chkEspLine.CheckedColor = Color.FromArgb(155, 80, 255);
+        chkEspLine.CheckState = CheckState.Checked;
+        chkEspLine.Font = new Font("Segoe UI", 9.5F);
+        chkEspLine.ForeColor = Color.FromArgb(220, 220, 230);
+        chkEspLine.Location = new Point(16, 108);
+        chkEspLine.Name = "chkEspLine";
+        chkEspLine.Size = new Size(75, 21);
+        chkEspLine.TabIndex = 5;
+        chkEspLine.Text = "ESP Line";
+        chkEspLine.UncheckedColor = Color.FromArgb(45, 45, 58);
         // 
         // colEspLine
         // 
-        this.colEspLine.Location = new System.Drawing.Point(232, 110);
-        this.colEspLine.Name = "colEspLine";
-        this.colEspLine.SelectedColor = System.Drawing.Color.White;
-        this.colEspLine.Size = new System.Drawing.Size(18, 14);
-        this.colEspLine.TabIndex = 6;
-
+        colEspLine.Location = new Point(232, 110);
+        colEspLine.Name = "colEspLine";
+        colEspLine.SelectedColor = Color.White;
+        colEspLine.Size = new Size(18, 14);
+        colEspLine.TabIndex = 6;
         // 
         // cmbEspPos
         // 
-        this.cmbEspPos.ArrowColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(80)))), ((int)(((byte)(255)))));
-        this.cmbEspPos.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(36)))), ((int)(((byte)(48)))));
-        this.cmbEspPos.BorderFocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(80)))), ((int)(((byte)(255)))));
-        this.cmbEspPos.Items.AddRange(new object[] { "Esp Top", "Esp Bottom", "Esp Crosshair" });
-        this.cmbEspPos.Location = new System.Drawing.Point(16, 138);
-        this.cmbEspPos.Name = "cmbEspPos";
-        this.cmbEspPos.SelectedIndex = 0;
-        this.cmbEspPos.Size = new System.Drawing.Size(234, 30);
-        this.cmbEspPos.TabIndex = 7;
-
+        cmbEspPos.ArrowColor = Color.FromArgb(155, 80, 255);
+        cmbEspPos.BorderColor = Color.FromArgb(36, 36, 48);
+        cmbEspPos.BorderFocusColor = Color.FromArgb(155, 80, 255);
+        cmbEspPos.Font = new Font("Segoe UI", 9.5F);
+        cmbEspPos.ForeColor = Color.FromArgb(230, 230, 240);
+        cmbEspPos.Location = new Point(16, 138);
+        cmbEspPos.Name = "cmbEspPos";
+        cmbEspPos.SelectedIndex = 0;
+        cmbEspPos.Size = new Size(234, 30);
+        cmbEspPos.TabIndex = 7;
         // 
         // chkEspName
         // 
-        this.chkEspName.AutoSize = true;
-        this.chkEspName.Checked = true;
-        this.chkEspName.CheckedColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(80)))), ((int)(((byte)(255)))));
-        this.chkEspName.CheckState = System.Windows.Forms.CheckState.Checked;
-        this.chkEspName.Location = new System.Drawing.Point(16, 180);
-        this.chkEspName.Name = "chkEspName";
-        this.chkEspName.Size = new System.Drawing.Size(90, 21);
-        this.chkEspName.TabIndex = 8;
-        this.chkEspName.Text = "ESP Name";
-
+        chkEspName.AutoSize = true;
+        chkEspName.BoxBorderColor = Color.FromArgb(70, 70, 88);
+        chkEspName.Checked = true;
+        chkEspName.CheckedColor = Color.FromArgb(155, 80, 255);
+        chkEspName.CheckState = CheckState.Checked;
+        chkEspName.Font = new Font("Segoe UI", 9.5F);
+        chkEspName.ForeColor = Color.FromArgb(220, 220, 230);
+        chkEspName.Location = new Point(16, 180);
+        chkEspName.Name = "chkEspName";
+        chkEspName.Size = new Size(87, 21);
+        chkEspName.TabIndex = 8;
+        chkEspName.Text = "ESP Name";
+        chkEspName.UncheckedColor = Color.FromArgb(45, 45, 58);
         // 
         // colEspName
         // 
-        this.colEspName.Location = new System.Drawing.Point(232, 182);
-        this.colEspName.Name = "colEspName";
-        this.colEspName.SelectedColor = System.Drawing.Color.White;
-        this.colEspName.Size = new System.Drawing.Size(18, 14);
-        this.colEspName.TabIndex = 9;
-
+        colEspName.Location = new Point(232, 182);
+        colEspName.Name = "colEspName";
+        colEspName.SelectedColor = Color.White;
+        colEspName.Size = new Size(18, 14);
+        colEspName.TabIndex = 9;
         // 
         // chkEspHealth
         // 
-        this.chkEspHealth.AutoSize = true;
-        this.chkEspHealth.Checked = true;
-        this.chkEspHealth.CheckedColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(80)))), ((int)(((byte)(255)))));
-        this.chkEspHealth.CheckState = System.Windows.Forms.CheckState.Checked;
-        this.chkEspHealth.Location = new System.Drawing.Point(16, 210);
-        this.chkEspHealth.Name = "chkEspHealth";
-        this.chkEspHealth.Size = new System.Drawing.Size(92, 21);
-        this.chkEspHealth.TabIndex = 10;
-        this.chkEspHealth.Text = "ESP Health";
-
+        chkEspHealth.AutoSize = true;
+        chkEspHealth.BoxBorderColor = Color.FromArgb(70, 70, 88);
+        chkEspHealth.Checked = true;
+        chkEspHealth.CheckedColor = Color.FromArgb(155, 80, 255);
+        chkEspHealth.CheckState = CheckState.Checked;
+        chkEspHealth.Font = new Font("Segoe UI", 9.5F);
+        chkEspHealth.ForeColor = Color.FromArgb(220, 220, 230);
+        chkEspHealth.Location = new Point(16, 210);
+        chkEspHealth.Name = "chkEspHealth";
+        chkEspHealth.Size = new Size(89, 21);
+        chkEspHealth.TabIndex = 10;
+        chkEspHealth.Text = "ESP Health";
+        chkEspHealth.UncheckedColor = Color.FromArgb(45, 45, 58);
         // 
         // chkEspSkeleton
         // 
-        this.chkEspSkeleton.AutoSize = true;
-        this.chkEspSkeleton.Checked = true;
-        this.chkEspSkeleton.CheckedColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(80)))), ((int)(((byte)(255)))));
-        this.chkEspSkeleton.CheckState = System.Windows.Forms.CheckState.Checked;
-        this.chkEspSkeleton.Location = new System.Drawing.Point(16, 240);
-        this.chkEspSkeleton.Name = "chkEspSkeleton";
-        this.chkEspSkeleton.Size = new System.Drawing.Size(104, 21);
-        this.chkEspSkeleton.TabIndex = 11;
-        this.chkEspSkeleton.Text = "ESP Skeleton";
-
+        chkEspSkeleton.AutoSize = true;
+        chkEspSkeleton.BoxBorderColor = Color.FromArgb(70, 70, 88);
+        chkEspSkeleton.Checked = true;
+        chkEspSkeleton.CheckedColor = Color.FromArgb(155, 80, 255);
+        chkEspSkeleton.CheckState = CheckState.Checked;
+        chkEspSkeleton.Font = new Font("Segoe UI", 9.5F);
+        chkEspSkeleton.ForeColor = Color.FromArgb(220, 220, 230);
+        chkEspSkeleton.Location = new Point(16, 240);
+        chkEspSkeleton.Name = "chkEspSkeleton";
+        chkEspSkeleton.Size = new Size(101, 21);
+        chkEspSkeleton.TabIndex = 11;
+        chkEspSkeleton.Text = "ESP Skeleton";
+        chkEspSkeleton.UncheckedColor = Color.FromArgb(45, 45, 58);
         // 
         // colEspSkeleton
         // 
-        this.colEspSkeleton.Location = new System.Drawing.Point(232, 242);
-        this.colEspSkeleton.Name = "colEspSkeleton";
-        this.colEspSkeleton.SelectedColor = System.Drawing.Color.White;
-        this.colEspSkeleton.Size = new System.Drawing.Size(18, 14);
-        this.colEspSkeleton.TabIndex = 12;
-
+        colEspSkeleton.Location = new Point(232, 242);
+        colEspSkeleton.Name = "colEspSkeleton";
+        colEspSkeleton.SelectedColor = Color.White;
+        colEspSkeleton.Size = new Size(18, 14);
+        colEspSkeleton.TabIndex = 12;
         // 
         // lblMaxDist
         // 
-        this.lblMaxDist.AutoSize = true;
-        this.lblMaxDist.Font = new System.Drawing.Font("Segoe UI", 8.5F, System.Drawing.FontStyle.Bold);
-        this.lblMaxDist.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(210)))), ((int)(((byte)(225)))));
-        this.lblMaxDist.Location = new System.Drawing.Point(16, 280);
-        this.lblMaxDist.Name = "lblMaxDist";
-        this.lblMaxDist.Size = new System.Drawing.Size(77, 15);
-        this.lblMaxDist.TabIndex = 13;
-        this.lblMaxDist.Text = "Max Distance";
-
+        lblMaxDist.AutoSize = true;
+        lblMaxDist.Font = new Font("Segoe UI", 8.5F, FontStyle.Bold);
+        lblMaxDist.ForeColor = Color.FromArgb(210, 210, 225);
+        lblMaxDist.Location = new Point(16, 280);
+        lblMaxDist.Name = "lblMaxDist";
+        lblMaxDist.Size = new Size(82, 15);
+        lblMaxDist.TabIndex = 13;
+        lblMaxDist.Text = "Max Distance";
         // 
         // lblMaxDistVal
         // 
-        this.lblMaxDistVal.Font = new System.Drawing.Font("Segoe UI", 8.5F);
-        this.lblMaxDistVal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(180)))));
-        this.lblMaxDistVal.Location = new System.Drawing.Point(160, 280);
-        this.lblMaxDistVal.Name = "lblMaxDistVal";
-        this.lblMaxDistVal.Size = new System.Drawing.Size(90, 15);
-        this.lblMaxDistVal.TabIndex = 14;
-        this.lblMaxDistVal.Text = "50m";
-        this.lblMaxDistVal.TextAlign = System.Drawing.ContentAlignment.TopRight;
-
+        lblMaxDistVal.Font = new Font("Segoe UI", 8.5F);
+        lblMaxDistVal.ForeColor = Color.FromArgb(160, 160, 180);
+        lblMaxDistVal.Location = new Point(160, 280);
+        lblMaxDistVal.Name = "lblMaxDistVal";
+        lblMaxDistVal.Size = new Size(90, 15);
+        lblMaxDistVal.TabIndex = 14;
+        lblMaxDistVal.Text = "50m";
+        lblMaxDistVal.TextAlign = ContentAlignment.TopRight;
         // 
         // trackMaxDist
         // 
-        this.trackMaxDist.Location = new System.Drawing.Point(16, 302);
-        this.trackMaxDist.Maximum = 200;
-        this.trackMaxDist.Name = "trackMaxDist";
-        this.trackMaxDist.ProgressColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(80)))), ((int)(((byte)(255)))));
-        this.trackMaxDist.ShowDiamondThumb = false;
-        this.trackMaxDist.Size = new System.Drawing.Size(234, 20);
-        this.trackMaxDist.TabIndex = 15;
-        this.trackMaxDist.Value = 50;
-        this.trackMaxDist.ValueChanged += new System.EventHandler(this.trackMaxDist_ValueChanged);
-
-        // 
-        // cardOutros
-        // 
-        this.cardOutros.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(14)))), ((int)(((byte)(18)))));
-        this.cardOutros.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(36)))));
-        this.cardOutros.BorderRadius = 12;
-        this.cardOutros.Controls.Add(this.hdrOutros);
-        this.cardOutros.Controls.Add(this.chkConectado);
-        this.cardOutros.Controls.Add(this.lblOpenMenu);
-        this.cardOutros.Controls.Add(this.keyOpenMenu);
-        this.cardOutros.Location = new System.Drawing.Point(18, 380);
-        this.cardOutros.Name = "cardOutros";
-        this.cardOutros.Padding = new System.Windows.Forms.Padding(14);
-        this.cardOutros.Size = new System.Drawing.Size(250, 155);
-        this.cardOutros.TabIndex = 3;
-
-        // 
-        // hdrOutros
-        // 
-        this.hdrOutros.DotColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(80)))), ((int)(((byte)(255)))));
-        this.hdrOutros.Location = new System.Drawing.Point(14, 12);
-        this.hdrOutros.Name = "hdrOutros";
-        this.hdrOutros.Size = new System.Drawing.Size(120, 24);
-        this.hdrOutros.TabIndex = 0;
-        this.hdrOutros.Text = "Outros";
-
-        // 
-        // chkConectado
-        // 
-        this.chkConectado.AutoSize = true;
-        this.chkConectado.Checked = true;
-        this.chkConectado.CheckedColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(80)))), ((int)(((byte)(255)))));
-        this.chkConectado.CheckState = System.Windows.Forms.CheckState.Checked;
-        this.chkConectado.Location = new System.Drawing.Point(16, 44);
-        this.chkConectado.Name = "chkConectado";
-        this.chkConectado.Size = new System.Drawing.Size(90, 21);
-        this.chkConectado.TabIndex = 1;
-        this.chkConectado.Text = "Conectado";
-
-        // 
-        // lblOpenMenu
-        // 
-        this.lblOpenMenu.AutoSize = true;
-        this.lblOpenMenu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(180)))));
-        this.lblOpenMenu.Location = new System.Drawing.Point(16, 86);
-        this.lblOpenMenu.Name = "lblOpenMenu";
-        this.lblOpenMenu.Size = new System.Drawing.Size(70, 15);
-        this.lblOpenMenu.TabIndex = 2;
-        this.lblOpenMenu.Text = "Open menu";
-
-        // 
-        // keyOpenMenu
-        // 
-        this.keyOpenMenu.CurrentKey = System.Windows.Forms.Keys.Insert;
-        this.keyOpenMenu.Location = new System.Drawing.Point(140, 80);
-        this.keyOpenMenu.Name = "keyOpenMenu";
-        this.keyOpenMenu.Size = new System.Drawing.Size(86, 28);
-        this.keyOpenMenu.TabIndex = 3;
-
-        // 
-        // cardInfo
-        // 
-        this.cardInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(14)))), ((int)(((byte)(18)))));
-        this.cardInfo.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(36)))));
-        this.cardInfo.BorderRadius = 12;
-        this.cardInfo.Controls.Add(this.hdrInfo);
-        this.cardInfo.Controls.Add(this.lblAdb);
-        this.cardInfo.Controls.Add(this.lblAdbVal);
-        this.cardInfo.Controls.Add(this.lblStatus);
-        this.cardInfo.Controls.Add(this.lblStatusVal);
-        this.cardInfo.Location = new System.Drawing.Point(282, 436);
-        this.cardInfo.Name = "cardInfo";
-        this.cardInfo.Padding = new System.Windows.Forms.Padding(14);
-        this.cardInfo.Size = new System.Drawing.Size(270, 99);
-        this.cardInfo.TabIndex = 4;
-
-        // 
-        // hdrInfo
-        // 
-        this.hdrInfo.DotColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(80)))), ((int)(((byte)(255)))));
-        this.hdrInfo.Location = new System.Drawing.Point(14, 10);
-        this.hdrInfo.Name = "hdrInfo";
-        this.hdrInfo.Size = new System.Drawing.Size(120, 24);
-        this.hdrInfo.TabIndex = 0;
-        this.hdrInfo.Text = "Informação";
-
-        // 
-        // lblAdb
-        // 
-        this.lblAdb.AutoSize = true;
-        this.lblAdb.Font = new System.Drawing.Font("Segoe UI Semibold", 8.5F, System.Drawing.FontStyle.Bold);
-        this.lblAdb.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(220)))));
-        this.lblAdb.Location = new System.Drawing.Point(26, 40);
-        this.lblAdb.Name = "lblAdb";
-        this.lblAdb.Size = new System.Drawing.Size(32, 15);
-        this.lblAdb.TabIndex = 1;
-        this.lblAdb.Text = "Adb:";
-
-        // 
-        // lblAdbVal
-        // 
-        this.lblAdbVal.AutoSize = true;
-        this.lblAdbVal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(160)))));
-        this.lblAdbVal.Location = new System.Drawing.Point(80, 40);
-        this.lblAdbVal.Name = "lblAdbVal";
-        this.lblAdbVal.Size = new System.Drawing.Size(36, 15);
-        this.lblAdbVal.TabIndex = 2;
-        this.lblAdbVal.Text = "None";
-
-        // 
-        // lblStatus
-        // 
-        this.lblStatus.AutoSize = true;
-        this.lblStatus.Font = new System.Drawing.Font("Segoe UI Semibold", 8.5F, System.Drawing.FontStyle.Bold);
-        this.lblStatus.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(220)))));
-        this.lblStatus.Location = new System.Drawing.Point(26, 62);
-        this.lblStatus.Name = "lblStatus";
-        this.lblStatus.Size = new System.Drawing.Size(43, 15);
-        this.lblStatus.TabIndex = 3;
-        this.lblStatus.Text = "Status:";
-
-        // 
-        // lblStatusVal
-        // 
-        this.lblStatusVal.AutoSize = true;
-        this.lblStatusVal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(160)))));
-        this.lblStatusVal.Location = new System.Drawing.Point(80, 62);
-        this.lblStatusVal.Name = "lblStatusVal";
-        this.lblStatusVal.Size = new System.Drawing.Size(36, 15);
-        this.lblStatusVal.TabIndex = 4;
-        this.lblStatusVal.Text = "None";
-
+        trackMaxDist.Location = new Point(16, 302);
+        trackMaxDist.Maximum = 200;
+        trackMaxDist.Name = "trackMaxDist";
+        trackMaxDist.ProgressColor = Color.FromArgb(155, 80, 255);
+        trackMaxDist.ShowDiamondThumb = false;
+        trackMaxDist.Size = new Size(234, 20);
+        trackMaxDist.TabIndex = 15;
+        trackMaxDist.ThumbColor = Color.White;
+        trackMaxDist.TrackColor = Color.FromArgb(40, 40, 52);
+        trackMaxDist.ValueChanged += trackMaxDist_ValueChanged;
         // 
         // cardEspPreview
         // 
-        this.cardEspPreview.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(14)))), ((int)(((byte)(18)))));
-        this.cardEspPreview.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(36)))));
-        this.cardEspPreview.BorderRadius = 12;
-        this.cardEspPreview.Controls.Add(this.hdrEspPreview);
-        this.cardEspPreview.Controls.Add(this.progHealth);
-        this.cardEspPreview.Controls.Add(this.pnlSkeletonView);
-        this.cardEspPreview.Location = new System.Drawing.Point(568, 56);
-        this.cardEspPreview.Name = "cardEspPreview";
-        this.cardEspPreview.Padding = new System.Windows.Forms.Padding(14);
-        this.cardEspPreview.Size = new System.Drawing.Size(274, 479);
-        this.cardEspPreview.TabIndex = 5;
-
+        cardEspPreview.BackColor = Color.FromArgb(14, 14, 18);
+        cardEspPreview.BorderColor = Color.FromArgb(28, 28, 36);
+        cardEspPreview.BorderRadius = 12;
+        cardEspPreview.Controls.Add(hdrEspPreview);
+        cardEspPreview.Controls.Add(progHealth);
+        cardEspPreview.Controls.Add(pnlSkeletonView);
+        cardEspPreview.Location = new Point(568, 56);
+        cardEspPreview.Name = "cardEspPreview";
+        cardEspPreview.Padding = new Padding(14);
+        cardEspPreview.Size = new Size(274, 479);
+        cardEspPreview.TabIndex = 5;
         // 
         // hdrEspPreview
         // 
-        this.hdrEspPreview.DotColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(80)))), ((int)(((byte)(255)))));
-        this.hdrEspPreview.Location = new System.Drawing.Point(14, 14);
-        this.hdrEspPreview.Name = "hdrEspPreview";
-        this.hdrEspPreview.Size = new System.Drawing.Size(120, 24);
-        this.hdrEspPreview.TabIndex = 0;
-        this.hdrEspPreview.Text = "ESP Preview";
-
+        hdrEspPreview.DotColor = Color.FromArgb(155, 80, 255);
+        hdrEspPreview.Font = new Font("Segoe UI Semibold", 9.5F, FontStyle.Bold);
+        hdrEspPreview.Location = new Point(14, 14);
+        hdrEspPreview.Name = "hdrEspPreview";
+        hdrEspPreview.Size = new Size(120, 24);
+        hdrEspPreview.TabIndex = 0;
+        hdrEspPreview.Text = "ESP Preview";
         // 
         // progHealth
         // 
-        this.progHealth.BorderRadius = 4;
-        this.progHealth.GradientEndColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(209)))), ((int)(((byte)(88)))));
-        this.progHealth.GradientStartColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(209)))), ((int)(((byte)(88)))));
-        this.progHealth.Location = new System.Drawing.Point(36, 44);
-        this.progHealth.Name = "progHealth";
-        this.progHealth.ShowPercentage = false;
-        this.progHealth.Size = new System.Drawing.Size(202, 6);
-        this.progHealth.TabIndex = 1;
-        this.progHealth.Value = 85;
-
+        progHealth.BorderRadius = 4;
+        progHealth.Font = new Font("Segoe UI Semibold", 8.5F, FontStyle.Bold);
+        progHealth.ForeColor = Color.White;
+        progHealth.GradientEndColor = Color.FromArgb(48, 209, 88);
+        progHealth.GradientStartColor = Color.FromArgb(48, 209, 88);
+        progHealth.Location = new Point(36, 44);
+        progHealth.Name = "progHealth";
+        progHealth.ShowPercentage = false;
+        progHealth.Size = new Size(202, 6);
+        progHealth.TabIndex = 1;
+        progHealth.TrackColor = Color.FromArgb(35, 35, 48);
+        progHealth.Value = 85;
         // 
         // pnlSkeletonView
         // 
-        this.pnlSkeletonView.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(18)))), ((int)(((byte)(38)))));
-        this.pnlSkeletonView.Location = new System.Drawing.Point(36, 60);
-        this.pnlSkeletonView.Name = "pnlSkeletonView";
-        this.pnlSkeletonView.Size = new System.Drawing.Size(202, 380);
-        this.pnlSkeletonView.TabIndex = 2;
-        this.pnlSkeletonView.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlSkeletonView_Paint);
-
+        pnlSkeletonView.BackColor = Color.FromArgb(22, 18, 38);
+        pnlSkeletonView.Location = new Point(36, 56);
+        pnlSkeletonView.Name = "pnlSkeletonView";
+        pnlSkeletonView.Size = new Size(202, 380);
+        pnlSkeletonView.TabIndex = 2;
+        pnlSkeletonView.Paint += pnlSkeletonView_Paint;
+        // 
+        // cardOutros
+        // 
+        cardOutros.BackColor = Color.FromArgb(14, 14, 18);
+        cardOutros.BorderColor = Color.FromArgb(28, 28, 36);
+        cardOutros.BorderRadius = 12;
+        cardOutros.Controls.Add(hdrOutros);
+        cardOutros.Controls.Add(chkConectado);
+        cardOutros.Controls.Add(lblOpenMenu);
+        cardOutros.Controls.Add(keyOpenMenu);
+        cardOutros.Location = new Point(18, 380);
+        cardOutros.Name = "cardOutros";
+        cardOutros.Padding = new Padding(14);
+        cardOutros.Size = new Size(250, 155);
+        cardOutros.TabIndex = 3;
+        // 
+        // hdrOutros
+        // 
+        hdrOutros.DotColor = Color.FromArgb(155, 80, 255);
+        hdrOutros.Font = new Font("Segoe UI Semibold", 9.5F, FontStyle.Bold);
+        hdrOutros.Location = new Point(14, 12);
+        hdrOutros.Name = "hdrOutros";
+        hdrOutros.Size = new Size(120, 24);
+        hdrOutros.TabIndex = 0;
+        hdrOutros.Text = "Outros";
+        // 
+        // chkConectado
+        // 
+        chkConectado.AutoSize = true;
+        chkConectado.BoxBorderColor = Color.FromArgb(70, 70, 88);
+        chkConectado.Checked = true;
+        chkConectado.CheckedColor = Color.FromArgb(155, 80, 255);
+        chkConectado.CheckState = CheckState.Checked;
+        chkConectado.Font = new Font("Segoe UI", 9.5F);
+        chkConectado.ForeColor = Color.FromArgb(220, 220, 230);
+        chkConectado.Location = new Point(16, 44);
+        chkConectado.Name = "chkConectado";
+        chkConectado.Size = new Size(90, 21);
+        chkConectado.TabIndex = 1;
+        chkConectado.Text = "Conectado";
+        chkConectado.UncheckedColor = Color.FromArgb(45, 45, 58);
+        // 
+        // lblOpenMenu
+        // 
+        lblOpenMenu.AutoSize = true;
+        lblOpenMenu.ForeColor = Color.FromArgb(160, 160, 180);
+        lblOpenMenu.Location = new Point(16, 86);
+        lblOpenMenu.Name = "lblOpenMenu";
+        lblOpenMenu.Size = new Size(70, 15);
+        lblOpenMenu.TabIndex = 2;
+        lblOpenMenu.Text = "Open menu";
+        // 
+        // keyOpenMenu
+        // 
+        keyOpenMenu.CurrentKey = Keys.Insert;
+        keyOpenMenu.Font = new Font("Segoe UI Semibold", 8.5F, FontStyle.Bold);
+        keyOpenMenu.ForeColor = Color.FromArgb(220, 220, 235);
+        keyOpenMenu.Location = new Point(140, 80);
+        keyOpenMenu.Name = "keyOpenMenu";
+        keyOpenMenu.Size = new Size(86, 28);
+        keyOpenMenu.TabIndex = 3;
+        // 
+        // cardInfo
+        // 
+        cardInfo.BackColor = Color.FromArgb(14, 14, 18);
+        cardInfo.BorderColor = Color.FromArgb(28, 28, 36);
+        cardInfo.BorderRadius = 12;
+        cardInfo.Controls.Add(hdrInfo);
+        cardInfo.Controls.Add(lblAdb);
+        cardInfo.Controls.Add(lblAdbVal);
+        cardInfo.Controls.Add(lblStatus);
+        cardInfo.Controls.Add(lblStatusVal);
+        cardInfo.Location = new Point(282, 436);
+        cardInfo.Name = "cardInfo";
+        cardInfo.Padding = new Padding(14);
+        cardInfo.Size = new Size(270, 99);
+        cardInfo.TabIndex = 4;
+        // 
+        // hdrInfo
+        // 
+        hdrInfo.DotColor = Color.FromArgb(155, 80, 255);
+        hdrInfo.Font = new Font("Segoe UI Semibold", 9.5F, FontStyle.Bold);
+        hdrInfo.Location = new Point(14, 10);
+        hdrInfo.Name = "hdrInfo";
+        hdrInfo.Size = new Size(120, 24);
+        hdrInfo.TabIndex = 0;
+        hdrInfo.Text = "Informação";
+        // 
+        // lblAdb
+        // 
+        lblAdb.AutoSize = true;
+        lblAdb.Font = new Font("Segoe UI Semibold", 8.5F, FontStyle.Bold);
+        lblAdb.ForeColor = Color.FromArgb(200, 200, 220);
+        lblAdb.Location = new Point(26, 40);
+        lblAdb.Name = "lblAdb";
+        lblAdb.Size = new Size(32, 15);
+        lblAdb.TabIndex = 1;
+        lblAdb.Text = "Adb:";
+        // 
+        // lblAdbVal
+        // 
+        lblAdbVal.AutoSize = true;
+        lblAdbVal.ForeColor = Color.FromArgb(140, 140, 160);
+        lblAdbVal.Location = new Point(80, 40);
+        lblAdbVal.Name = "lblAdbVal";
+        lblAdbVal.Size = new Size(36, 15);
+        lblAdbVal.TabIndex = 2;
+        lblAdbVal.Text = "None";
+        // 
+        // lblStatus
+        // 
+        lblStatus.AutoSize = true;
+        lblStatus.Font = new Font("Segoe UI Semibold", 8.5F, FontStyle.Bold);
+        lblStatus.ForeColor = Color.FromArgb(200, 200, 220);
+        lblStatus.Location = new Point(26, 62);
+        lblStatus.Name = "lblStatus";
+        lblStatus.Size = new Size(43, 15);
+        lblStatus.TabIndex = 3;
+        lblStatus.Text = "Status:";
+        // 
+        // lblStatusVal
+        // 
+        lblStatusVal.AutoSize = true;
+        lblStatusVal.ForeColor = Color.FromArgb(140, 140, 160);
+        lblStatusVal.Location = new Point(80, 62);
+        lblStatusVal.Name = "lblStatusVal";
+        lblStatusVal.Size = new Size(36, 15);
+        lblStatusVal.TabIndex = 4;
+        lblStatusVal.Text = "None";
         // 
         // toastSuccess
         // 
-        this.toastSuccess.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-        this.toastSuccess.BarColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(209)))), ((int)(((byte)(88)))));
-        this.toastSuccess.Location = new System.Drawing.Point(590, 400);
-        this.toastSuccess.Message = "ESP Box ativado.";
-        this.toastSuccess.Name = "toastSuccess";
-        this.toastSuccess.Size = new System.Drawing.Size(245, 60);
-        this.toastSuccess.TabIndex = 6;
-        this.toastSuccess.Title = "ESP Box";
-        this.toastSuccess.Type = VzxWidgets.Controls.ToastType.Success;
-
+        toastSuccess.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+        toastSuccess.BackColor = Color.FromArgb(24, 24, 32);
+        toastSuccess.BarColor = Color.FromArgb(48, 209, 88);
+        toastSuccess.ForeColor = Color.White;
+        toastSuccess.Location = new Point(590, 400);
+        toastSuccess.Name = "toastSuccess";
+        toastSuccess.Size = new Size(245, 60);
+        toastSuccess.TabIndex = 6;
         // 
         // toastInfo
         // 
-        this.toastInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-        this.toastInfo.BarColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(80)))), ((int)(((byte)(255)))));
-        this.toastInfo.Location = new System.Drawing.Point(590, 468);
-        this.toastInfo.Message = "ESP Box desativado.";
-        this.toastInfo.Name = "toastInfo";
-        this.toastInfo.Size = new System.Drawing.Size(245, 60);
-        this.toastInfo.TabIndex = 7;
-        this.toastInfo.Title = "ESP Box";
-        this.toastInfo.Type = VzxWidgets.Controls.ToastType.Info;
-
+        toastInfo.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+        toastInfo.BackColor = Color.FromArgb(24, 24, 32);
+        toastInfo.BarColor = Color.FromArgb(155, 80, 255);
+        toastInfo.ForeColor = Color.White;
+        toastInfo.Location = new Point(590, 468);
+        toastInfo.Message = "ESP Box desativado.";
+        toastInfo.Name = "toastInfo";
+        toastInfo.Size = new Size(245, 60);
+        toastInfo.TabIndex = 7;
+        toastInfo.Type = VzxWidgets.Controls.ToastType.Info;
+        // 
+        // vzxControlBox1
+        // 
+        vzxControlBox1.HoverColor = Color.FromArgb(255, 60, 50);
+        vzxControlBox1.IconColor = Color.FromArgb(170, 170, 185);
+        vzxControlBox1.Location = new Point(102, 138);
+        vzxControlBox1.Name = "vzxControlBox1";
+        vzxControlBox1.Size = new Size(32, 26);
+        vzxControlBox1.TabIndex = 3;
+        vzxControlBox1.Text = "vzxControlBox1";
+        // 
+        // vzxComboBox1
+        // 
+        vzxComboBox1.ArrowColor = Color.FromArgb(155, 80, 255);
+        vzxComboBox1.BorderColor = Color.FromArgb(38, 38, 50);
+        vzxComboBox1.BorderFocusColor = Color.FromArgb(155, 80, 255);
+        vzxComboBox1.Font = new Font("Segoe UI", 9.5F);
+        vzxComboBox1.ForeColor = Color.FromArgb(230, 230, 240);
+        vzxComboBox1.Location = new Point(33, 199);
+        vzxComboBox1.Name = "vzxComboBox1";
+        vzxComboBox1.Size = new Size(200, 32);
+        vzxComboBox1.TabIndex = 4;
+        vzxComboBox1.Text = "vzxComboBox1";
+        // 
+        // vzxColorButton1
+        // 
+        vzxColorButton1.Location = new Point(197, 78);
+        vzxColorButton1.Name = "vzxColorButton1";
+        vzxColorButton1.SelectedColor = Color.White;
+        vzxColorButton1.Size = new Size(18, 14);
+        vzxColorButton1.TabIndex = 5;
+        vzxColorButton1.Text = "vzxColorButton1";
         // 
         // Form1
         // 
-        this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-        this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-        this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(8)))), ((int)(((byte)(10)))));
-        this.ClientSize = new System.Drawing.Size(860, 550);
-        this.Controls.Add(this.toastInfo);
-        this.Controls.Add(this.toastSuccess);
-        this.Controls.Add(this.cardEspPreview);
-        this.Controls.Add(this.cardInfo);
-        this.Controls.Add(this.cardOutros);
-        this.Controls.Add(this.cardVisual);
-        this.Controls.Add(this.cardFuncoes);
-        this.Controls.Add(this.topBar);
-        this.Font = new System.Drawing.Font("Segoe UI", 9F);
-        this.ForeColor = System.Drawing.Color.White;
-        this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-        this.Name = "Form1";
-        this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-        this.Text = "Volphx - VzxWidgets";
-        this.topBar.ResumeLayout(false);
-        this.topBar.PerformLayout();
-        this.cardFuncoes.ResumeLayout(false);
-        this.cardFuncoes.PerformLayout();
-        this.cardVisual.ResumeLayout(false);
-        this.cardVisual.PerformLayout();
-        this.cardEspPreview.ResumeLayout(false);
-        this.cardOutros.ResumeLayout(false);
-        this.cardOutros.PerformLayout();
-        this.cardInfo.ResumeLayout(false);
-        this.cardInfo.PerformLayout();
-        this.ResumeLayout(false);
+        AutoScaleDimensions = new SizeF(7F, 15F);
+        AutoScaleMode = AutoScaleMode.Font;
+        BackColor = Color.FromArgb(8, 8, 10);
+        ClientSize = new Size(860, 550);
+        Controls.Add(toastInfo);
+        Controls.Add(toastSuccess);
+        Controls.Add(cardEspPreview);
+        Controls.Add(cardInfo);
+        Controls.Add(cardOutros);
+        Controls.Add(cardVisual);
+        Controls.Add(cardFuncoes);
+        Controls.Add(topBar);
+        Font = new Font("Segoe UI", 9F);
+        ForeColor = Color.White;
+        FormBorderStyle = FormBorderStyle.None;
+        Name = "Form1";
+        StartPosition = FormStartPosition.CenterScreen;
+        Text = "Volphx - VzxWidgets";
+        topBar.ResumeLayout(false);
+        topBar.PerformLayout();
+        cardFuncoes.ResumeLayout(false);
+        cardFuncoes.PerformLayout();
+        cardVisual.ResumeLayout(false);
+        cardVisual.PerformLayout();
+        cardEspPreview.ResumeLayout(false);
+        cardOutros.ResumeLayout(false);
+        cardOutros.PerformLayout();
+        cardInfo.ResumeLayout(false);
+        cardInfo.PerformLayout();
+        ResumeLayout(false);
     }
 
     #endregion
+
+    private Controls.VzxColorButton vzxColorButton1;
+    private Controls.VzxComboBox vzxComboBox1;
+    private Controls.VzxControlBox vzxControlBox1;
 }
