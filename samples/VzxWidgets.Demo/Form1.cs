@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
 using VzxWidgets.Controls;
@@ -56,6 +56,15 @@ public partial class Form1 : VzxForm
         };
 
         // 3. Visual & EspPreview
+        chkEspBox.CheckedChanged += (s, e) =>
+        {
+            if (espPreview != null) espPreview.ShowBox = chkEspBox.Checked;
+            if (chkEspBox.Checked)
+                VzxToastManager.ShowSuccess(this, "ESP Box", "ESP Box ativado com sucesso.");
+            else
+                VzxToastManager.ShowInfo(this, "ESP Box", "ESP Box desativado.");
+        };
+
         colEspBox.ColorChanged += (s, e) =>
         {
             if (espPreview != null) espPreview.BoxColor = colEspBox.SelectedColor;
@@ -121,6 +130,16 @@ public partial class Form1 : VzxForm
             }
         };
 
+        // Slider Max Distance
+        trackMaxDist.ValueChanged += (s, e) =>
+        {
+            lblMaxDistVal.Text = $"{trackMaxDist.Value}m";
+            if (espPreview != null)
+            {
+                espPreview.DistanceText = $"{trackMaxDist.Value}m";
+            }
+        };
+
         // Outros
         chkConectado.CheckedChanged += (s, e) =>
         {
@@ -134,38 +153,7 @@ public partial class Form1 : VzxForm
 
         keyOpenMenu.KeyChanged += (s, e) =>
         {
-            VzxToastManager.ShowInfo(this, "Keybind", $"Menu atalho alterado para: {keyOpenMenu.CurrentKey}");
+            VzxToastManager.ShowInfo(this, "Keybind", $"Menu atalho alterado para: {VzxKeybind.FormatKeyName(keyOpenMenu.CurrentKey)}");
         };
-    }
-
-    private void trackMaxDist_ValueChanged(object? sender, EventArgs e)
-    {
-        lblMaxDistVal.Text = $"{trackMaxDist.Value}m";
-        if (espPreview != null)
-        {
-            espPreview.DistanceText = $"{trackMaxDist.Value}m";
-        }
-    }
-
-    private void chkEspBox_CheckedChanged(object? sender, EventArgs e)
-    {
-        if (espPreview != null)
-        {
-            espPreview.ShowBox = chkEspBox.Checked;
-        }
-
-        if (chkEspBox.Checked)
-        {
-            VzxToastManager.ShowSuccess(this, "ESP Box", "ESP Box ativado com sucesso.");
-        }
-        else
-        {
-            VzxToastManager.ShowInfo(this, "ESP Box", "ESP Box desativado.");
-        }
-    }
-
-    private void chkAimbot_CheckedChanged(object sender, EventArgs e)
-    {
-
     }
 }

@@ -18,7 +18,7 @@ public class VzxCheckBox : CheckBox
     private int _borderRadius = 5;
 
     // Animação de checkmark e escala
-    private readonly System.Windows.Forms.Timer _animTimer;
+    private readonly System.Windows.Forms.Timer? _animTimer;
     private float _checkProgress = 0f;
     private float _targetProgress = 0f;
 
@@ -30,22 +30,25 @@ public class VzxCheckBox : CheckBox
         Font = new Font("Segoe UI", 9.5f);
         AutoSize = true;
 
-        _animTimer = new System.Windows.Forms.Timer { Interval = 15 };
-        _animTimer.Tick += (s, e) =>
+        if (LicenseManager.UsageMode != LicenseUsageMode.Designtime)
         {
-            float diff = _targetProgress - _checkProgress;
-            if (Math.Abs(diff) > 0.02f)
+            _animTimer = new System.Windows.Forms.Timer { Interval = 15 };
+            _animTimer.Tick += (s, e) =>
             {
-                _checkProgress += diff * 0.4f;
-                Invalidate();
-            }
-            else
-            {
-                _checkProgress = _targetProgress;
-                _animTimer.Stop();
-                Invalidate();
-            }
-        };
+                float diff = _targetProgress - _checkProgress;
+                if (Math.Abs(diff) > 0.02f)
+                {
+                    _checkProgress += diff * 0.4f;
+                    Invalidate();
+                }
+                else
+                {
+                    _checkProgress = _targetProgress;
+                    _animTimer.Stop();
+                    Invalidate();
+                }
+            };
+        }
     }
 
     [Category("VzxWidgets")]
@@ -81,7 +84,15 @@ public class VzxCheckBox : CheckBox
     {
         base.OnCheckedChanged(e);
         _targetProgress = Checked ? 1f : 0f;
-        _animTimer.Start();
+        if (LicenseManager.UsageMode != LicenseUsageMode.Designtime)
+        {
+            _animTimer?.Start();
+        }
+        else
+        {
+            _checkProgress = _targetProgress;
+            Invalidate();
+        }
     }
 
     public override Size GetPreferredSize(Size proposedSize)
@@ -105,11 +116,20 @@ public class VzxCheckBox : CheckBox
         var g = pevent.Graphics;
         GraphicsHelper.ApplyHighQuality(g);
 
+        // Preencher o fundo com a cor do container para evitar ghosting / smearing
+        Color parentBg = Parent?.BackColor ?? Color.FromArgb(14, 14, 18);
+        using (var brushBg = new SolidBrush(parentBg))
+        {
+            g.FillRectangle(brushBg, ClientRectangle);
+        }
+
         float yPos = (Height - _boxSize) / 2f;
         var rectBox = new RectangleF(1, yPos, _boxSize, _boxSize);
 
+        float progress = (LicenseManager.UsageMode == LicenseUsageMode.Designtime) ? (Checked ? 1f : 0f) : _checkProgress;
+
         using var path = GraphicsHelper.GetRoundedRectangle(rectBox, _borderRadius);
-        Color currentBg = LerpColor(_uncheckedColor, _checkedColor, _checkProgress);
+        Color currentBg = LerpColor(_uncheckedColor, _checkedColor, progress);
 
         using (var brush = new SolidBrush(currentBg))
         {
@@ -117,17 +137,17 @@ public class VzxCheckBox : CheckBox
         }
 
         // Borda quando desmarcado
-        if (_checkProgress < 0.95f)
+        if (progress < 0.95f)
         {
-            int borderAlpha = (int)(255 * (1f - _checkProgress));
+            int borderAlpha = (int)(255 * (1f - progress));
             using var penBorder = new Pen(Color.FromArgb(borderAlpha, _boxBorderColor), 1.2f);
             g.DrawPath(penBorder, path);
         }
 
         // Checkmark animado vetorizado
-        if (_checkProgress > 0.05f)
+        if (progress > 0.05f)
         {
-            using var penCheck = new Pen(Color.FromArgb((int)(255 * _checkProgress), 18, 18, 26), 2.2f)
+            using var penCheck = new Pen(Color.FromArgb((int)(255 * progress), 18, 18, 26), 2.2f)
             {
                 StartCap = LineCap.Round,
                 EndCap = LineCap.Round,
@@ -138,16 +158,16 @@ public class VzxCheckBox : CheckBox
             var p2 = new PointF(rectBox.X + 7.5f, rectBox.Y + 12.5f);
             var p3 = new PointF(rectBox.X + 13.5f, rectBox.Y + 5.5f);
 
-            if (_checkProgress < 0.5f)
+            if (progress < 0.5f)
             {
-                float t = _checkProgress / 0.5f;
+                float t = progress / 0.5f;
                 var currentP2 = new PointF(p1.X + (p2.X - p1.X) * t, p1.Y + (p2.Y - p1.Y) * t);
                 g.DrawLine(penCheck, p1, currentP2);
             }
             else
             {
                 g.DrawLine(penCheck, p1, p2);
-                float t = (_checkProgress - 0.5f) / 0.5f;
+                float t = (progress - 0.5f) / 0.5f;
                 var currentP3 = new PointF(p2.X + (p3.X - p2.X) * t, p2.Y + (p3.Y - p2.Y) * t);
                 g.DrawLine(penCheck, p2, currentP3);
             }

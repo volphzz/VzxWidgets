@@ -21,7 +21,7 @@ public class VzxKeybind : Control
     private bool _isHovered = false;
 
     // Animação de pulso respiratório (Breathing neon glow)
-    private readonly System.Windows.Forms.Timer _pulseTimer;
+    private readonly System.Windows.Forms.Timer? _pulseTimer;
     private float _pulseAlpha = 0.5f;
     private bool _pulseIncreasing = true;
 
@@ -42,29 +42,32 @@ public class VzxKeybind : Control
                  ControlStyles.SupportsTransparentBackColor |
                  ControlStyles.UserPaint, true);
 
-        _pulseTimer = new System.Windows.Forms.Timer { Interval = 30 };
-        _pulseTimer.Tick += (s, e) =>
+        if (LicenseManager.UsageMode != LicenseUsageMode.Designtime)
         {
-            if (_pulseIncreasing)
+            _pulseTimer = new System.Windows.Forms.Timer { Interval = 30 };
+            _pulseTimer.Tick += (s, e) =>
             {
-                _pulseAlpha += 0.05f;
-                if (_pulseAlpha >= 1.0f)
+                if (_pulseIncreasing)
                 {
-                    _pulseAlpha = 1.0f;
-                    _pulseIncreasing = false;
+                    _pulseAlpha += 0.05f;
+                    if (_pulseAlpha >= 1.0f)
+                    {
+                        _pulseAlpha = 1.0f;
+                        _pulseIncreasing = false;
+                    }
                 }
-            }
-            else
-            {
-                _pulseAlpha -= 0.05f;
-                if (_pulseAlpha <= 0.35f)
+                else
                 {
-                    _pulseAlpha = 0.35f;
-                    _pulseIncreasing = true;
+                    _pulseAlpha -= 0.05f;
+                    if (_pulseAlpha <= 0.35f)
+                    {
+                        _pulseAlpha = 0.35f;
+                        _pulseIncreasing = true;
+                    }
                 }
-            }
-            Invalidate();
-        };
+                Invalidate();
+            };
+        }
     }
 
     [Category("VzxWidgets")]
@@ -142,7 +145,7 @@ public class VzxKeybind : Control
             _isListening = true;
             _pulseAlpha = 1.0f;
             _pulseIncreasing = false;
-            _pulseTimer.Start();
+            _pulseTimer?.Start();
             Focus();
             Invalidate();
             return;
@@ -162,7 +165,7 @@ public class VzxKeybind : Control
         {
             CurrentKey = mouseKey;
             _isListening = false;
-            _pulseTimer.Stop();
+            _pulseTimer?.Stop();
             Invalidate();
         }
     }
@@ -186,7 +189,7 @@ public class VzxKeybind : Control
             }
 
             _isListening = false;
-            _pulseTimer.Stop();
+            _pulseTimer?.Stop();
             Invalidate();
         }
     }
@@ -197,7 +200,7 @@ public class VzxKeybind : Control
         if (_isListening)
         {
             _isListening = false;
-            _pulseTimer.Stop();
+            _pulseTimer?.Stop();
             Invalidate();
         }
     }
@@ -247,15 +250,21 @@ public class VzxKeybind : Control
         var g = pevent.Graphics;
         GraphicsHelper.ApplyHighQuality(g);
 
+        // Preencher o fundo com a cor do parent
+        Color parentBg = Parent?.BackColor ?? Color.FromArgb(14, 14, 18);
+        using (var brushParent = new SolidBrush(parentBg))
+        {
+            g.FillRectangle(brushParent, ClientRectangle);
+        }
+
         var rect = new RectangleF(0, 0, Width - 1, Height - 1);
         using var path = GraphicsHelper.GetRoundedRectangle(rect, _borderRadius);
         using var brush = new SolidBrush(_boxBackColor);
 
         g.FillPath(brush, path);
 
-        if (_isListening)
+        if (_isListening && LicenseManager.UsageMode != LicenseUsageMode.Designtime)
         {
-            // Glow externo suave durante a respiração
             float glowAlpha = Math.Clamp(_pulseAlpha * 0.4f, 0f, 1f);
             using (var brushGlow = new SolidBrush(Color.FromArgb((int)(255 * glowAlpha), _activeBorderColor)))
             {

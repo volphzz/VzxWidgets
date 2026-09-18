@@ -16,8 +16,8 @@ public class VzxDotHeader : Control
     private bool _pulseGlow = true;
 
     // Animação de pulso do ponto
-    private readonly System.Windows.Forms.Timer _pulseTimer;
-    private float _pulseFactor = 0.5f;
+    private readonly System.Windows.Forms.Timer? _pulseTimer;
+    private float _pulseFactor = 0.6f;
     private bool _pulseIncreasing = true;
 
     public VzxDotHeader()
@@ -32,30 +32,33 @@ public class VzxDotHeader : Control
                  ControlStyles.SupportsTransparentBackColor |
                  ControlStyles.UserPaint, true);
 
-        _pulseTimer = new System.Windows.Forms.Timer { Interval = 35 };
-        _pulseTimer.Tick += (s, e) =>
+        if (LicenseManager.UsageMode != LicenseUsageMode.Designtime)
         {
-            if (_pulseIncreasing)
+            _pulseTimer = new System.Windows.Forms.Timer { Interval = 40 };
+            _pulseTimer.Tick += (s, e) =>
             {
-                _pulseFactor += 0.04f;
-                if (_pulseFactor >= 1.0f)
+                if (_pulseIncreasing)
                 {
-                    _pulseFactor = 1.0f;
-                    _pulseIncreasing = false;
+                    _pulseFactor += 0.04f;
+                    if (_pulseFactor >= 1.0f)
+                    {
+                        _pulseFactor = 1.0f;
+                        _pulseIncreasing = false;
+                    }
                 }
-            }
-            else
-            {
-                _pulseFactor -= 0.04f;
-                if (_pulseFactor <= 0.4f)
+                else
                 {
-                    _pulseFactor = 0.4f;
-                    _pulseIncreasing = true;
+                    _pulseFactor -= 0.04f;
+                    if (_pulseFactor <= 0.4f)
+                    {
+                        _pulseFactor = 0.4f;
+                        _pulseIncreasing = true;
+                    }
                 }
-            }
-            Invalidate();
-        };
-        _pulseTimer.Start();
+                Invalidate();
+            };
+            _pulseTimer.Start();
+        }
     }
 
     [Category("VzxWidgets")]
@@ -88,7 +91,10 @@ public class VzxDotHeader : Control
         set
         {
             _pulseGlow = value;
-            _pulseTimer.Enabled = value;
+            if (_pulseTimer != null)
+            {
+                _pulseTimer.Enabled = value;
+            }
             Invalidate();
         }
     }
@@ -98,15 +104,22 @@ public class VzxDotHeader : Control
         var g = pevent.Graphics;
         GraphicsHelper.ApplyHighQuality(g);
 
+        // Limpar fundo com a cor do parent para evitar efeito ghosting/smear
+        Color parentBg = Parent?.BackColor ?? Color.FromArgb(14, 14, 18);
+        using (var brushBg = new SolidBrush(parentBg))
+        {
+            g.FillRectangle(brushBg, ClientRectangle);
+        }
+
         float dotY = (Height - _dotSize) / 2f;
 
-        // Halo/glow suave pulsante
-        if (_pulseGlow)
+        // Halo suave pulsante (apenas em runtime se ativado)
+        if (_pulseGlow && LicenseManager.UsageMode != LicenseUsageMode.Designtime)
         {
             float haloSize = _dotSize + (6f * _pulseFactor);
             float haloX = (_dotSize / 2f) - (haloSize / 2f);
             float haloY = (Height / 2f) - (haloSize / 2f);
-            int haloAlpha = (int)(60 * _pulseFactor);
+            int haloAlpha = (int)(55 * _pulseFactor);
 
             using var brushHalo = new SolidBrush(Color.FromArgb(haloAlpha, _dotColor));
             g.FillEllipse(brushHalo, haloX, haloY, haloSize, haloSize);

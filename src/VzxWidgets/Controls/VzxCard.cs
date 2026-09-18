@@ -1,3 +1,4 @@
+﻿using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
@@ -16,8 +17,8 @@ public class VzxCard : Panel
     public VzxCard()
     {
         DoubleBuffered = true;
-        BackColor = Color.FromArgb(18, 18, 24); // Preto fosco gamer profundo
-        Padding = new Padding(15);
+        BackColor = Color.FromArgb(14, 14, 18);
+        Padding = new Padding(14);
         SetStyle(ControlStyles.AllPaintingInWmPaint |
                  ControlStyles.OptimizedDoubleBuffer |
                  ControlStyles.ResizeRedraw |
@@ -29,7 +30,12 @@ public class VzxCard : Panel
     public int BorderRadius
     {
         get => _borderRadius;
-        set { _borderRadius = Math.Max(0, value); Invalidate(); }
+        set
+        {
+            _borderRadius = Math.Max(0, value);
+            UpdateRegion();
+            Invalidate();
+        }
     }
 
     [Category("VzxWidgets")]
@@ -47,13 +53,34 @@ public class VzxCard : Panel
         set { _borderColor = value; Invalidate(); }
     }
 
+    protected override void OnResize(EventArgs eventargs)
+    {
+        base.OnResize(eventargs);
+        UpdateRegion();
+    }
+
+    private void UpdateRegion()
+    {
+        if (Width <= 0 || Height <= 0) return;
+
+        if (_borderRadius > 2)
+        {
+            using var path = GraphicsHelper.GetRoundedRectangle(new RectangleF(0, 0, Width, Height), _borderRadius);
+            Region = new Region(path);
+        }
+        else
+        {
+            Region = new Region(new RectangleF(0, 0, Width, Height));
+        }
+    }
+
     protected override void OnPaint(PaintEventArgs e)
     {
         var g = e.Graphics;
         GraphicsHelper.ApplyHighQuality(g);
 
         var rectSurface = new RectangleF(0, 0, Width, Height);
-        var rectBorder = new RectangleF(1, 1, Width - 2, Height - 2);
+        var rectBorder = new RectangleF(0.5f, 0.5f, Width - 1f, Height - 1f);
 
         if (_borderRadius > 2)
         {
@@ -62,7 +89,6 @@ public class VzxCard : Panel
             using var brushBg = new SolidBrush(BackColor);
             using var penBorder = new Pen(_borderColor, _borderSize);
 
-            Region = new Region(pathSurface);
             g.FillPath(brushBg, pathSurface);
 
             if (_borderSize >= 1)
@@ -72,7 +98,6 @@ public class VzxCard : Panel
         }
         else
         {
-            Region = new Region(rectSurface);
             using var brushBg = new SolidBrush(BackColor);
             g.FillRectangle(brushBg, rectSurface);
 
