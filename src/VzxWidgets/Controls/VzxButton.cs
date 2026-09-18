@@ -13,8 +13,17 @@ public class VzxButton : Button
     private int _borderRadius = 12;
     private int _borderSize = 0;
     private Color _borderColor = Color.FromArgb(70, 70, 90);
-    private Color _hoverColor = Color.FromArgb(120, 118, 240);
-    private Color _pressedColor = Color.FromArgb(74, 72, 200);
+    private Color _hoverColor = Color.FromArgb(255, 115, 30);
+    private Color _pressedColor = Color.FromArgb(210, 70, 10);
+
+    // Gradiente opcional
+    private bool _useGradient = false;
+    private Color _gradientEndColor = Color.FromArgb(255, 140, 20);
+    private float _gradientAngle = 45f;
+
+    // Indicador lateral (estilo Sidebar Cheat/Tabs como Aimbot / Players)
+    private bool _showActiveIndicator = false;
+    private Color _activeIndicatorColor = Color.FromArgb(255, 90, 20);
 
     private bool _isHovered = false;
     private bool _isPressed = false;
@@ -23,10 +32,10 @@ public class VzxButton : Button
     {
         FlatStyle = FlatStyle.Flat;
         FlatAppearance.BorderSize = 0;
-        Size = new Size(160, 45);
-        BackColor = Color.FromArgb(94, 92, 230);
+        Size = new Size(160, 42);
+        BackColor = Color.FromArgb(255, 90, 20);
         ForeColor = Color.White;
-        Font = new Font("Segoe UI Semibold", 10f, FontStyle.Bold);
+        Font = new Font("Segoe UI Semibold", 9.5f, FontStyle.Bold);
         Cursor = Cursors.Hand;
         DoubleBuffered = true;
 
@@ -74,6 +83,44 @@ public class VzxButton : Button
         set { _pressedColor = value; Invalidate(); }
     }
 
+    [Category("VzxWidgets")]
+    [DefaultValue(false)]
+    public bool UseGradient
+    {
+        get => _useGradient;
+        set { _useGradient = value; Invalidate(); }
+    }
+
+    [Category("VzxWidgets")]
+    public Color GradientEndColor
+    {
+        get => _gradientEndColor;
+        set { _gradientEndColor = value; Invalidate(); }
+    }
+
+    [Category("VzxWidgets")]
+    [DefaultValue(45f)]
+    public float GradientAngle
+    {
+        get => _gradientAngle;
+        set { _gradientAngle = value; Invalidate(); }
+    }
+
+    [Category("VzxWidgets")]
+    [DefaultValue(false)]
+    public bool ShowActiveIndicator
+    {
+        get => _showActiveIndicator;
+        set { _showActiveIndicator = value; Invalidate(); }
+    }
+
+    [Category("VzxWidgets")]
+    public Color ActiveIndicatorColor
+    {
+        get => _activeIndicatorColor;
+        set { _activeIndicatorColor = value; Invalidate(); }
+    }
+
     protected override void OnMouseEnter(EventArgs e)
     {
         base.OnMouseEnter(e);
@@ -117,22 +164,39 @@ public class VzxButton : Button
         {
             using var pathSurface = GraphicsHelper.GetRoundedRectangle(rectSurface, _borderRadius);
             using var pathBorder = GraphicsHelper.GetRoundedRectangle(rectBorder, _borderRadius - 1);
-            using var brushBg = new SolidBrush(currentBg);
-            using var penBorder = new Pen(_borderColor, _borderSize);
 
             Region = new Region(pathSurface);
-            g.FillPath(brushBg, pathSurface);
+
+            if (_useGradient && !_isPressed && !_isHovered)
+            {
+                using var brushGrad = new LinearGradientBrush(rectSurface, BackColor, _gradientEndColor, _gradientAngle);
+                g.FillPath(brushGrad, pathSurface);
+            }
+            else
+            {
+                using var brushBg = new SolidBrush(currentBg);
+                g.FillPath(brushBg, pathSurface);
+            }
 
             if (_borderSize >= 1)
             {
+                using var penBorder = new Pen(_borderColor, _borderSize);
                 g.DrawPath(penBorder, pathBorder);
             }
         }
         else
         {
             Region = new Region(rectSurface);
-            using var brushBg = new SolidBrush(currentBg);
-            g.FillRectangle(brushBg, rectSurface);
+            if (_useGradient && !_isPressed && !_isHovered)
+            {
+                using var brushGrad = new LinearGradientBrush(rectSurface, BackColor, _gradientEndColor, _gradientAngle);
+                g.FillRectangle(brushGrad, rectSurface);
+            }
+            else
+            {
+                using var brushBg = new SolidBrush(currentBg);
+                g.FillRectangle(brushBg, rectSurface);
+            }
 
             if (_borderSize >= 1)
             {
@@ -141,6 +205,23 @@ public class VzxButton : Button
             }
         }
 
+        // Indicador lateral para abas (ex: Aimbot)
+        if (_showActiveIndicator)
+        {
+            var rectInd = new RectangleF(0, Height * 0.2f, 3.5f, Height * 0.6f);
+            using var brushInd = new SolidBrush(_activeIndicatorColor);
+            g.FillRectangle(brushInd, rectInd);
+        }
+
+        // Ícone se houver
+        if (Image != null)
+        {
+            int iconX = 12;
+            int iconY = (Height - Image.Height) / 2;
+            g.DrawImage(Image, iconX, iconY, Image.Width, Image.Height);
+        }
+
+        // Texto centralizado
         TextRenderer.DrawText(g, Text, Font, ClientRectangle, ForeColor,
             TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter | TextFormatFlags.EndEllipsis);
     }

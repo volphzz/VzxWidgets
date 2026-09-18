@@ -9,14 +9,14 @@ namespace VzxWidgets.Controls;
 [ToolboxItem(true)]
 public class VzxCard : Panel
 {
-    private int _borderRadius = 16;
+    private int _borderRadius = 14;
     private int _borderSize = 1;
-    private Color _borderColor = Color.FromArgb(45, 45, 60);
+    private Color _borderColor = Color.FromArgb(38, 38, 50);
 
     public VzxCard()
     {
         DoubleBuffered = true;
-        BackColor = Color.FromArgb(28, 28, 38);
+        BackColor = Color.FromArgb(18, 18, 24); // Preto fosco gamer profundo
         Padding = new Padding(15);
         SetStyle(ControlStyles.AllPaintingInWmPaint |
                  ControlStyles.OptimizedDoubleBuffer |
@@ -25,7 +25,7 @@ public class VzxCard : Panel
     }
 
     [Category("VzxWidgets")]
-    [DefaultValue(16)]
+    [DefaultValue(14)]
     public int BorderRadius
     {
         get => _borderRadius;

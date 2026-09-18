@@ -9,10 +9,10 @@
     
     <!-- Metadados do Pacote NuGet -->
     <PackageId>VzxWidgets</PackageId>
-    <Version>1.0.0</Version>
+    <Version>1.1.0</Version>
     <Authors>VOLPHX</Authors>
     <Company>VOLPHX</Company>
-    <Description>Uma biblioteca moderna de componentes WinForms (UI Suite) para C# no estilo Guna UI. Oferece botões arredondados, toggle switches fluidos, cards translúcidos e campos modernos sem cintilação.</Description>
+    <Description>Suite moderna completa de componentes WinForms (.NET 8) estilo Guna UI e Dark Gaming UI. Inclui VzxTrackBar (Seekbar), VzxCheckBox, VzxProgressBar com gradiente, VzxSeparator, VzxComboBox, VzxControlBox, VzxFormDrag, VzxButton com abas/gradientes e VzxCard.</Description>
     <PackageTags>winforms;ui;guna;controls;modern;custom-controls;volphx;csharp;widgets</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/VOLPHX/VzxWidgets</PackageProjectUrl>

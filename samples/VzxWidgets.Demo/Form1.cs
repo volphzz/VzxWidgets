@@ -7,8 +7,23 @@ public partial class Form1 : Form
         InitializeComponent();
     }
 
-    private void toggle1_CheckedChanged(object? sender, EventArgs e)
+    private void trackSensitivity_ValueChanged(object? sender, EventArgs e)
     {
-        lblToggleState.Text = toggle1.Checked ? "Ativado (True)" : "Desativado (False)";
+        lblSensitivityVal.Text = $"( {trackSensitivity.Value}% )";
+    }
+
+    private void trackXAxis_ValueChanged(object? sender, EventArgs e)
+    {
+        lblXAxisVal.Text = $"( {trackXAxis.Value}% )";
+    }
+
+    private void trackYAxis_ValueChanged(object? sender, EventArgs e)
+    {
+        lblYAxisVal.Text = $"( {trackYAxis.Value}% )";
+    }
+
+    private void trackDelay_ValueChanged(object? sender, EventArgs e)
+    {
+        lblDelayVal.Text = $"( {trackDelay.Value} ms )";
     }
 }

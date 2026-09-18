@@ -13,17 +13,30 @@ Uma biblioteca moderna de componentes WinForms (.NET 8.0 Windows) inspirada em s
 - 🎨 **Renderização Anti-Aliased de Alta Precisão**: Curvas suaves sem serrilhados através de GDI+ com double-buffering nativo (zero cintilação/flickering).
 - 🔘 **`VzxButton`**:
   - Cantos arredondados configuráveis (`BorderRadius`).
-  - Cores customizáveis de estado normal, hover e clique (`HoverColor`, `PressedColor`).
-  - Suporte a bordas delineadas com espessura e cor ajustáveis (`BorderSize`, `BorderColor`).
-- 🎚️ **`VzxToggleSwitch`**:
+  - Suporte a **Gradientes de Duas Cores** com ângulo ajustável (`UseGradient`, `GradientEndColor`, `GradientAngle`).
+  - Indicador lateral de aba ativa (`ShowActiveIndicator`, `ActiveIndicatorColor`) perfeito para menus estilo Dark Gaming / Cheat UI.
+  - Cores customizáveis de hover e press.
+- 🎚️ **`VzxTrackBar` (Seekbar / Slider Gamer)**:
+  - Controle deslizante com pista fina, trilha ativa em gradiente e "thumb" estilo diamante ou circular.
+  - Totalmente compatível com evento `ValueChanged`.
+- ☑️ **`VzxCheckBox`**:
+  - Caixa de seleção moderna com cantos arredondados, fundo escuro e checkmark animado em laranja/neon.
+- 📊 **`VzxProgressBar`**:
+  - Barra de progresso curva com suporte a gradiente horizontal e exibição de porcentagem centralizada.
+- ➖ **`VzxSeparator`**:
+  - Linha divisória com desvanecimento suave nas pontas (`FadeEdges`) horizontal ou vertical.
+- 🔽 **`VzxComboBox` (Dropdown Dark)**:
+  - Dropdown totalmente estilizado em tema escuro com setinha minimalista e seleção customizada.
+- 🛑 **`VzxControlBox`**:
+  - Botões minimalistas de Fechar, Minimizar e Maximizar para formulários sem bordas.
+- 🖱️ **`VzxFormDrag`**:
+  - Componente que permite arrastar formulários sem bordas (`FormBorderStyle.None`) clicando em qualquer painel.
+- 🎛️ **`VzxToggleSwitch`**:
   - Interruptor moderno estilo iOS / Windows 11 Fluent Design.
-  - Evento nativo `CheckedChanged`.
-  - Cores dinâmicas para ligado/desligado (`OnBackColor`, `OffBackColor`, `OnToggleColor`, etc.).
 - 🃏 **`VzxCard`**:
   - Painel container com cantos curvos e bordas elegantes para agrupamento de widgets.
 - 📝 **`VzxTextBox`**:
-  - Campo de texto estilizado com suporte a placeholder automático (`PlaceholderText`).
-  - Borda reativa que muda de cor ao receber foco (`BorderFocusColor`).
+  - Campo de texto estilizado com suporte a placeholder automático (`PlaceholderText`) e borda iluminada.
 
 ---
 

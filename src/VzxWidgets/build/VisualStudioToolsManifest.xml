@@ -6,6 +6,13 @@
       <Item Type="VzxWidgets.Controls.VzxToggleSwitch" />
       <Item Type="VzxWidgets.Controls.VzxCard" />
       <Item Type="VzxWidgets.Controls.VzxTextBox" />
+      <Item Type="VzxWidgets.Controls.VzxCheckBox" />
+      <Item Type="VzxWidgets.Controls.VzxTrackBar" />
+      <Item Type="VzxWidgets.Controls.VzxProgressBar" />
+      <Item Type="VzxWidgets.Controls.VzxSeparator" />
+      <Item Type="VzxWidgets.Controls.VzxComboBox" />
+      <Item Type="VzxWidgets.Controls.VzxControlBox" />
+      <Item Type="VzxWidgets.Controls.VzxFormDrag" />
     </ToolboxItems>
   </File>
 </FileList>
