@@ -1,0 +1,15 @@
+## Build and Binaries
+bin/
+obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+## Visual Studio
+.vs/
+.vscode/
+
+## Packages
+*.nupkg
+*.snupkg

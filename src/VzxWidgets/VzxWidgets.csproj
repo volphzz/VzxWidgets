@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    
+    <!-- Metadados do Pacote NuGet -->
+    <PackageId>VzxWidgets</PackageId>
+    <Version>1.0.0</Version>
+    <Authors>VOLPHX</Authors>
+    <Company>VOLPHX</Company>
+    <Description>Uma biblioteca moderna de componentes WinForms (UI Suite) para C# no estilo Guna UI. Oferece botões arredondados, toggle switches fluidos, cards translúcidos e campos modernos sem cintilação.</Description>
+    <PackageTags>winforms;ui;guna;controls;modern;custom-controls;volphx;csharp;widgets</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/VOLPHX/VzxWidgets</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/VOLPHX/VzxWidgets</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,30 @@
+name: Publish to NuGet
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+jobs:
+  build-and-publish:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Restore Dependencies
+        run: dotnet restore
+
+      - name: Build Library (Release)
+        run: dotnet build src/VzxWidgets/VzxWidgets.csproj -c Release --no-restore
+
+      - name: Pack NuGet Package
+        run: dotnet pack src/VzxWidgets/VzxWidgets.csproj -c Release -o bin/packages --no-build
+
+      - name: Push to NuGet.org
+        run: dotnet nuget push bin/packages/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
