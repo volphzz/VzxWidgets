@@ -1,3 +1,4 @@
+using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
@@ -25,8 +26,12 @@ public class VzxButton : Button
     private bool _showActiveIndicator = false;
     private Color _activeIndicatorColor = Color.FromArgb(187, 200, 254);
 
-    private bool _isHovered = false;
     private bool _isPressed = false;
+
+    // Animação de transição suave de hover
+    private readonly System.Windows.Forms.Timer _animTimer;
+    private float _hoverFactor = 0f;
+    private float _targetHover = 0f;
 
     public VzxButton()
     {
@@ -44,6 +49,23 @@ public class VzxButton : Button
                  ControlStyles.ResizeRedraw |
                  ControlStyles.SupportsTransparentBackColor |
                  ControlStyles.UserPaint, true);
+
+        _animTimer = new System.Windows.Forms.Timer { Interval = 15 };
+        _animTimer.Tick += (s, e) =>
+        {
+            float diff = _targetHover - _hoverFactor;
+            if (Math.Abs(diff) > 0.02f)
+            {
+                _hoverFactor += diff * 0.35f;
+                Invalidate();
+            }
+            else
+            {
+                _hoverFactor = _targetHover;
+                _animTimer.Stop();
+                Invalidate();
+            }
+        };
     }
 
     [Category("VzxWidgets")]
@@ -124,23 +146,26 @@ public class VzxButton : Button
     protected override void OnMouseEnter(EventArgs e)
     {
         base.OnMouseEnter(e);
-        _isHovered = true;
-        Invalidate();
+        _targetHover = 1.0f;
+        _animTimer.Start();
     }
 
     protected override void OnMouseLeave(EventArgs e)
     {
         base.OnMouseLeave(e);
-        _isHovered = false;
         _isPressed = false;
-        Invalidate();
+        _targetHover = 0.0f;
+        _animTimer.Start();
     }
 
     protected override void OnMouseDown(MouseEventArgs mevent)
     {
         base.OnMouseDown(mevent);
-        _isPressed = true;
-        Invalidate();
+        if (mevent.Button == MouseButtons.Left)
+        {
+            _isPressed = true;
+            Invalidate();
+        }
     }
 
     protected override void OnMouseUp(MouseEventArgs mevent)
@@ -148,6 +173,16 @@ public class VzxButton : Button
         base.OnMouseUp(mevent);
         _isPressed = false;
         Invalidate();
+    }
+
+    private static Color LerpColor(Color c1, Color c2, float t)
+    {
+        t = Math.Clamp(t, 0f, 1f);
+        int a = (int)(c1.A + (c2.A - c1.A) * t);
+        int r = (int)(c1.R + (c2.R - c1.R) * t);
+        int g = (int)(c1.G + (c2.G - c1.G) * t);
+        int b = (int)(c1.B + (c2.B - c1.B) * t);
+        return Color.FromArgb(a, r, g, b);
     }
 
     protected override void OnPaint(PaintEventArgs pevent)
@@ -158,71 +193,72 @@ public class VzxButton : Button
         var rectSurface = new RectangleF(0, 0, Width, Height);
         var rectBorder = new RectangleF(1, 1, Width - 2, Height - 2);
 
-        Color currentBg = _isPressed ? _pressedColor : (_isHovered ? _hoverColor : BackColor);
+        // Preenchimento de fundo suave
+        Color currentStart = _isPressed ? _pressedColor : LerpColor(BackColor, _hoverColor, _hoverFactor);
+        Color currentEnd = _isPressed ? _pressedColor : LerpColor(_gradientEndColor, _hoverColor, _hoverFactor);
 
         if (_borderRadius > 2)
         {
             using var pathSurface = GraphicsHelper.GetRoundedRectangle(rectSurface, _borderRadius);
             using var pathBorder = GraphicsHelper.GetRoundedRectangle(rectBorder, _borderRadius - 1);
 
-            Region = new Region(pathSurface);
-
-            if (_useGradient && !_isPressed && !_isHovered)
+            // Desenhar fundo
+            if (_useGradient)
             {
-                using var brushGrad = new LinearGradientBrush(rectSurface, BackColor, _gradientEndColor, _gradientAngle);
+                using var brushGrad = new LinearGradientBrush(rectSurface, currentStart, currentEnd, _gradientAngle);
                 g.FillPath(brushGrad, pathSurface);
             }
             else
             {
-                using var brushBg = new SolidBrush(currentBg);
-                g.FillPath(brushBg, pathSurface);
+                using var brushSolid = new SolidBrush(currentStart);
+                g.FillPath(brushSolid, pathSurface);
             }
 
+            // Desenhar borda
             if (_borderSize >= 1)
             {
                 using var penBorder = new Pen(_borderColor, _borderSize);
+                penBorder.Alignment = PenAlignment.Inset;
                 g.DrawPath(penBorder, pathBorder);
+            }
+
+            // Indicador lateral de aba ativa
+            if (_showActiveIndicator)
+            {
+                using var pathIndicator = GraphicsHelper.GetRoundedRectangle(new RectangleF(0, 6, 4, Height - 12), 2);
+                using var brushIndicator = new SolidBrush(_activeIndicatorColor);
+                g.FillPath(brushIndicator, pathIndicator);
             }
         }
         else
         {
-            Region = new Region(rectSurface);
-            if (_useGradient && !_isPressed && !_isHovered)
+            if (_useGradient)
             {
-                using var brushGrad = new LinearGradientBrush(rectSurface, BackColor, _gradientEndColor, _gradientAngle);
+                using var brushGrad = new LinearGradientBrush(rectSurface, currentStart, currentEnd, _gradientAngle);
                 g.FillRectangle(brushGrad, rectSurface);
             }
             else
             {
-                using var brushBg = new SolidBrush(currentBg);
-                g.FillRectangle(brushBg, rectSurface);
+                using var brushSolid = new SolidBrush(currentStart);
+                g.FillRectangle(brushSolid, rectSurface);
             }
 
             if (_borderSize >= 1)
             {
                 using var penBorder = new Pen(_borderColor, _borderSize);
+                penBorder.Alignment = PenAlignment.Inset;
                 g.DrawRectangle(penBorder, 0, 0, Width - 1, Height - 1);
+            }
+
+            if (_showActiveIndicator)
+            {
+                using var brushIndicator = new SolidBrush(_activeIndicatorColor);
+                g.FillRectangle(brushIndicator, 0, 4, 4, Height - 8);
             }
         }
 
-        // Indicador lateral para abas (ex: Aimbot)
-        if (_showActiveIndicator)
-        {
-            var rectInd = new RectangleF(0, Height * 0.2f, 3.5f, Height * 0.6f);
-            using var brushInd = new SolidBrush(_activeIndicatorColor);
-            g.FillRectangle(brushInd, rectInd);
-        }
-
-        // Ícone se houver
-        if (Image != null)
-        {
-            int iconX = 12;
-            int iconY = (Height - Image.Height) / 2;
-            g.DrawImage(Image, iconX, iconY, Image.Width, Image.Height);
-        }
-
-        // Texto centralizado
+        // Texto e ícone centralizados
         TextRenderer.DrawText(g, Text, Font, ClientRectangle, ForeColor,
-            TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter | TextFormatFlags.EndEllipsis);
+            TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter);
     }
 }

@@ -1,3 +1,4 @@
+﻿using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
@@ -14,12 +15,18 @@ public class VzxTrackBar : Control
     private int _maximum = 100;
     private int _value = 50;
     private Color _trackColor = Color.FromArgb(40, 40, 52);
-    private Color _progressColor = Color.FromArgb(187, 200, 254); // Pastel lavender
+    private Color _progressColor = Color.FromArgb(187, 200, 254);
     private Color _thumbColor = Color.White;
     private int _trackHeight = 6;
     private int _thumbSize = 12;
     private bool _isDragging = false;
+    private bool _isHovered = false;
     private bool _showDiamondThumb = true;
+
+    // Animação de escala do Thumb
+    private readonly System.Windows.Forms.Timer _animTimer;
+    private float _thumbScale = 1.0f;
+    private float _targetScale = 1.0f;
 
     public event EventHandler? ValueChanged;
 
@@ -33,6 +40,23 @@ public class VzxTrackBar : Control
                  ControlStyles.ResizeRedraw |
                  ControlStyles.SupportsTransparentBackColor |
                  ControlStyles.UserPaint, true);
+
+        _animTimer = new System.Windows.Forms.Timer { Interval = 15 };
+        _animTimer.Tick += (s, e) =>
+        {
+            float diff = _targetScale - _thumbScale;
+            if (Math.Abs(diff) > 0.02f)
+            {
+                _thumbScale += diff * 0.35f;
+                Invalidate();
+            }
+            else
+            {
+                _thumbScale = _targetScale;
+                _animTimer.Stop();
+                Invalidate();
+            }
+        };
     }
 
     [Category("VzxWidgets")]
@@ -40,7 +64,7 @@ public class VzxTrackBar : Control
     public int Minimum
     {
         get => _minimum;
-        set { _minimum = value; if (_value < _minimum) _value = _minimum; Invalidate(); }
+        set { _minimum = value; Invalidate(); }
     }
 
     [Category("VzxWidgets")]
@@ -48,7 +72,7 @@ public class VzxTrackBar : Control
     public int Maximum
     {
         get => _maximum;
-        set { _maximum = Math.Max(_minimum + 1, value); if (_value > _maximum) _value = _maximum; Invalidate(); }
+        set { _maximum = value; Invalidate(); }
     }
 
     [Category("VzxWidgets")]
@@ -94,7 +118,15 @@ public class VzxTrackBar : Control
     public int TrackHeight
     {
         get => _trackHeight;
-        set { _trackHeight = Math.Max(2, value); Invalidate(); }
+        set { _trackHeight = value; Invalidate(); }
+    }
+
+    [Category("VzxWidgets")]
+    [DefaultValue(12)]
+    public int ThumbSize
+    {
+        get => _thumbSize;
+        set { _thumbSize = value; Invalidate(); }
     }
 
     [Category("VzxWidgets")]
@@ -105,12 +137,33 @@ public class VzxTrackBar : Control
         set { _showDiamondThumb = value; Invalidate(); }
     }
 
+    protected override void OnMouseEnter(EventArgs e)
+    {
+        base.OnMouseEnter(e);
+        _isHovered = true;
+        _targetScale = 1.35f;
+        _animTimer.Start();
+    }
+
+    protected override void OnMouseLeave(EventArgs e)
+    {
+        base.OnMouseLeave(e);
+        _isHovered = false;
+        if (!_isDragging)
+        {
+            _targetScale = 1.0f;
+            _animTimer.Start();
+        }
+    }
+
     protected override void OnMouseDown(MouseEventArgs e)
     {
         base.OnMouseDown(e);
         if (e.Button == MouseButtons.Left)
         {
             _isDragging = true;
+            _targetScale = 1.45f;
+            _animTimer.Start();
             UpdateValueFromMouse(e.X);
         }
     }
@@ -127,65 +180,87 @@ public class VzxTrackBar : Control
     protected override void OnMouseUp(MouseEventArgs e)
     {
         base.OnMouseUp(e);
-        _isDragging = false;
+        if (_isDragging)
+        {
+            _isDragging = false;
+            _targetScale = _isHovered ? 1.35f : 1.0f;
+            _animTimer.Start();
+        }
     }
 
     private void UpdateValueFromMouse(int mouseX)
     {
-        float margin = _thumbSize / 2f;
-        float trackWidth = Width - _thumbSize;
-        float clampedX = Math.Clamp(mouseX - margin, 0, trackWidth);
-        float percent = clampedX / trackWidth;
+        float margin = _thumbSize;
+        float trackWidth = Width - (margin * 2);
+        if (trackWidth <= 0) return;
+
+        float percent = (mouseX - margin) / trackWidth;
+        percent = Math.Clamp(percent, 0f, 1f);
         Value = _minimum + (int)Math.Round(percent * (_maximum - _minimum));
     }
 
-    protected override void OnPaint(PaintEventArgs pevent)
+    protected override void OnPaint(PaintEventArgs e)
     {
-        var g = pevent.Graphics;
+        var g = e.Graphics;
         GraphicsHelper.ApplyHighQuality(g);
 
+        float margin = _thumbSize;
+        float trackWidth = Width - (margin * 2);
         float trackY = (Height - _trackHeight) / 2f;
-        float trackWidth = Width - _thumbSize;
-        float thumbX = ((float)(_value - _minimum) / (_maximum - _minimum)) * trackWidth + (_thumbSize / 2f);
 
-        // Track Fundo
-        var rectTrack = new RectangleF(_thumbSize / 2f, trackY, trackWidth, _trackHeight);
-        using (var pathTrack = GraphicsHelper.GetRoundedRectangle(rectTrack, _trackHeight / 2f))
-        using (var brushTrack = new SolidBrush(_trackColor))
-        {
-            g.FillPath(brushTrack, pathTrack);
-        }
+        // Fundo da barra
+        var rectTrack = new RectangleF(margin, trackY, trackWidth, _trackHeight);
+        using var pathTrack = GraphicsHelper.GetRoundedRectangle(rectTrack, _trackHeight / 2f);
+        using var brushTrack = new SolidBrush(_trackColor);
+        g.FillPath(brushTrack, pathTrack);
 
-        // Progresso Ativo (com gradiente se desejar)
-        float activeWidth = thumbX - (_thumbSize / 2f);
+        // Barra de progresso ativo
+        float percent = (_maximum > _minimum) ? (float)(_value - _minimum) / (_maximum - _minimum) : 0f;
+        float activeWidth = trackWidth * percent;
+
         if (activeWidth > 0)
         {
-            var rectActive = new RectangleF(_thumbSize / 2f, trackY, activeWidth, _trackHeight);
+            var rectActive = new RectangleF(margin, trackY, activeWidth, _trackHeight);
             using var pathActive = GraphicsHelper.GetRoundedRectangle(rectActive, _trackHeight / 2f);
             using var brushActive = new SolidBrush(_progressColor);
             g.FillPath(brushActive, pathActive);
         }
 
-        // Thumb (Gamer Diamond ou Pílula)
-        float thumbCenterY = Height / 2f;
+        // Thumb interativo
+        float thumbX = margin + activeWidth;
+        float thumbY = Height / 2f;
+        float currentSize = _thumbSize * _thumbScale;
+        float halfSize = currentSize / 2f;
+
+        // Glow translúcido animado
+        if (_thumbScale > 1.05f)
+        {
+            float glowSize = currentSize + 8f;
+            using var brushGlow = new SolidBrush(Color.FromArgb(40, _progressColor));
+            g.FillEllipse(brushGlow, thumbX - (glowSize / 2f), thumbY - (glowSize / 2f), glowSize, glowSize);
+        }
+
         if (_showDiamondThumb)
         {
-            // Diamante estilo CS2/Apex Cheat UI
-            float half = _thumbSize / 2f;
             PointF[] diamond = {
-                new PointF(thumbX, thumbCenterY - half),
-                new PointF(thumbX + half, thumbCenterY),
-                new PointF(thumbX, thumbCenterY + half),
-                new PointF(thumbX - half, thumbCenterY)
+                new PointF(thumbX, thumbY - halfSize),
+                new PointF(thumbX + halfSize, thumbY),
+                new PointF(thumbX, thumbY + halfSize),
+                new PointF(thumbX - halfSize, thumbY)
             };
+
             using var brushThumb = new SolidBrush(_thumbColor);
+            using var penThumb = new Pen(_progressColor, 1.5f);
             g.FillPolygon(brushThumb, diamond);
+            g.DrawPolygon(penThumb, diamond);
         }
         else
         {
-            var rectThumb = new RectangleF(thumbX - (_thumbSize / 2f), thumbCenterY - (_thumbSize / 2f), _thumbSize, _thumbSize);
+            var rectThumb = new RectangleF(thumbX - halfSize, thumbY - halfSize, currentSize, currentSize);
             using var brushThumb = new SolidBrush(_thumbColor);
+            using var penThumb = new Pen(_progressColor, 1.5f);
             g.FillEllipse(brushThumb, rectThumb);
+            g.DrawEllipse(penThumb, rectThumb);
         }
     }
 }

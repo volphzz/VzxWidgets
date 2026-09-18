@@ -1,3 +1,4 @@
+﻿using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
@@ -10,11 +11,16 @@ namespace VzxWidgets.Controls;
 [DefaultEvent("CheckedChanged")]
 public class VzxCheckBox : CheckBox
 {
-    private Color _checkedColor = Color.FromArgb(187, 200, 254); // Pastel lavender / ice-blue
+    private Color _checkedColor = Color.FromArgb(187, 200, 254);
     private Color _uncheckedColor = Color.FromArgb(45, 45, 58);
     private Color _boxBorderColor = Color.FromArgb(70, 70, 88);
     private int _boxSize = 18;
     private int _borderRadius = 5;
+
+    // Animação de checkmark e escala
+    private readonly System.Windows.Forms.Timer _animTimer;
+    private float _checkProgress = 0f;
+    private float _targetProgress = 0f;
 
     public VzxCheckBox()
     {
@@ -23,6 +29,23 @@ public class VzxCheckBox : CheckBox
         ForeColor = Color.FromArgb(220, 220, 230);
         Font = new Font("Segoe UI", 9.5f);
         AutoSize = true;
+
+        _animTimer = new System.Windows.Forms.Timer { Interval = 15 };
+        _animTimer.Tick += (s, e) =>
+        {
+            float diff = _targetProgress - _checkProgress;
+            if (Math.Abs(diff) > 0.02f)
+            {
+                _checkProgress += diff * 0.4f;
+                Invalidate();
+            }
+            else
+            {
+                _checkProgress = _targetProgress;
+                _animTimer.Stop();
+                Invalidate();
+            }
+        };
     }
 
     [Category("VzxWidgets")]
@@ -54,10 +77,27 @@ public class VzxCheckBox : CheckBox
         set { _borderRadius = Math.Max(0, value); Invalidate(); }
     }
 
+    protected override void OnCheckedChanged(EventArgs e)
+    {
+        base.OnCheckedChanged(e);
+        _targetProgress = Checked ? 1f : 0f;
+        _animTimer.Start();
+    }
+
     public override Size GetPreferredSize(Size proposedSize)
     {
         Size textSize = TextRenderer.MeasureText(string.IsNullOrEmpty(Text) ? " " : Text, Font);
         return new Size(_boxSize + 12 + textSize.Width, Math.Max(_boxSize, textSize.Height + 4));
+    }
+
+    private static Color LerpColor(Color c1, Color c2, float t)
+    {
+        t = Math.Clamp(t, 0f, 1f);
+        int a = (int)(c1.A + (c2.A - c1.A) * t);
+        int r = (int)(c1.R + (c2.R - c1.R) * t);
+        int g = (int)(c1.G + (c2.G - c1.G) * t);
+        int b = (int)(c1.B + (c2.B - c1.B) * t);
+        return Color.FromArgb(a, r, g, b);
     }
 
     protected override void OnPaint(PaintEventArgs pevent)
@@ -65,22 +105,29 @@ public class VzxCheckBox : CheckBox
         var g = pevent.Graphics;
         GraphicsHelper.ApplyHighQuality(g);
 
-        using (var clearBrush = new SolidBrush(Parent?.BackColor ?? BackColor))
+        float yPos = (Height - _boxSize) / 2f;
+        var rectBox = new RectangleF(1, yPos, _boxSize, _boxSize);
+
+        using var path = GraphicsHelper.GetRoundedRectangle(rectBox, _borderRadius);
+        Color currentBg = LerpColor(_uncheckedColor, _checkedColor, _checkProgress);
+
+        using (var brush = new SolidBrush(currentBg))
         {
-            g.FillRectangle(clearBrush, ClientRectangle);
+            g.FillPath(brush, path);
         }
 
-        int boxY = (Height - _boxSize) / 2;
-        var rectBox = new RectangleF(1, boxY, _boxSize, _boxSize);
-
-        if (Checked)
+        // Borda quando desmarcado
+        if (_checkProgress < 0.95f)
         {
-            using var path = GraphicsHelper.GetRoundedRectangle(rectBox, _borderRadius);
-            using var brushChecked = new SolidBrush(_checkedColor);
-            g.FillPath(brushChecked, path);
+            int borderAlpha = (int)(255 * (1f - _checkProgress));
+            using var penBorder = new Pen(Color.FromArgb(borderAlpha, _boxBorderColor), 1.2f);
+            g.DrawPath(penBorder, path);
+        }
 
-            // Desenhar checkmark perfeito
-            using var penCheck = new Pen(Color.White, 2.2f)
+        // Checkmark animado vetorizado
+        if (_checkProgress > 0.05f)
+        {
+            using var penCheck = new Pen(Color.FromArgb((int)(255 * _checkProgress), 18, 18, 26), 2.2f)
             {
                 StartCap = LineCap.Round,
                 EndCap = LineCap.Round,
@@ -91,21 +138,24 @@ public class VzxCheckBox : CheckBox
             var p2 = new PointF(rectBox.X + 7.5f, rectBox.Y + 12.5f);
             var p3 = new PointF(rectBox.X + 13.5f, rectBox.Y + 5.5f);
 
-            g.DrawLines(penCheck, new[] { p1, p2, p3 });
-        }
-        else
-        {
-            using var path = GraphicsHelper.GetRoundedRectangle(rectBox, _borderRadius);
-            using var brushUnchecked = new SolidBrush(_uncheckedColor);
-            using var penBorder = new Pen(_boxBorderColor, 1.2f);
-
-            g.FillPath(brushUnchecked, path);
-            g.DrawPath(penBorder, path);
+            if (_checkProgress < 0.5f)
+            {
+                float t = _checkProgress / 0.5f;
+                var currentP2 = new PointF(p1.X + (p2.X - p1.X) * t, p1.Y + (p2.Y - p1.Y) * t);
+                g.DrawLine(penCheck, p1, currentP2);
+            }
+            else
+            {
+                g.DrawLine(penCheck, p1, p2);
+                float t = (_checkProgress - 0.5f) / 0.5f;
+                var currentP3 = new PointF(p2.X + (p3.X - p2.X) * t, p2.Y + (p3.Y - p2.Y) * t);
+                g.DrawLine(penCheck, p2, currentP3);
+            }
         }
 
         // Texto ao lado
         var textRect = new Rectangle(_boxSize + 8, 0, Width - _boxSize - 8, Height);
         TextRenderer.DrawText(g, Text, Font, textRect, ForeColor,
-            TextFormatFlags.Left | TextFormatFlags.VerticalCenter | TextFormatFlags.EndEllipsis);
+            TextFormatFlags.Left | TextFormatFlags.VerticalCenter);
     }
 }

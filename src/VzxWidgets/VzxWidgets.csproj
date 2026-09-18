@@ -9,10 +9,10 @@
     
     <!-- Metadados do Pacote NuGet -->
     <PackageId>VzxWidgets</PackageId>
-    <Version>1.6.0</Version>
+    <Version>1.7.0</Version>
     <Authors>VOLPHX</Authors>
     <Company>VOLPHX</Company>
-    <Description>Suite moderna completa de componentes WinForms (.NET 8) estilo Guna UI e Dark Gaming UI. Novo tema refinado Pastel Lavender / Periwinkle (#BBC8FE) aplicado globalmente em todos os componentes: VzxButton, VzxCheckBox, VzxTrackBar, VzxProgressBar, VzxToggleSwitch, VzxTextBox, VzxComboBox, VzxDotHeader, VzxKeybind, VzxToast, VzxToastManager, VzxEspPreview e VzxForm.</Description>
+    <Description>Suite moderna completa de componentes WinForms (.NET 8) estilo Guna UI e Dark Gaming UI (#BBC8FE). Inclui animações fluidas 60fps (Slide suave e color-lerp em VzxToggleSwitch, vetor checkmark animado em VzxCheckBox, thumb scale dinâmico e glow em VzxTrackBar, breathing neon pulse em VzxKeybind, hover fade em VzxButton e halo pulsante em VzxDotHeader), além de VzxToastManager, VzxEspPreview e VzxForm.</Description>
     <PackageTags>winforms;ui;guna;controls;modern;custom-controls;volphx;csharp;widgets</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/VOLPHX/VzxWidgets</PackageProjectUrl>

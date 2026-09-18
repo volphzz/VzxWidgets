@@ -1,6 +1,7 @@
-using System;
+﻿using System;
 using System.ComponentModel;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 using VzxWidgets.Helpers;
 
@@ -19,6 +20,11 @@ public class VzxKeybind : Control
     private int _borderRadius = 6;
     private bool _isHovered = false;
 
+    // Animação de pulso respiratório (Breathing neon glow)
+    private readonly System.Windows.Forms.Timer _pulseTimer;
+    private float _pulseAlpha = 0.5f;
+    private bool _pulseIncreasing = true;
+
     public event EventHandler? KeyChanged;
 
     public VzxKeybind()
@@ -35,6 +41,30 @@ public class VzxKeybind : Control
                  ControlStyles.ResizeRedraw |
                  ControlStyles.SupportsTransparentBackColor |
                  ControlStyles.UserPaint, true);
+
+        _pulseTimer = new System.Windows.Forms.Timer { Interval = 30 };
+        _pulseTimer.Tick += (s, e) =>
+        {
+            if (_pulseIncreasing)
+            {
+                _pulseAlpha += 0.05f;
+                if (_pulseAlpha >= 1.0f)
+                {
+                    _pulseAlpha = 1.0f;
+                    _pulseIncreasing = false;
+                }
+            }
+            else
+            {
+                _pulseAlpha -= 0.05f;
+                if (_pulseAlpha <= 0.35f)
+                {
+                    _pulseAlpha = 0.35f;
+                    _pulseIncreasing = true;
+                }
+            }
+            Invalidate();
+        };
     }
 
     [Category("VzxWidgets")]
@@ -76,7 +106,6 @@ public class VzxKeybind : Control
 
     protected override bool IsInputKey(Keys keyData)
     {
-        // Garante que todas as teclas (Tab, Arrows, Enter, etc.) sejam capturadas
         if (_isListening) return true;
         return base.IsInputKey(keyData);
     }
@@ -111,12 +140,14 @@ public class VzxKeybind : Control
         if (!_isListening)
         {
             _isListening = true;
+            _pulseAlpha = 1.0f;
+            _pulseIncreasing = false;
+            _pulseTimer.Start();
             Focus();
             Invalidate();
             return;
         }
 
-        // Se já está escutando e o usuário clica com botões do mouse:
         Keys mouseKey = Keys.None;
         if (e.Button == MouseButtons.Right)
             mouseKey = Keys.RButton;
@@ -131,6 +162,7 @@ public class VzxKeybind : Control
         {
             CurrentKey = mouseKey;
             _isListening = false;
+            _pulseTimer.Stop();
             Invalidate();
         }
     }
@@ -154,6 +186,7 @@ public class VzxKeybind : Control
             }
 
             _isListening = false;
+            _pulseTimer.Stop();
             Invalidate();
         }
     }
@@ -164,6 +197,7 @@ public class VzxKeybind : Control
         if (_isListening)
         {
             _isListening = false;
+            _pulseTimer.Stop();
             Invalidate();
         }
     }
@@ -204,26 +238,6 @@ public class VzxKeybind : Control
             Keys.Oemcomma => ",",
             Keys.Oemplus => "+",
             Keys.OemMinus => "-",
-            Keys.D0 => "0",
-            Keys.D1 => "1",
-            Keys.D2 => "2",
-            Keys.D3 => "3",
-            Keys.D4 => "4",
-            Keys.D5 => "5",
-            Keys.D6 => "6",
-            Keys.D7 => "7",
-            Keys.D8 => "8",
-            Keys.D9 => "9",
-            Keys.NumPad0 => "Num 0",
-            Keys.NumPad1 => "Num 1",
-            Keys.NumPad2 => "Num 2",
-            Keys.NumPad3 => "Num 3",
-            Keys.NumPad4 => "Num 4",
-            Keys.NumPad5 => "Num 5",
-            Keys.NumPad6 => "Num 6",
-            Keys.NumPad7 => "Num 7",
-            Keys.NumPad8 => "Num 8",
-            Keys.NumPad9 => "Num 9",
             _ => key.ToString()
         };
     }
@@ -237,19 +251,36 @@ public class VzxKeybind : Control
         using var path = GraphicsHelper.GetRoundedRectangle(rect, _borderRadius);
         using var brush = new SolidBrush(_boxBackColor);
 
-        Color border = _isListening
-            ? _activeBorderColor
-            : (_isHovered ? _hoverBorderColor : _borderColor);
-
-        using var pen = new Pen(border, _isListening ? 1.5f : 1.1f);
-
         g.FillPath(brush, path);
-        g.DrawPath(pen, path);
 
-        string display = _isListening ? "[ ... ]" : $"[ {FormatKeyName(_currentKey)} ]";
-        Color textColor = _isListening ? _activeBorderColor : ForeColor;
+        if (_isListening)
+        {
+            // Glow externo suave durante a respiração
+            float glowAlpha = Math.Clamp(_pulseAlpha * 0.4f, 0f, 1f);
+            using (var brushGlow = new SolidBrush(Color.FromArgb((int)(255 * glowAlpha), _activeBorderColor)))
+            {
+                using var pathGlow = GraphicsHelper.GetRoundedRectangle(new RectangleF(-1, -1, Width + 1, Height + 1), _borderRadius + 1);
+                g.DrawPath(new Pen(brushGlow, 2f), pathGlow);
+            }
 
-        TextRenderer.DrawText(g, display, Font, ClientRectangle, textColor,
-            TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter);
+            int borderAlpha = (int)(255 * _pulseAlpha);
+            using var pen = new Pen(Color.FromArgb(borderAlpha, _activeBorderColor), 1.6f);
+            g.DrawPath(pen, path);
+
+            string displayListen = "[ ... ]";
+            Color textCol = Color.FromArgb((int)(255 * _pulseAlpha), _activeBorderColor);
+            TextRenderer.DrawText(g, displayListen, Font, ClientRectangle, textCol,
+                TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter);
+        }
+        else
+        {
+            Color border = _isHovered ? _hoverBorderColor : _borderColor;
+            using var pen = new Pen(border, 1.1f);
+            g.DrawPath(pen, path);
+
+            string display = $"[ {FormatKeyName(_currentKey)} ]";
+            TextRenderer.DrawText(g, display, Font, ClientRectangle, ForeColor,
+                TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter);
+        }
     }
 }

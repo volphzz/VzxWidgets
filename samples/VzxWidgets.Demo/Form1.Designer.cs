@@ -107,6 +107,7 @@ partial class Form1 : VzxWidgets.Controls.VzxForm
         hdrEspPreview = new VzxWidgets.Controls.VzxDotHeader();
         progHealth = new VzxWidgets.Controls.VzxProgressBar();
         cardOutros = new VzxWidgets.Controls.VzxCard();
+        vzxKeybind1 = new VzxWidgets.Controls.VzxKeybind();
         hdrOutros = new VzxWidgets.Controls.VzxDotHeader();
         chkConectado = new VzxWidgets.Controls.VzxCheckBox();
         lblOpenMenu = new Label();
@@ -118,9 +119,7 @@ partial class Form1 : VzxWidgets.Controls.VzxForm
         lblStatus = new Label();
         lblStatusVal = new Label();
         vzxFormDrag1 = new VzxWidgets.Controls.VzxFormDrag(components);
-        vzxComboBox1 = new VzxWidgets.Controls.VzxComboBox();
-        vzxCard1 = new VzxWidgets.Controls.VzxCard();
-        vzxKeybind1 = new VzxWidgets.Controls.VzxKeybind();
+        vzxCheckBox2 = new VzxWidgets.Controls.VzxCheckBox();
         topBar.SuspendLayout();
         cardFuncoes.SuspendLayout();
         cardVisual.SuspendLayout();
@@ -183,8 +182,7 @@ partial class Form1 : VzxWidgets.Controls.VzxForm
         cardFuncoes.BackColor = Color.FromArgb(14, 14, 18);
         cardFuncoes.BorderColor = Color.FromArgb(28, 28, 36);
         cardFuncoes.BorderRadius = 12;
-        cardFuncoes.Controls.Add(vzxCard1);
-        cardFuncoes.Controls.Add(vzxComboBox1);
+        cardFuncoes.Controls.Add(vzxCheckBox2);
         cardFuncoes.Controls.Add(vzxButton1);
         cardFuncoes.Controls.Add(vzxCheckBox1);
         cardFuncoes.Controls.Add(btnTestToasts);
@@ -614,6 +612,19 @@ partial class Form1 : VzxWidgets.Controls.VzxForm
         cardOutros.Size = new Size(250, 155);
         cardOutros.TabIndex = 3;
         // 
+        // vzxKeybind1
+        // 
+        vzxKeybind1.ActiveBorderColor = Color.FromArgb(187, 200, 254);
+        vzxKeybind1.BoxBackColor = Color.FromArgb(24, 24, 32);
+        vzxKeybind1.CurrentKey = Keys.Insert;
+        vzxKeybind1.Font = new Font("Segoe UI Semibold", 8.5F, FontStyle.Bold);
+        vzxKeybind1.ForeColor = Color.FromArgb(220, 220, 235);
+        vzxKeybind1.Location = new Point(146, 13);
+        vzxKeybind1.Name = "vzxKeybind1";
+        vzxKeybind1.Size = new Size(88, 28);
+        vzxKeybind1.TabIndex = 4;
+        vzxKeybind1.Text = "vzxKeybind1";
+        // 
         // hdrOutros
         // 
         hdrOutros.DotColor = Color.FromArgb(187, 200, 254);
@@ -735,41 +746,20 @@ partial class Form1 : VzxWidgets.Controls.VzxForm
         vzxFormDrag1.TargetControl = null;
         vzxFormDrag1.TargetForm = null;
         // 
-        // vzxComboBox1
+        // vzxCheckBox2
         // 
-        vzxComboBox1.ArrowColor = Color.FromArgb(187, 200, 254);
-        vzxComboBox1.BorderColor = Color.FromArgb(38, 38, 50);
-        vzxComboBox1.BorderFocusColor = Color.FromArgb(187, 200, 254);
-        vzxComboBox1.Font = new Font("Segoe UI", 9.5F);
-        vzxComboBox1.ForeColor = Color.FromArgb(230, 230, 240);
-        vzxComboBox1.Location = new Point(133, 32);
-        vzxComboBox1.Name = "vzxComboBox1";
-        vzxComboBox1.Size = new Size(200, 32);
-        vzxComboBox1.TabIndex = 6;
-        vzxComboBox1.Text = "vzxComboBox1";
-        // 
-        // vzxCard1
-        // 
-        vzxCard1.BackColor = Color.FromArgb(18, 18, 24);
-        vzxCard1.BorderColor = Color.FromArgb(38, 38, 50);
-        vzxCard1.Location = new Point(86, 179);
-        vzxCard1.Name = "vzxCard1";
-        vzxCard1.Padding = new Padding(15);
-        vzxCard1.Size = new Size(200, 100);
-        vzxCard1.TabIndex = 7;
-        // 
-        // vzxKeybind1
-        // 
-        vzxKeybind1.ActiveBorderColor = Color.FromArgb(187, 200, 254);
-        vzxKeybind1.BoxBackColor = Color.FromArgb(24, 24, 32);
-        vzxKeybind1.CurrentKey = Keys.Insert;
-        vzxKeybind1.Font = new Font("Segoe UI Semibold", 8.5F, FontStyle.Bold);
-        vzxKeybind1.ForeColor = Color.FromArgb(220, 220, 235);
-        vzxKeybind1.Location = new Point(146, 13);
-        vzxKeybind1.Name = "vzxKeybind1";
-        vzxKeybind1.Size = new Size(88, 28);
-        vzxKeybind1.TabIndex = 4;
-        vzxKeybind1.Text = "vzxKeybind1";
+        vzxCheckBox2.AutoSize = true;
+        vzxCheckBox2.BoxBorderColor = Color.FromArgb(70, 70, 88);
+        vzxCheckBox2.CheckedColor = Color.FromArgb(187, 200, 254);
+        vzxCheckBox2.Font = new Font("Segoe UI", 9.5F);
+        vzxCheckBox2.ForeColor = Color.FromArgb(220, 220, 230);
+        vzxCheckBox2.Location = new Point(140, 52);
+        vzxCheckBox2.Name = "vzxCheckBox2";
+        vzxCheckBox2.Size = new Size(118, 21);
+        vzxCheckBox2.TabIndex = 6;
+        vzxCheckBox2.Text = "vzxCheckBox2";
+        vzxCheckBox2.UncheckedColor = Color.FromArgb(45, 45, 58);
+        vzxCheckBox2.UseVisualStyleBackColor = true;
         // 
         // Form1
         // 
@@ -805,7 +795,6 @@ partial class Form1 : VzxWidgets.Controls.VzxForm
     private Controls.VzxFormDrag vzxFormDrag1;
     private Controls.VzxCheckBox vzxCheckBox1;
     private Controls.VzxButton vzxButton1;
-    private Controls.VzxCard vzxCard1;
-    private Controls.VzxComboBox vzxComboBox1;
     private Controls.VzxKeybind vzxKeybind1;
+    private Controls.VzxCheckBox vzxCheckBox2;
 }
