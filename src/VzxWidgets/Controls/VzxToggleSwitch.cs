@@ -6,6 +6,7 @@ using VzxWidgets.Helpers;
 
 namespace VzxWidgets.Controls;
 
+[ToolboxItem(true)]
 [DefaultEvent("CheckedChanged")]
 public class VzxToggleSwitch : Control
 {

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<FileList>
+  <File Target="VzxWidgets.dll">
+    <ToolboxItems Dynamic="true" TabName="VzxWidgets">
+      <Item Type="VzxWidgets.Controls.VzxButton" />
+      <Item Type="VzxWidgets.Controls.VzxToggleSwitch" />
+      <Item Type="VzxWidgets.Controls.VzxCard" />
+      <Item Type="VzxWidgets.Controls.VzxTextBox" />
+    </ToolboxItems>
+  </File>
+</FileList>

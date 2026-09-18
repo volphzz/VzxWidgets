@@ -6,6 +6,7 @@ using VzxWidgets.Helpers;
 
 namespace VzxWidgets.Controls;
 
+[ToolboxItem(true)]
 public class VzxCard : Panel
 {
     private int _borderRadius = 16;
