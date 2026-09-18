@@ -35,6 +35,18 @@ Uma biblioteca moderna de componentes WinForms (.NET 8.0 Windows) inspirada em s
   - Interruptor moderno estilo iOS / Windows 11 Fluent Design.
 - 🃏 **`VzxCard`**:
   - Painel container com cantos curvos e bordas elegantes para agrupamento de widgets.
+- 👁️ **`VzxEspPreview`**:
+  - Visualizador 2D interativo e animado de Player ESP (Box, Skeleton, Head, Health Bar, Linhas, Distância e Nome) com respiração/animação contínua e customização total de cores e visibilidade.
+- 🪟 **`VzxForm`**:
+  - Janela moderna sem bordas com cantos arredondados independentes (`RoundTopLeft`, `RoundTopRight`, `RoundBottomLeft`, `RoundBottomRight`), drop shadow nativo via DWM e redimensionamento por bordas.
+- 🎨 **`VzxColorButton`**:
+  - Botão seletor de cor com preview quadrado e popup popover moderno com canvas Sat/Val, barra Hue, Alpha e Hex input.
+- ⌨️ **`VzxKeybind`**:
+  - Capturador elegante de atalhos de teclado com visual escuro minimalista.
+- 🟣 **`VzxDotHeader`**:
+  - Título de seção com ponto indicador neon e tipografia elegante.
+- 🔔 **`VzxToast`**:
+  - Notificação toast flutuante estilizada (Success, Error, Warning, Info) com barra lateral colorida e animação de fade.
 - 📝 **`VzxTextBox`**:
   - Campo de texto estilizado com suporte a placeholder automático (`PlaceholderText`) e borda iluminada.
 

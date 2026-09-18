@@ -17,6 +17,7 @@
       <Item Type="VzxWidgets.Controls.VzxColorButton" />
       <Item Type="VzxWidgets.Controls.VzxKeybind" />
       <Item Type="VzxWidgets.Controls.VzxToast" />
+      <Item Type="VzxWidgets.Controls.VzxEspPreview" />
     </ToolboxItems>
   </File>
 </FileList>

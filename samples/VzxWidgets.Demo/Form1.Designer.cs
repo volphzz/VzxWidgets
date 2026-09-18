@@ -57,7 +57,7 @@ partial class Form1 : VzxWidgets.Controls.VzxForm
     // ESP Preview Card
     private VzxWidgets.Controls.VzxDotHeader hdrEspPreview;
     private VzxWidgets.Controls.VzxProgressBar progHealth;
-    private System.Windows.Forms.Panel pnlSkeletonView;
+    private VzxWidgets.Controls.VzxEspPreview espPreview;
 
     // Floating Toasts (Notificações Flutuantes idênticas ao print)
     private VzxWidgets.Controls.VzxToast toastSuccess;
@@ -109,7 +109,7 @@ partial class Form1 : VzxWidgets.Controls.VzxForm
         cardEspPreview = new VzxWidgets.Controls.VzxCard();
         hdrEspPreview = new VzxWidgets.Controls.VzxDotHeader();
         progHealth = new VzxWidgets.Controls.VzxProgressBar();
-        pnlSkeletonView = new Panel();
+        espPreview = new VzxWidgets.Controls.VzxEspPreview();
         cardOutros = new VzxWidgets.Controls.VzxCard();
         hdrOutros = new VzxWidgets.Controls.VzxDotHeader();
         chkConectado = new VzxWidgets.Controls.VzxCheckBox();
@@ -496,9 +496,9 @@ partial class Form1 : VzxWidgets.Controls.VzxForm
         cardEspPreview.BackColor = Color.FromArgb(14, 14, 18);
         cardEspPreview.BorderColor = Color.FromArgb(28, 28, 36);
         cardEspPreview.BorderRadius = 12;
-        cardEspPreview.Controls.Add(hdrEspPreview);
-        cardEspPreview.Controls.Add(progHealth);
-        cardEspPreview.Controls.Add(pnlSkeletonView);
+        
+        
+        cardEspPreview.Controls.Add(espPreview);
         cardEspPreview.Location = new Point(568, 56);
         cardEspPreview.Name = "cardEspPreview";
         cardEspPreview.Padding = new Padding(14);
@@ -530,14 +530,16 @@ partial class Form1 : VzxWidgets.Controls.VzxForm
         progHealth.TrackColor = Color.FromArgb(35, 35, 48);
         progHealth.Value = 85;
         // 
-        // pnlSkeletonView
+        // espPreview
         // 
-        pnlSkeletonView.BackColor = Color.FromArgb(22, 18, 38);
-        pnlSkeletonView.Location = new Point(36, 56);
-        pnlSkeletonView.Name = "pnlSkeletonView";
-        pnlSkeletonView.Size = new Size(202, 380);
-        pnlSkeletonView.TabIndex = 2;
-        pnlSkeletonView.Paint += pnlSkeletonView_Paint;
+        espPreview.Dock = System.Windows.Forms.DockStyle.Fill;
+        espPreview.Location = new Point(14, 14);
+        espPreview.Name = "espPreview";
+        espPreview.Size = new Size(246, 451);
+        espPreview.TabIndex = 0;
+        espPreview.ShowFillBox = true;
+        espPreview.ShowSkeleton = true;
+        espPreview.AnimatedPreview = true;
         // 
         // cardOutros
         // 
