@@ -9,10 +9,10 @@
     
     <!-- Metadados do Pacote NuGet -->
     <PackageId>VzxWidgets</PackageId>
-    <Version>1.5.1</Version>
+    <Version>1.5.2</Version>
     <Authors>VOLPHX</Authors>
     <Company>VOLPHX</Company>
-    <Description>Suite moderna completa de componentes WinForms (.NET 8) estilo Guna UI e Dark Cheat/Gaming UI. Inclui VzxToastManager (sistema de notificações flutuantes com animação de slide-in, empilhamento dinâmico, barra de tempo e auto-dismiss), VzxEspPreview (Player ESP 2D / Skeleton visualizer animado), VzxForm (Borderless Form com cantos curvos, bordas e sombra), VzxColorButton com ColorPicker moderno, VzxKeybind, VzxDotHeader, VzxToast, VzxTrackBar, VzxCheckBox, VzxProgressBar, VzxSeparator, VzxComboBox, VzxControlBox, VzxFormDrag, VzxButton e VzxCard.</Description>
+    <Description>Suite moderna completa de componentes WinForms (.NET 8) estilo Guna UI e Dark Cheat/Gaming UI. Inclui VzxToastManager integrado internamente à janela (Strictly Inside Menu) com animação de slide-in, empilhamento dinâmico, barra de tempo e auto-dismiss, VzxKeybind totalmente funcional com suporte a teclado e botões do mouse (M1-M5), VzxEspPreview, VzxForm, VzxColorButton com ColorPicker moderno, VzxTrackBar, VzxCheckBox, VzxProgressBar, VzxSeparator, VzxComboBox, VzxControlBox, VzxFormDrag, VzxButton e VzxCard.</Description>
     <PackageTags>winforms;ui;guna;controls;modern;custom-controls;volphx;csharp;widgets</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/VOLPHX/VzxWidgets</PackageProjectUrl>

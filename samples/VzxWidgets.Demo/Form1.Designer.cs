@@ -59,10 +59,6 @@ partial class Form1 : VzxWidgets.Controls.VzxForm
     private VzxWidgets.Controls.VzxProgressBar progHealth;
     private VzxWidgets.Controls.VzxEspPreview espPreview;
 
-    // Floating Toasts (Notificações Flutuantes idênticas ao print)
-    private VzxWidgets.Controls.VzxToast toastSuccess;
-    private VzxWidgets.Controls.VzxToast toastInfo;
-
     protected override void Dispose(bool disposing)
     {
         if (disposing && (components != null))
@@ -119,8 +115,6 @@ partial class Form1 : VzxWidgets.Controls.VzxForm
         lblAdbVal = new Label();
         lblStatus = new Label();
         lblStatusVal = new Label();
-        toastSuccess = new VzxWidgets.Controls.VzxToast();
-        toastInfo = new VzxWidgets.Controls.VzxToast();
         vzxFormDrag1 = new VzxWidgets.Controls.VzxFormDrag(components);
         topBar.SuspendLayout();
         cardFuncoes.SuspendLayout();
@@ -224,7 +218,7 @@ partial class Form1 : VzxWidgets.Controls.VzxForm
         // 
         // chkAimbot
         // 
-        chkAimbot.AutoSize = true;
+        chkAimbot.AutoSize = false;
         chkAimbot.BoxBorderColor = Color.FromArgb(70, 70, 88);
         chkAimbot.Checked = true;
         chkAimbot.CheckedColor = Color.FromArgb(155, 80, 255);
@@ -233,23 +227,23 @@ partial class Form1 : VzxWidgets.Controls.VzxForm
         chkAimbot.ForeColor = Color.FromArgb(220, 220, 230);
         chkAimbot.Location = new Point(16, 52);
         chkAimbot.Name = "chkAimbot";
-        chkAimbot.Size = new Size(69, 21);
+        chkAimbot.Size = new Size(200, 22);
         chkAimbot.TabIndex = 1;
         chkAimbot.Text = "Aimbot";
         chkAimbot.UncheckedColor = Color.FromArgb(45, 45, 58);
         // 
         // chkSilent
         // 
-        chkSilent.AutoSize = true;
+        chkSilent.AutoSize = false;
         chkSilent.BoxBorderColor = Color.FromArgb(70, 70, 88);
         chkSilent.CheckedColor = Color.FromArgb(155, 80, 255);
         chkSilent.Font = new Font("Segoe UI", 9.5F);
         chkSilent.ForeColor = Color.FromArgb(220, 220, 230);
         chkSilent.Location = new Point(16, 88);
         chkSilent.Name = "chkSilent";
-        chkSilent.Size = new Size(58, 21);
+        chkSilent.Size = new Size(200, 22);
         chkSilent.TabIndex = 2;
-        chkSilent.Text = "Silent";
+        chkSilent.Text = "Silent Aim";
         chkSilent.UncheckedColor = Color.FromArgb(45, 45, 58);
         // 
         // cardVisual
@@ -291,7 +285,7 @@ partial class Form1 : VzxWidgets.Controls.VzxForm
         // 
         // chkEspBox
         // 
-        chkEspBox.AutoSize = true;
+        chkEspBox.AutoSize = false;
         chkEspBox.BoxBorderColor = Color.FromArgb(70, 70, 88);
         chkEspBox.Checked = true;
         chkEspBox.CheckedColor = Color.FromArgb(155, 80, 255);
@@ -300,7 +294,7 @@ partial class Form1 : VzxWidgets.Controls.VzxForm
         chkEspBox.ForeColor = Color.FromArgb(220, 220, 230);
         chkEspBox.Location = new Point(16, 48);
         chkEspBox.Name = "chkEspBox";
-        chkEspBox.Size = new Size(73, 21);
+        chkEspBox.Size = new Size(190, 22);
         chkEspBox.TabIndex = 1;
         chkEspBox.Text = "ESP Box";
         chkEspBox.UncheckedColor = Color.FromArgb(45, 45, 58);
@@ -316,7 +310,7 @@ partial class Form1 : VzxWidgets.Controls.VzxForm
         // 
         // chkEspFill
         // 
-        chkEspFill.AutoSize = true;
+        chkEspFill.AutoSize = false;
         chkEspFill.BoxBorderColor = Color.FromArgb(70, 70, 88);
         chkEspFill.Checked = true;
         chkEspFill.CheckedColor = Color.FromArgb(155, 80, 255);
@@ -325,7 +319,7 @@ partial class Form1 : VzxWidgets.Controls.VzxForm
         chkEspFill.ForeColor = Color.FromArgb(220, 220, 230);
         chkEspFill.Location = new Point(16, 78);
         chkEspFill.Name = "chkEspFill";
-        chkEspFill.Size = new Size(89, 21);
+        chkEspFill.Size = new Size(190, 22);
         chkEspFill.TabIndex = 3;
         chkEspFill.Text = "ESP Fillbox";
         chkEspFill.UncheckedColor = Color.FromArgb(45, 45, 58);
@@ -340,7 +334,7 @@ partial class Form1 : VzxWidgets.Controls.VzxForm
         // 
         // chkEspLine
         // 
-        chkEspLine.AutoSize = true;
+        chkEspLine.AutoSize = false;
         chkEspLine.BoxBorderColor = Color.FromArgb(70, 70, 88);
         chkEspLine.Checked = true;
         chkEspLine.CheckedColor = Color.FromArgb(155, 80, 255);
@@ -349,7 +343,7 @@ partial class Form1 : VzxWidgets.Controls.VzxForm
         chkEspLine.ForeColor = Color.FromArgb(220, 220, 230);
         chkEspLine.Location = new Point(16, 108);
         chkEspLine.Name = "chkEspLine";
-        chkEspLine.Size = new Size(75, 21);
+        chkEspLine.Size = new Size(190, 22);
         chkEspLine.TabIndex = 5;
         chkEspLine.Text = "ESP Line";
         chkEspLine.UncheckedColor = Color.FromArgb(45, 45, 58);
@@ -376,7 +370,7 @@ partial class Form1 : VzxWidgets.Controls.VzxForm
         // 
         // chkEspName
         // 
-        chkEspName.AutoSize = true;
+        chkEspName.AutoSize = false;
         chkEspName.BoxBorderColor = Color.FromArgb(70, 70, 88);
         chkEspName.Checked = true;
         chkEspName.CheckedColor = Color.FromArgb(155, 80, 255);
@@ -385,7 +379,7 @@ partial class Form1 : VzxWidgets.Controls.VzxForm
         chkEspName.ForeColor = Color.FromArgb(220, 220, 230);
         chkEspName.Location = new Point(16, 180);
         chkEspName.Name = "chkEspName";
-        chkEspName.Size = new Size(87, 21);
+        chkEspName.Size = new Size(190, 22);
         chkEspName.TabIndex = 8;
         chkEspName.Text = "ESP Name";
         chkEspName.UncheckedColor = Color.FromArgb(45, 45, 58);
@@ -400,7 +394,7 @@ partial class Form1 : VzxWidgets.Controls.VzxForm
         // 
         // chkEspHealth
         // 
-        chkEspHealth.AutoSize = true;
+        chkEspHealth.AutoSize = false;
         chkEspHealth.BoxBorderColor = Color.FromArgb(70, 70, 88);
         chkEspHealth.Checked = true;
         chkEspHealth.CheckedColor = Color.FromArgb(155, 80, 255);
@@ -409,14 +403,14 @@ partial class Form1 : VzxWidgets.Controls.VzxForm
         chkEspHealth.ForeColor = Color.FromArgb(220, 220, 230);
         chkEspHealth.Location = new Point(16, 210);
         chkEspHealth.Name = "chkEspHealth";
-        chkEspHealth.Size = new Size(89, 21);
+        chkEspHealth.Size = new Size(190, 22);
         chkEspHealth.TabIndex = 10;
         chkEspHealth.Text = "ESP Health";
         chkEspHealth.UncheckedColor = Color.FromArgb(45, 45, 58);
         // 
         // chkEspSkeleton
         // 
-        chkEspSkeleton.AutoSize = true;
+        chkEspSkeleton.AutoSize = false;
         chkEspSkeleton.BoxBorderColor = Color.FromArgb(70, 70, 88);
         chkEspSkeleton.Checked = true;
         chkEspSkeleton.CheckedColor = Color.FromArgb(155, 80, 255);
@@ -425,7 +419,7 @@ partial class Form1 : VzxWidgets.Controls.VzxForm
         chkEspSkeleton.ForeColor = Color.FromArgb(220, 220, 230);
         chkEspSkeleton.Location = new Point(16, 240);
         chkEspSkeleton.Name = "chkEspSkeleton";
-        chkEspSkeleton.Size = new Size(101, 21);
+        chkEspSkeleton.Size = new Size(190, 22);
         chkEspSkeleton.TabIndex = 11;
         chkEspSkeleton.Text = "ESP Skeleton";
         chkEspSkeleton.UncheckedColor = Color.FromArgb(45, 45, 58);
@@ -550,7 +544,7 @@ partial class Form1 : VzxWidgets.Controls.VzxForm
         // 
         // chkConectado
         // 
-        chkConectado.AutoSize = true;
+        chkConectado.AutoSize = false;
         chkConectado.BoxBorderColor = Color.FromArgb(70, 70, 88);
         chkConectado.Checked = true;
         chkConectado.CheckedColor = Color.FromArgb(155, 80, 255);
@@ -559,7 +553,7 @@ partial class Form1 : VzxWidgets.Controls.VzxForm
         chkConectado.ForeColor = Color.FromArgb(220, 220, 230);
         chkConectado.Location = new Point(16, 44);
         chkConectado.Name = "chkConectado";
-        chkConectado.Size = new Size(90, 21);
+        chkConectado.Size = new Size(200, 22);
         chkConectado.TabIndex = 1;
         chkConectado.Text = "Conectado";
         chkConectado.UncheckedColor = Color.FromArgb(45, 45, 58);
@@ -652,29 +646,6 @@ partial class Form1 : VzxWidgets.Controls.VzxForm
         lblStatusVal.TabIndex = 4;
         lblStatusVal.Text = "None";
         // 
-        // toastSuccess
-        // 
-        toastSuccess.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-        toastSuccess.BackColor = Color.FromArgb(24, 24, 32);
-        toastSuccess.BarColor = Color.FromArgb(48, 209, 88);
-        toastSuccess.ForeColor = Color.White;
-        toastSuccess.Location = new Point(590, 400);
-        toastSuccess.Name = "toastSuccess";
-        toastSuccess.Size = new Size(245, 60);
-        toastSuccess.TabIndex = 6;
-        // 
-        // toastInfo
-        // 
-        toastInfo.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-        toastInfo.BackColor = Color.FromArgb(24, 24, 32);
-        toastInfo.BarColor = Color.FromArgb(155, 80, 255);
-        toastInfo.ForeColor = Color.White;
-        toastInfo.Location = new Point(590, 468);
-        toastInfo.Message = "ESP Box desativado.";
-        toastInfo.Name = "toastInfo";
-        toastInfo.Size = new Size(245, 60);
-        toastInfo.TabIndex = 7;
-        toastInfo.Type = VzxWidgets.Controls.ToastType.Info;
         // 
         // vzxFormDrag1
         // 
@@ -687,8 +658,6 @@ partial class Form1 : VzxWidgets.Controls.VzxForm
         AutoScaleMode = AutoScaleMode.Font;
         BackColor = Color.FromArgb(8, 8, 10);
         ClientSize = new Size(860, 550);
-        Controls.Add(toastInfo);
-        Controls.Add(toastSuccess);
         Controls.Add(cardEspPreview);
         Controls.Add(cardInfo);
         Controls.Add(cardOutros);

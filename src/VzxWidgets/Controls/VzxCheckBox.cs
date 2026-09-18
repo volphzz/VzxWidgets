@@ -54,6 +54,12 @@ public class VzxCheckBox : CheckBox
         set { _borderRadius = Math.Max(0, value); Invalidate(); }
     }
 
+    public override Size GetPreferredSize(Size proposedSize)
+    {
+        Size textSize = TextRenderer.MeasureText(string.IsNullOrEmpty(Text) ? " " : Text, Font);
+        return new Size(_boxSize + 12 + textSize.Width, Math.Max(_boxSize, textSize.Height + 4));
+    }
+
     protected override void OnPaint(PaintEventArgs pevent)
     {
         var g = pevent.Graphics;

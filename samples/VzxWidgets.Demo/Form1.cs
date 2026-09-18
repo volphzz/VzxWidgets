@@ -30,10 +30,6 @@ public partial class Form1 : VzxForm
         btnClose.Click += (s, e) => Close();
         btnMin.Click += (s, e) => WindowState = FormWindowState.Minimized;
 
-        // Ocultar os toasts estáticos iniciais
-        toastSuccess.Visible = false;
-        toastInfo.Visible = false;
-
         // 2. Funções (Aimbot / Silent)
         chkAimbot.CheckedChanged += (s, e) =>
         {
