@@ -30,9 +30,12 @@ jobs:
         run: dotnet pack src/VzxWidgets/VzxWidgets.csproj -c Release -o packages --no-build
 
       - name: NuGet Login (OIDC Trusted Publishing)
+        id: login
         uses: NuGet/login@v1
+        with:
+          user: Volphx
 
       - name: Push to NuGet.org
         run: |
           $pkg = (Get-ChildItem -Path packages -Filter *.nupkg | Select-Object -First 1).FullName
-          dotnet nuget push $pkg --source https://api.nuget.org/v3/index.json --skip-duplicate
+          dotnet nuget push $pkg --api-key "${{ steps.login.outputs.NUGET_API_KEY }}" --source https://api.nuget.org/v3/index.json --skip-duplicate
