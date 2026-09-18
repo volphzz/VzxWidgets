@@ -27,7 +27,9 @@ jobs:
         run: dotnet build src/VzxWidgets/VzxWidgets.csproj -c Release --no-restore
 
       - name: Pack NuGet Package
-        run: dotnet pack src/VzxWidgets/VzxWidgets.csproj -c Release -o bin/packages --no-build
+        run: dotnet pack src/VzxWidgets/VzxWidgets.csproj -c Release -o packages --no-build
 
       - name: Push to NuGet.org
-        run: dotnet nuget push bin/packages/*.nupkg --source https://api.nuget.org/v3/index.json --skip-duplicate
+        run: |
+          $pkg = (Get-ChildItem -Path packages -Filter *.nupkg | Select-Object -First 1).FullName
+          dotnet nuget push $pkg --source https://api.nuget.org/v3/index.json --skip-duplicate
