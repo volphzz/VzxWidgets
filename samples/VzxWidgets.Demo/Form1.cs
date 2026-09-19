@@ -18,7 +18,8 @@ public partial class Form1 : VzxForm
     {
         InitializeComponent();
 
-        Size = new Size(980, 710);
+        AutoScaleMode = AutoScaleMode.None;
+        ClientSize = new Size(1020, 720);
         StartPosition = FormStartPosition.CenterScreen;
         BackColor = Color.FromArgb(10, 11, 15);
         BorderRadius = 14;
@@ -76,37 +77,86 @@ public partial class Form1 : VzxForm
         };
         _sidebar.Controls.Add(profileBadge);
 
-        // Menu Itens Container
-        var pnlNav = new FlowLayoutPanel
+        // Menu Itens Container com scroll suave
+        var pnlNav = new Panel
         {
             Dock = DockStyle.Fill,
-            FlowDirection = FlowDirection.TopDown,
-            WrapContents = false,
-            AutoScroll = false,
+            AutoScroll = true,
             Padding = new Padding(12, 6, 12, 6),
             BackColor = Color.Transparent
         };
         _sidebar.Controls.Add(pnlNav);
 
-        AddSidebarCategory(pnlNav, "Jogador");
-        AddSidebarItem(pnlNav, "Você", false);
-        AddSidebarItem(pnlNav, "Jogadores", true); // Ativo com dot
+        int curY = 6;
+        void AddCategory(string name)
+        {
+            var lblCat = new Label
+            {
+                Text = $"~  {name}",
+                Font = new Font("Segoe UI Semibold", 8.5f, FontStyle.Bold),
+                ForeColor = Color.FromArgb(0, 168, 255),
+                Location = new Point(14, curY),
+                Size = new Size(200, 22),
+                TextAlign = ContentAlignment.MiddleLeft
+            };
+            pnlNav.Controls.Add(lblCat);
+            curY += 26;
+        }
 
-        AddSidebarCategory(pnlNav, "Veículo");
-        AddSidebarItem(pnlNav, "Atual", false);
-        AddSidebarItem(pnlNav, "Veículos", false);
+        void AddItem(string text, bool active)
+        {
+            var pnlItem = new Panel
+            {
+                Location = new Point(12, curY),
+                Size = new Size(206, 32),
+                BackColor = active ? Color.FromArgb(20, 26, 40) : Color.Transparent,
+                Cursor = Cursors.Hand
+            };
 
-        AddSidebarCategory(pnlNav, "Combate");
-        AddSidebarItem(pnlNav, "Mira", false);
-        AddSidebarItem(pnlNav, "Armas", false);
+            pnlItem.Paint += (s, e) =>
+            {
+                var g = e.Graphics;
+                GraphicsHelper.ApplyHighQuality(g);
 
-        AddSidebarCategory(pnlNav, "Outros");
-        AddSidebarItem(pnlNav, "Diversos", false);
-        AddSidebarItem(pnlNav, "Recursos (141)", false);
-        AddSidebarItem(pnlNav, "Statebags (217)", false);
-        AddSidebarItem(pnlNav, "Lua Executor", false);
+                if (active)
+                {
+                    using var path = GraphicsHelper.GetRoundedRectangle(new RectangleF(0, 0, pnlItem.Width - 1, pnlItem.Height - 1), 6);
+                    using var pen = new Pen(Color.FromArgb(0, 168, 255), 1f);
+                    g.DrawPath(pen, path);
 
-        // 2. Área Principal de Conteúdo
+                    // Indicador circular à direita
+                    using var brushDot = new SolidBrush(Color.FromArgb(0, 168, 255));
+                    g.FillEllipse(brushDot, pnlItem.Width - 18, 12, 7, 7);
+                }
+
+                Color textCol = active ? Color.FromArgb(0, 168, 255) : Color.FromArgb(160, 165, 185);
+                using var font = new Font("Segoe UI Semibold", 9f, FontStyle.Bold);
+                TextRenderer.DrawText(g, text, font, new Point(14, 7), textCol);
+            };
+
+            pnlNav.Controls.Add(pnlItem);
+            curY += 36;
+        }
+
+        AddCategory("Jogador");
+        AddItem("Você", false);
+        AddItem("Jogadores", true);
+
+        AddCategory("Veículo");
+        AddItem("Atual", false);
+        AddItem("Veículos", false);
+
+        AddCategory("Combate");
+        AddItem("Mira", false);
+        AddItem("Armas", false);
+
+        AddCategory("Outros");
+        AddItem("Diversos", false);
+        AddItem("Recursos (141)", false);
+        AddItem("Statebags (217)", false);
+        AddItem("Lua Executor", false);
+
+        // 2. Área Principal
         var mainArea = new Panel
         {
             Dock = DockStyle.Fill,
@@ -115,7 +165,7 @@ public partial class Form1 : VzxForm
         Controls.Add(mainArea);
         mainArea.BringToFront();
 
-        // 3. TopBar no Topo da Área Principal
+        // 3. TopBar
         _topBar = new Panel
         {
             Dock = DockStyle.Top,
@@ -124,7 +174,6 @@ public partial class Form1 : VzxForm
         };
         mainArea.Controls.Add(_topBar);
 
-        // Window Controls (Min, Close)
         var btnClose = new VzxControlBox
         {
             BoxType = ControlBoxType.Close,
@@ -142,26 +191,19 @@ public partial class Form1 : VzxForm
         _topBar.Controls.Add(btnClose);
         _topBar.Controls.Add(btnMin);
 
-        // Breadcrumb "Navegando por Jogadores"
-        var lblBreadcrumb = new Label
-        {
-            Text = "Navegando por  Jogadores",
-            Font = new Font("Segoe UI Semibold", 9.5f, FontStyle.Bold),
-            ForeColor = Color.FromArgb(160, 165, 185),
-            Location = new Point(14, 15),
-            AutoSize = true
-        };
+        // Breadcrumb
         _topBar.Paint += (s, e) =>
         {
             var g = e.Graphics;
             GraphicsHelper.ApplyHighQuality(g);
-            using var brushBlue = new SolidBrush(Color.FromArgb(0, 168, 255));
-            using var fontBlue = new Font("Segoe UI Semibold", 9.5f, FontStyle.Bold);
-            TextRenderer.DrawText(g, "Jogadores", fontBlue, new Point(116, 15), Color.FromArgb(0, 168, 255));
-        };
-        _topBar.Controls.Add(lblBreadcrumb);
 
-        // Campo de Pesquisa Global na TopBar
+            using var fontGray = new Font("Segoe UI Semibold", 9.5f, FontStyle.Bold);
+            using var fontBlue = new Font("Segoe UI Semibold", 9.5f, FontStyle.Bold);
+            TextRenderer.DrawText(g, "Navegando por", fontGray, new Point(16, 15), Color.FromArgb(160, 165, 185));
+            TextRenderer.DrawText(g, "Jogadores", fontBlue, new Point(122, 15), Color.FromArgb(0, 168, 255));
+        };
+
+        // Pesquisar Global
         var txtSearchTop = new VzxTextBox
         {
             PlaceholderText = "Pesquisar",
@@ -175,7 +217,6 @@ public partial class Form1 : VzxForm
         };
         _topBar.Controls.Add(txtSearchTop);
 
-        // VzxFormDrag configurado para mover a janela
         _formDrag = new VzxFormDrag(components ?? new System.ComponentModel.Container())
         {
             TargetControl = _topBar,
@@ -183,7 +224,7 @@ public partial class Form1 : VzxForm
         };
         _formDrag.AddDragControl(pnlLogo);
 
-        // 4. Painel de Conteúdo (Scrollable / Flow)
+        // 4. Painel de Conteúdo
         _content = new Panel
         {
             Dock = DockStyle.Fill,
@@ -194,59 +235,31 @@ public partial class Form1 : VzxForm
         mainArea.Controls.Add(_content);
         _content.BringToFront();
 
-        // Linha de Busca de Peds com Filtro
+        // 5. Linha de Busca de Peds
         BuildSearchRow(_content);
 
-        // Lista de Jogadores (Player Card selecionado)
+        // 6. Player Card Selecionado (Stuart black 021)
         BuildPlayerCardRow(_content);
 
-        // Grade de Botões de Ações Rápidas (Copiar Roupas, Clonar Ped, etc.)
+        // 7. Grade de Ações Rápidas (4x2 botões)
         BuildActionGrid(_content);
 
-        // Separador com título Wallhack com os marcadores de círculo interligados
+        // 8. Header Wallhack Neon
         BuildWallhackHeader(_content);
 
-        // Tabela de Configurações do ESP / Wallhack (VzxFiveRow)
+        // 9. Linhas Modulares Wallhack
         BuildWallhackRows(_content);
-    }
-
-    private void AddSidebarCategory(FlowLayoutPanel panel, string name)
-    {
-        var lblCat = new Label
-        {
-            Text = $"~  {name}",
-            Font = new Font("Segoe UI Semibold", 8.5f, FontStyle.Bold),
-            ForeColor = Color.FromArgb(0, 168, 255),
-            Size = new Size(216, 26),
-            Margin = new Padding(0, 10, 0, 2),
-            TextAlign = ContentAlignment.MiddleLeft
-        };
-        panel.Controls.Add(lblCat);
-    }
-
-    private void AddSidebarItem(FlowLayoutPanel panel, string text, bool active)
-    {
-        var btn = new VzxButton
-        {
-            Text = $"     {text}",
-            Size = new Size(216, 32),
-            Margin = new Padding(0, 2, 0, 2),
-            BorderRadius = 6,
-            BorderSize = 0,
-            BackColor = active ? Color.FromArgb(20, 24, 36) : Color.Transparent,
-            ForeColor = active ? Color.FromArgb(0, 168, 255) : Color.FromArgb(160, 165, 185),
-            HoverColor = Color.FromArgb(24, 28, 42),
-            ShowActiveIndicator = active,
-            ActiveIndicatorColor = Color.FromArgb(0, 168, 255),
-            Font = new Font("Segoe UI Semibold", 8.5f, FontStyle.Bold)
-        };
-        panel.Controls.Add(btn);
     }
 
     private void BuildSearchRow(Panel container)
     {
-        var pnl = new Panel { Location = new Point(16, 10), Size = new Size(container.Width - 32, 34), Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right };
-        
+        var pnl = new Panel
+        {
+            Location = new Point(16, 10),
+            Size = new Size(container.Width - 32, 34),
+            Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right
+        };
+
         var txtSearch = new VzxTextBox
         {
             PlaceholderText = "Pesquisar  st",
@@ -291,14 +304,11 @@ public partial class Form1 : VzxForm
 
     private void BuildPlayerCardRow(Panel container)
     {
-        var card = new VzxCard
+        var card = new Panel
         {
             Location = new Point(16, 52),
             Size = new Size(container.Width - 32, 42),
             Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right,
-            BorderRadius = 6,
-            BorderSize = 1,
-            BorderColor = Color.FromArgb(0, 140, 220),
             BackColor = Color.FromArgb(18, 24, 38)
         };
 
@@ -307,17 +317,29 @@ public partial class Form1 : VzxForm
             var g = e.Graphics;
             GraphicsHelper.ApplyHighQuality(g);
 
-            // Marcador rosa à esquerda
+            var rectBorder = new RectangleF(0, 0, card.Width - 1, card.Height - 1);
+            using var path = GraphicsHelper.GetRoundedRectangle(rectBorder, 6);
+            using var brushBg = new SolidBrush(card.BackColor);
+            using var penBorder = new Pen(Color.FromArgb(0, 140, 220), 1.2f);
+
+            g.FillPath(brushBg, path);
+            g.DrawPath(penBorder, path);
+
+            // Marcador rosa estilizado à esquerda
             using var brushPink = new SolidBrush(Color.FromArgb(235, 87, 140));
-            g.FillRectangle(brushPink, 12, 12, 5, 18);
+            g.FillRectangle(brushPink, 14, 11, 5, 20);
+
+            // Ícone mouse / teclado
+            using var fontIcon = new Font("Segoe UI", 8f);
+            TextRenderer.DrawText(g, "⌨", fontIcon, new Point(24, 12), Color.FromArgb(180, 190, 210));
 
             // Nome e Distância
-            using var font = new Font("Segoe UI Semibold", 9f, FontStyle.Bold);
-            TextRenderer.DrawText(g, "Stuart black 021 em ~246.188 metros.", font, new Point(28, 12), Color.White);
+            using var font = new Font("Segoe UI Semibold", 9.5f, FontStyle.Bold);
+            TextRenderer.DrawText(g, "Stuart black 021 em ~246.188 metros.", font, new Point(44, 11), Color.White);
 
             // Símbolo masculino azul
-            using var fontSymbol = new Font("Segoe UI", 11f, FontStyle.Bold);
-            TextRenderer.DrawText(g, "♂", fontSymbol, new Point(card.Width - 30, 10), Color.FromArgb(0, 168, 255));
+            using var fontSymbol = new Font("Segoe UI", 12f, FontStyle.Bold);
+            TextRenderer.DrawText(g, "♂", fontSymbol, new Point(card.Width - 32, 8), Color.FromArgb(0, 168, 255));
         };
 
         container.Controls.Add(card);
@@ -342,19 +364,21 @@ public partial class Form1 : VzxForm
             int x = 16 + col * (btnW + 8);
             int y = startY + row * (btnH + 8);
 
-            var btn = new VzxButton
+            var btn = new Button
             {
                 Text = actions[i],
                 Location = new Point(x, y),
                 Size = new Size(btnW, btnH),
-                BorderRadius = 6,
-                BorderSize = 1,
-                BorderColor = Color.FromArgb(32, 34, 46),
+                FlatStyle = FlatStyle.Flat,
                 BackColor = Color.FromArgb(18, 19, 26),
                 ForeColor = Color.FromArgb(200, 205, 220),
-                HoverColor = Color.FromArgb(28, 30, 42),
-                Font = new Font("Segoe UI Semibold", 8f, FontStyle.Bold)
+                Font = new Font("Segoe UI Semibold", 8f, FontStyle.Bold),
+                Cursor = Cursors.Hand
             };
+            btn.FlatAppearance.BorderColor = Color.FromArgb(32, 34, 46);
+            btn.FlatAppearance.BorderSize = 1;
+            btn.FlatAppearance.MouseOverBackColor = Color.FromArgb(26, 28, 40);
+
             container.Controls.Add(btn);
         }
     }

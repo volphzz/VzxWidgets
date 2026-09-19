@@ -14,7 +14,7 @@ public class VzxFiveRow : Control
     private string[] _options = new[] { "Simples", "Complexo" };
     private int _selectedOption = 1;
     private bool _checked = true;
-    private Color[] _colors = new[] { Color.White, Color.FromArgb(187, 200, 254), Color.FromArgb(0, 168, 255) };
+    private Color[] _colors = new[] { Color.White, Color.White, Color.White };
     private Color _backColor = Color.FromArgb(16, 17, 24);
     private Color _borderColor = Color.FromArgb(28, 30, 42);
 
@@ -28,7 +28,7 @@ public class VzxFiveRow : Control
     public VzxFiveRow()
     {
         DoubleBuffered = true;
-        Size = new Size(520, 42);
+        Size = new Size(580, 42);
         Font = new Font("Segoe UI", 9f);
         ForeColor = Color.White;
 
@@ -39,7 +39,7 @@ public class VzxFiveRow : Control
                  ControlStyles.UserPaint, true);
 
         // Toggle Switch à esquerda
-        _toggle.Size = new Size(38, 20);
+        _toggle.Size = new Size(40, 22);
         _toggle.Checked = _checked;
         _toggle.OnBackColor = Color.FromArgb(0, 168, 255);
         _toggle.OffBackColor = Color.FromArgb(35, 38, 50);
@@ -50,8 +50,8 @@ public class VzxFiveRow : Control
         };
         Controls.Add(_toggle);
 
-        // Segmented Control à direita
-        _segmented.Size = new Size(130, 26);
+        // Segmented Control à direita com largura fixa adequada
+        _segmented.Size = new Size(160, 28);
         _segmented.Items = _options;
         _segmented.SelectedIndex = _selectedOption;
         _segmented.SelectedIndexChanged += (s, e) =>
@@ -84,8 +84,8 @@ public class VzxFiveRow : Control
         get => _options;
         set
         {
-            _options = value;
-            _segmented.Items = value;
+            _options = value ?? Array.Empty<string>();
+            _segmented.Items = _options;
             LayoutControls();
         }
     }
@@ -106,7 +106,7 @@ public class VzxFiveRow : Control
     public Color[] ColorSlots
     {
         get => _colors;
-        set { _colors = value ?? Array.Empty<Color>(); Invalidate(); }
+        set { _colors = value ?? Array.Empty<Color>(); LayoutControls(); Invalidate(); }
     }
 
     protected override void OnResize(EventArgs e)
@@ -121,7 +121,7 @@ public class VzxFiveRow : Control
         _toggle.Location = new Point(135, yCenter);
 
         int segY = (Height - _segmented.Height) / 2;
-        int colorsRightMargin = (_colors.Length * 20) + 16;
+        int colorsRightMargin = (_colors.Length * 20) + 14;
         _segmented.Location = new Point(Width - _segmented.Width - colorsRightMargin, segY);
     }
 
